@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xinliang.yishibao.MainActivity">
+    tools:context="com.xinliang.yishibao.view.MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -25,7 +25,7 @@
             android:queryHint="@string/search_hint"
              />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/shopping_cart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -33,7 +33,63 @@
             android:layout_alignParentRight="true"
             android:layout_toEndOf="@+id/search_view"
             android:layout_toRightOf="@+id/search_view"
-            android:src="@mipmap/shopping_cart" />
+            android:src="@mipmap/shopping_cart"
+            android:background="@android:color/transparent"/>
     </android.support.v7.widget.Toolbar>
+
+    <android.support.v4.view.ViewPager
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/home_group" >
+    </android.support.v4.view.ViewPager>
+
+    <RadioGroup
+        android:id="@+id/home_group"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+        android:background="@color/red"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/home_radio_one"
+            style="@style/MMTabButton"
+            android:checked="true"
+            android:drawableTop="@drawable/tab_home"
+            android:text="@string/tab_home"
+            android:textColor="@color/mainradio_textcolor" />
+
+        <RadioButton
+            android:id="@+id/home_radio_two"
+            style="@style/MMTabButton"
+            android:drawableTop="@drawable/tab_travel"
+            android:text="@string/tab_travel"
+            android:textColor="@color/mainradio_textcolor" />
+
+        <RadioButton
+            android:id="@+id/home_radio_three"
+            style="@style/MMTabButton"
+            android:drawableTop="@drawable/tab_find"
+            android:text="@string/tab_find"
+            android:textColor="@color/mainradio_textcolor" />
+
+        <RadioButton
+            android:id="@+id/home_radio_four"
+            style="@style/MMTabButton"
+            android:drawableTop="@drawable/tab_shop"
+            android:text="@string/tab_shop"
+            android:textColor="@color/mainradio_textcolor" />
+
+        <RadioButton
+            android:id="@+id/home_radio_five"
+            style="@style/MMTabButton"
+            android:drawableTop="@drawable/tab_self"
+            android:text="@string/tab_self"
+            android:textColor="@color/mainradio_textcolor" />
+
+    </RadioGroup>
 
 </RelativeLayout>

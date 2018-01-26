@@ -1,5 +1,10 @@
 <resources>
-    <string name="app_name">YiShiBao</string>
+    <string name="app_name">亿世宝</string>
     <string name="start">开始体验</string>
     <string name="search_hint">搜索</string>
+    <string name="tab_home">首页</string>
+    <string name="tab_travel">旅行</string>
+    <string name="tab_find">发现</string>
+    <string name="tab_shop">商城</string>
+    <string name="tab_self">我的</string>
 </resources>
