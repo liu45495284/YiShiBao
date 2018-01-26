@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zsr="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xinliang.yishibao.MainActivity">
+
+    <com.zhengsr.viewpagerlib.view.GlideViewPager
+        android:id="@+id/splase_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:padding="20dp"
+        android:textColor="#000000"
+        android:text="11"/>
+
+    <Button
+        android:id="@+id/splase_start_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/glide_bottom_btn_bg"
+        android:textColor="@color/white"
+        android:text="@string/start"
+        android:textSize="18sp"
+        android:visibility="gone"
+        />
+
+    <com.zhengsr.viewpagerlib.indicator.ZoomIndicator
+        android:id="@+id/splase_bottom_layout"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        zsr:zoom_selector="@drawable/bottom_circle"
+        zsr:zoom_leftmargin="10dp"
+        zsr:zoom_max="1.5"
+        zsr:zoom_alpha_min="0.4"
+        zsr:zoom_dismiss_open="true"
+        android:orientation="horizontal"/>
+
+</RelativeLayout>
