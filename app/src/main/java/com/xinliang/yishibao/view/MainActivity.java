@@ -15,15 +15,14 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.xinliang.yishibao.R;
-import com.xinliang.yishibao.view.Fragment.FindFragment;
-import com.xinliang.yishibao.view.Fragment.HomeFragment;
-import com.xinliang.yishibao.view.Fragment.SelfFragment;
-import com.xinliang.yishibao.view.Fragment.ShopFragment;
-import com.xinliang.yishibao.view.Fragment.TravelFragment;
+import com.xinliang.yishibao.view.fragment.FindFragment;
+import com.xinliang.yishibao.view.fragment.HomeFragment;
+import com.xinliang.yishibao.view.fragment.SelfFragment;
+import com.xinliang.yishibao.view.fragment.ShopFragment;
+import com.xinliang.yishibao.view.fragment.TravelFragment;
 
 import java.util.ArrayList;
 import java.util.List;

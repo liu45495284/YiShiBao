@@ -1,26 +1,27 @@
 package com.xinliang.yishibao.module.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.xinliang.yishibao.R;
+import com.xinliang.yishibao.module.utils.DividerGridItemDecoration;
+import com.xinliang.yishibao.presenter.BannerViewHolder;
+import com.xinliang.yishibao.view.customview.CategrayGridView;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerClickListener;
 import com.youth.banner.loader.ImageLoader;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
-import java.util.WeakHashMap;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 
 /**
@@ -30,26 +31,29 @@ import java.util.WeakHashMap;
 public class HomeRecycleViewAdapter extends RecyclerView.Adapter {
 
     /**
-     * 4种类型
+     * 5种类型
      */
     /**
-     * 类型1：黑色星期五--使用banner实现
+     * 类型1：--使用banner实现
      */
     public static final int BLACK_5_BANNER0 = 0;
     /**
-     *类型2：今日新品--使用GridView实现
+     *类型2：--使用GridView实现
      */
     public static final int TODAY_NEW_GV1 = 1;
     /**
-     * 类型3：品牌福利--使用ImageView实现
+     *类型3：--使用GridView实现
      */
-    public static final int PIN_PAI_IV2=2;
+    public static final int CATEGRAY_NEW_GV2 = 2;
+    /**
+     * 类型4：--使用ImageView实现
+     */
+    public static final int PIN_PAI_IV3=3;
 
     /**
-     * 类型4：搭配趋势--使用RecyclerView实现
+     * 类型5：--使用RecyclerView实现
      */
-    public static final int DAPEIQS_GV3 =3;
-
+    public static final int DAPEIQS_GV4 =4;
 
     /**
      * 当前类型
@@ -58,7 +62,6 @@ public class HomeRecycleViewAdapter extends RecyclerView.Adapter {
 
     private final Context mContext;
     private final List moduleBeanList;
-
 
     /**
      * 以后用它来初始化布局
@@ -72,50 +75,53 @@ public class HomeRecycleViewAdapter extends RecyclerView.Adapter {
         mLayoutInflater = LayoutInflater.from(mContext);
     }
 
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == BLACK_5_BANNER0) {
-            return new BBNViewHolder(mContext, mLayoutInflater.inflate(R.layout.banner_viewpager, null));
+            return new BannerViewHolder(mContext, mLayoutInflater.inflate(R.layout.banner_viewpager, null));
         }else if(viewType==TODAY_NEW_GV1){
             return new TODAYViewHolder(mContext,mLayoutInflater.inflate(R.layout.gv_channel,null));
-//        }else if(viewType==PIN_PAI_IV2) {
-//            return new PINPAIViewHolder(mContext, mLayoutInflater.inflate(R.layout.iv_pinpai, null));
-//        }else if(viewType== DAPEIQS_GV3) {
-//            return new DaPeiViewHolder(mContext, mLayoutInflater.inflate(R.layout.dapeiqs_rv, null));
+        }else if(viewType==CATEGRAY_NEW_GV2){
+            return new CategrayViewHolder(mContext,mLayoutInflater.inflate(R.layout.gv_channel_categray,null));
+        }else if(viewType==PIN_PAI_IV3) {
+            return new PINPAIViewHolder(mContext, mLayoutInflater.inflate(R.layout.iv_pinpai, null));
+        }else if(viewType== DAPEIQS_GV4) {
+            return new DaPeiViewHolder(mContext, mLayoutInflater.inflate(R.layout.dapeiqs_rv, null));
         }
         return null;
-
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == BLACK_5_BANNER0) {
-            BBNViewHolder bbnViewHolder= (BBNViewHolder) holder;
+            BannerViewHolder bannerViewHolder= (BannerViewHolder) holder;
 //            List<WomenBean.WomenData.ModuleBean.DataBean> module0data = moduleBeanList.get(0).getData();
 //            bbnViewHolder.setData(module0data);
-              bbnViewHolder.setData(moduleBeanList);
+            bannerViewHolder.setData(moduleBeanList);
         }else if(getItemViewType(position)==TODAY_NEW_GV1) {
             TODAYViewHolder todayViewHolder= (TODAYViewHolder) holder;
 //            List<WomenBean.WomenData.ModuleBean.DataBean> module1data = moduleBeanList.get(1).getData();
             todayViewHolder.setData(moduleBeanList);
-        }
-// else if(getItemViewType(position)==PIN_PAI_IV2) {
-//            PINPAIViewHolder pinpaiViewHolder = (PINPAIViewHolder) holder;
+        }else if(getItemViewType(position)==CATEGRAY_NEW_GV2) {
+            CategrayViewHolder categrayViewHolder= (CategrayViewHolder) holder;
+//            List<WomenBean.WomenData.ModuleBean.DataBean> module1data = moduleBeanList.get(1).getData();
+            categrayViewHolder.setData(moduleBeanList);
+        }else if(getItemViewType(position)==PIN_PAI_IV3) {
+            PINPAIViewHolder pinpaiViewHolder = (PINPAIViewHolder) holder;
 //            List<WomenBean.WomenData.ModuleBean.DataBean> pinpai2data = moduleBeanList.get(2).getData();
-//            pinpaiViewHolder.setData(pinpai2data);
-//        }else if(getItemViewType(position)== DAPEIQS_GV3) {
-//            DaPeiViewHolder dapeiViewHolder = (DaPeiViewHolder) holder;
+            pinpaiViewHolder.setData(moduleBeanList);
+        }else if(getItemViewType(position)== DAPEIQS_GV4) {
+            DaPeiViewHolder dapeiViewHolder = (DaPeiViewHolder) holder;
 //            List<WomenBean.WomenData.ModuleBean.DataBean> dapeiqs6data = moduleBeanList.get(6).getData();
-//            dapeiViewHolder.setData(dapeiqs6data);
-//        }
+            dapeiViewHolder.setData(moduleBeanList);
+        }
 
 
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 5;
     }
 
     @Override
@@ -127,17 +133,20 @@ public class HomeRecycleViewAdapter extends RecyclerView.Adapter {
             case TODAY_NEW_GV1:
                 currentType = TODAY_NEW_GV1;
                 break;
-            case PIN_PAI_IV2:
-                currentType = PIN_PAI_IV2;
+            case CATEGRAY_NEW_GV2:
+                currentType = CATEGRAY_NEW_GV2;
                 break;
-            case DAPEIQS_GV3:
-                currentType = DAPEIQS_GV3;
+            case PIN_PAI_IV3:
+                currentType = PIN_PAI_IV3;
+                break;
+            case DAPEIQS_GV4:
+                currentType = DAPEIQS_GV4;
                 break;
         }
         return currentType;
     }
 
-    public  class BBNViewHolder extends RecyclerView.ViewHolder {
+    public  class BBNViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final Context mContext;
         private Banner banner;
@@ -146,6 +155,8 @@ public class HomeRecycleViewAdapter extends RecyclerView.Adapter {
             super(itemView);
             this.mContext = mContext;
             banner = (Banner) itemView.findViewById(R.id.banner);
+
+            itemView.setOnClickListener(this);
         }
 
 //        public void setData(List<WomenBean.WomenData.ModuleBean.DataBean> module0data) {
@@ -157,23 +168,9 @@ public class HomeRecycleViewAdapter extends RecyclerView.Adapter {
 //                imageUrls.add(image);
 //            }
             public void setData(List module0data) {
-                List imageUrls=new ArrayList<>();
-                WeakHashMap weakHashMap = new WeakHashMap();
-                weakHashMap = ((WeakHashMap)module0data.get(0));
-                    Set<String> keys = weakHashMap.keySet() ;// 得到全部的key
-                    Iterator<String> iter = keys.iterator() ;
-                    while(iter.hasNext()) {
-                        String str = iter.next();
-                        if (str.substring(0,4).equals("bann")) {
-                            imageUrls.add(weakHashMap.get("bann0"));
-                            imageUrls.add(weakHashMap.get("bann1"));
-                            imageUrls.add(weakHashMap.get("bann2"));
-                        }
-                    }
-
 
             //新版的banner的使用----偷下懒的使用方法
-            banner.setImages(imageUrls).setImageLoader(new GlideImageLoader()).start();
+            banner.setImages(module0data).setImageLoader(new GlideImageLoader()).start();
 
             //设置item的点击事件
             banner.setOnBannerClickListener(new OnBannerClickListener() {
@@ -183,6 +180,11 @@ public class HomeRecycleViewAdapter extends RecyclerView.Adapter {
                     Toast.makeText(mContext, "position=="+position, Toast.LENGTH_SHORT).show();
                 }
             });
+
+        }
+
+        @Override
+        public void onClick(View v) {
 
         }
     }
@@ -202,22 +204,88 @@ public class HomeRecycleViewAdapter extends RecyclerView.Adapter {
     class TODAYViewHolder extends RecyclerView.ViewHolder {
 
         private final Context mContext;
-        private GridView gridView;
+        private CategrayGridView gridView;
 
         public TODAYViewHolder(Context mContext, View itemView) {
             super(itemView);
             this.mContext = mContext;
-            gridView = (GridView) itemView.findViewById(R.id.gv_channel);
+            gridView = itemView.findViewById(R.id.gv_channel);
         }
 
-//        public void setData(List<WomenBean.WomenData.ModuleBean.DataBean> module1data) {
-            public void setData (List module0data){
-                //已得到数据了
-                //设置适配器
-                TodayGVAdapter adapter = new TodayGVAdapter(mContext, module0data);
-                gridView.setAdapter(adapter);
-            }
+        //        public void setData(List<WomenBean.WomenData.ModuleBean.DataBean> module1data) {
+        public void setData (List module0data){
+            //已得到数据了
+            //设置适配器
+            TodayGVAdapter adapter = new TodayGVAdapter(mContext, module0data);
+            gridView.setAdapter(adapter);
+        }
+    }
+
+    class CategrayViewHolder extends RecyclerView.ViewHolder {
+
+        private final Context mContext;
+        private CategrayGridView gridView;
+
+        public CategrayViewHolder(Context mContext, View itemView) {
+            super(itemView);
+            this.mContext = mContext;
+            gridView = itemView.findViewById(R.id.gv_channel_categray);
         }
 
+        //        public void setData(List<WomenBean.WomenData.ModuleBean.DataBean> module1data) {
+        public void setData (List module0data){
+            //已得到数据了
+            //设置适配器
+            CategrayAdapter adapter = new CategrayAdapter(mContext, module0data);
+            gridView.setAdapter(adapter);
+        }
+    }
+
+    class PINPAIViewHolder extends RecyclerView.ViewHolder {
+        private final Context mContext;
+        @Bind(R.id.iv_pinpai)
+        ImageView ivNewChok;
+
+        PINPAIViewHolder(Context mContext, View itemView) {
+            super(itemView);
+            this.mContext = mContext;
+            ButterKnife.bind(this, itemView);
+            ivNewChok = (ImageView) itemView.findViewById(R.id.iv_pinpai);
+        }
+
+//        public void setData(List<WomenBean.WomenData.ModuleBean.DataBean> pinpai2data) {
+          public void setData(List pinpai2data) {
+            //使用Glide加载图片
+            Glide.with(mContext)
+                    .load(R.mipmap.guide3)
+                    .into(ivNewChok);
+        }
+    }
+
+    class DaPeiViewHolder extends RecyclerView.ViewHolder{
+
+        private final Context mContext;
+        private RecyclerView dapeiqs_rv;
+
+        public DaPeiViewHolder(Context mContext, View itemView) {
+            super(itemView);
+            this.mContext=mContext;
+            dapeiqs_rv= itemView.findViewById(R.id.dapeiqs_rv);
+        }
+
+        public void setData(List dapeiqs6data) {
+            //1.已有数据
+            //2.设置适配器：-->设置文本和recycleView的数据
+            DaPeiQSRecycleViewAdapter adapter=new DaPeiQSRecycleViewAdapter(mContext,dapeiqs6data);
+            //设置adapter
+            dapeiqs_rv.setAdapter(adapter);
+            dapeiqs_rv.addItemDecoration(new DividerGridItemDecoration(mContext));
+
+        //recycleView不仅要设置适配器还要设置布局管理者,否则图片不显示
+            GridLayoutManager manager= new GridLayoutManager(mContext,2);
+            dapeiqs_rv.setLayoutManager(manager);
+
+        }
+    }
 
 }

@@ -1,11 +1,10 @@
-package com.xinliang.yishibao.view.Fragment;
+package com.xinliang.yishibao.view.fragment;
 
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import com.xinliang.yishibao.module.adapter.HomeRecycleViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.WeakHashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,15 +49,8 @@ public class HomeFragment extends BaseFragment {
 
     public void initDate() {
         int iconBanner[] = { R.mipmap.i4, R.mipmap.i2, R.mipmap.i3,};
-        int iconGrid[] = {R.mipmap.ic_launcher};
-        WeakHashMap<String , Object> hashMap = new WeakHashMap<>();
         for (int i = 0 ; i < iconBanner.length ; i++) {
-            hashMap.put("bann" + i , iconBanner[i]);
+            moduleBeanList.add(iconBanner[i]);
         }
-        for (int i = 0 ; i < iconGrid.length ; i++) {
-            hashMap.put("grid" + i, iconGrid[i]);
-        }
-        moduleBeanList.add(hashMap);
     }
-
 }

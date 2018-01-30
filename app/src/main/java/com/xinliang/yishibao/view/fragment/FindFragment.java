@@ -1,4 +1,4 @@
-package com.xinliang.yishibao.view.Fragment;
+package com.xinliang.yishibao.view.fragment;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import com.xinliang.yishibao.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SelfFragment extends BaseFragment {
+public class FindFragment extends BaseFragment {
 
 
-    public SelfFragment() {
+    public FindFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class SelfFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_self, container, false);
+        return inflater.inflate(R.layout.fragment_find, container, false);
     }
 
 }
