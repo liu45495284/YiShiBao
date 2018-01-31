@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.xinliang.yishibao.R;
 import com.xinliang.yishibao.module.adapter.CategrayAdapter;
+import com.xinliang.yishibao.view.MainActivity;
 import com.xinliang.yishibao.view.customview.CategrayGridView;
 
 import java.util.List;

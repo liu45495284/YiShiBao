@@ -2,14 +2,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xinliang.yishibao.view.fragment.HomeFragment">
+    tools:context="com.xinliang.yishibao.view.fragment.HomeFragment"
+    android:id="@+id/fragment_home">
 
-
+    <com.baoyz.widget.PullRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
          />
+
+    </com.baoyz.widget.PullRefreshLayout>
 
 </FrameLayout>

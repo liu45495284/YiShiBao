@@ -10,14 +10,18 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
 
 import com.xinliang.yishibao.R;
+import com.xinliang.yishibao.presenter.ItmeCallBackListener;
+import com.xinliang.yishibao.presenter.TravelViewHolder;
 import com.xinliang.yishibao.view.fragment.FindFragment;
 import com.xinliang.yishibao.view.fragment.HomeFragment;
 import com.xinliang.yishibao.view.fragment.SelfFragment;
@@ -28,21 +32,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements ItmeCallBackListener {
 
-    private ViewPager viewPager;
     private ViewPager mViewPager;
     private Fragment[] mFragments;
     private RadioGroup mHomeGroup;
+    private MainActivity mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mContext = this;
+
         checkSecurityPermissions();
 
         setContentView(R.layout.activity_main);
         initView();
+
+
     }
 
     public void initView () {
@@ -64,6 +72,7 @@ public class MainActivity extends BaseActivity {
         Fragment selfFragment = new SelfFragment();
 
         mFragments = new Fragment[]{homeFragment,travelFragment,findFragment,shopFragment,selfFragment};
+//        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,homeFragment).commitAllowingStateLoss();
 
         MyViewPagerAdapter adapter = new MyViewPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(adapter);
@@ -87,9 +96,15 @@ public class MainActivity extends BaseActivity {
 
             }
         });
-
-
     }
+
+    @Override
+    public void gridViewItemClickListener(AdapterView<?> parent, View view, int position, long id) {
+        if (mViewPager != null) {
+            mViewPager.setCurrentItem(1, false);
+        }
+    }
+
 
     class MyViewPagerAdapter extends FragmentPagerAdapter {
 
@@ -160,8 +175,6 @@ public class MainActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
     }
-
-
 
     private final int CHECK_PERMISSIONS_REQUEST = 10010;
 

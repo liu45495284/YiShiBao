@@ -18,7 +18,7 @@ import java.util.List;
  * Created by JackLiu on 2018-01-30.
  */
 
-public class BannerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class BannerViewHolder extends RecyclerView.ViewHolder {
 
     private final Context mContext;
     private Banner banner;
@@ -28,7 +28,6 @@ public class BannerViewHolder extends RecyclerView.ViewHolder implements View.On
         this.mContext = mContext;
         banner = itemView.findViewById(R.id.banner);
 
-        itemView.setOnClickListener(this);
     }
 
     //        public void setData(List<WomenBean.WomenData.ModuleBean.DataBean> module0data) {
@@ -52,11 +51,6 @@ public class BannerViewHolder extends RecyclerView.ViewHolder implements View.On
                 Toast.makeText(mContext, "position==" + position, Toast.LENGTH_SHORT).show();
             }
         });
-
-    }
-
-    @Override
-    public void onClick(View v) {
 
     }
 

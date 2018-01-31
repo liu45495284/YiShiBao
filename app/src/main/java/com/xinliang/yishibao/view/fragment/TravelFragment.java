@@ -8,12 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.xinliang.yishibao.R;
+import com.xinliang.yishibao.view.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class TravelFragment extends BaseFragment {
 
+
+    private MainActivity mActivity;
 
     public TravelFragment() {
         // Required empty public constructor
@@ -24,7 +27,11 @@ public class TravelFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_travel, container, false);
+        mActivity = (MainActivity)getActivity();
+        View view = inflater.inflate(R.layout.fragment_travel, container, false);
+        return view;
     }
+
+
 
 }
