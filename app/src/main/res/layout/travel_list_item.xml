@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/iv_travel_list"
+        android:layout_width="130dp"
+        android:layout_height="80dp"
+        android:src="@mipmap/i3"
+        android:scaleType="fitXY"
+        />
+
+    <TextView
+        android:id="@+id/tv_travel_title"
+        android:layout_width="235dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_travel_list"
+        android:layout_marginLeft="8dp"
+        android:singleLine="true"
+        android:text="广西桂林+古东瀑布+漓江+阳朔"
+        android:textSize="16sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tv_travel_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_travel_list"
+        android:layout_below="@+id/tv_travel_title"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:textSize="15sp"
+        android:text="4日3晚免费游"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:id="@+id/tv_travel_jifen"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@+id/iv_travel_list"
+        android:layout_below="@+id/tv_travel_time"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:textSize="15sp"
+        android:text="1500积分"
+        android:textColor="@color/red"
+        />
+
+
+</android.support.percent.PercentRelativeLayout>

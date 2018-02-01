@@ -6,37 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.xinliang.yishibao.view.MainActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        android:layout_width="match_parent"
-        android:layout_height="38dp"
-        android:background="@color/white"
-        >
-
-        <android.support.v7.widget.SearchView
-            android:id="@+id/search_view"
-            android:layout_width="300dp"
-            android:layout_height="30dp"
-            android:layout_alignBottom="@+id/toolbar"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="@color/gray_cccc"
-            android:queryHint="@string/search_hint"
-             />
-
-        <ImageButton
-            android:id="@+id/shopping_cart"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="8dp"
-            android:layout_alignParentRight="true"
-            android:layout_toEndOf="@+id/search_view"
-            android:layout_toRightOf="@+id/search_view"
-            android:src="@mipmap/shopping_cart"
-            android:background="@android:color/transparent"/>
-    </android.support.v7.widget.Toolbar>
-
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"

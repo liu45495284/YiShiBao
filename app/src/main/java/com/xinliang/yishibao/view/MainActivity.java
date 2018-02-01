@@ -38,6 +38,7 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
     private Fragment[] mFragments;
     private RadioGroup mHomeGroup;
     private MainActivity mContext;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +55,7 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
     }
 
     public void initView () {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        SearchView searchView = (SearchView) findViewById(R.id.search_view);
-        searchView.setOnClickListener(new SearchViewClickListener());
-
-        ImageButton shoppingButton = (ImageButton) findViewById(R.id.shopping_cart);
-        shoppingButton.setOnClickListener(new ShopClickListener());
 
         mViewPager = (ViewPager)findViewById(R.id.pager);
 
@@ -72,7 +66,6 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
         Fragment selfFragment = new SelfFragment();
 
         mFragments = new Fragment[]{homeFragment,travelFragment,findFragment,shopFragment,selfFragment};
-//        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,homeFragment).commitAllowingStateLoss();
 
         MyViewPagerAdapter adapter = new MyViewPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(adapter);
@@ -96,12 +89,24 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
 
             }
         });
+
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+//        }
+
     }
 
     @Override
     public void gridViewItemClickListener(AdapterView<?> parent, View view, int position, long id) {
         if (mViewPager != null) {
             mViewPager.setCurrentItem(1, false);
+        }
+    }
+
+    @Override
+    public void travelBackListener() {
+        if (mViewPager != null) {
+            mViewPager.setCurrentItem(0, false);
         }
     }
 
@@ -148,23 +153,7 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
         }
     }
 
-    public class SearchViewClickListener implements View.OnClickListener {
 
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this,SearchViewActivity.class);
-            startActivity(intent);
-        }
-    }
-
-    public class ShopClickListener implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this,ShoppingActivity.class);
-            startActivity(intent);
-        }
-    }
 
     @Override
     protected void onResume() {

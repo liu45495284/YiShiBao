@@ -1,14 +1,111 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.xinliang.yishibao.view.fragment.TravelFragment"
     android:id="@+id/fragment_travel">
 
-    <!-- TODO: Update blank fragment layout -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@color/white"
+        >
+
+        <ImageButton
+            android:id="@+id/ib_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/back_arrow"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+
+            <Button
+                android:id="@+id/free_high"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/free_high"
+                android:textColor="@color/black"
+                android:background="@color/transparent"
+                />
+
+            <Button
+                android:id="@+id/good_self"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/free_high"
+                android:text="@string/good_self"
+                android:textColor="@color/black"
+                android:background="@color/transparent"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
     <TextView
+        android:id="@+id/tv_line1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/toolbar"
+        android:background="@color/gray_cccc"/>
+
+    <com.baoyz.widget.PullRefreshLayout
+        android:id="@+id/tr_swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="2" />
+        android:layout_below="@+id/tv_line1"
+        >
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/rl_city"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@color/white">
+            <TextView
+                android:id="@+id/tv_city_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="@string/city_name"
+                android:textColor="@color/black"
+                />
+
+                <ImageButton
+                    android:id="@+id/ib_drop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/back_arrow"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"/>
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_line2"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/gray_cccc"
+                android:layout_below="@+id/rl_city"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_travel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:layout_below="@+id/tv_line2" />
+        </RelativeLayout>
+
+    </com.baoyz.widget.PullRefreshLayout>
+
+</android.support.percent.PercentRelativeLayout>
