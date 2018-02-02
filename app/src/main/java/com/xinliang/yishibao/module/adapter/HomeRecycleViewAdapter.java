@@ -8,6 +8,7 @@ import com.xinliang.yishibao.R;
 import com.xinliang.yishibao.presenter.AdvertisingViewHolder;
 import com.xinliang.yishibao.presenter.BannerViewHolder;
 import com.xinliang.yishibao.presenter.CategrayViewHolder;
+import com.xinliang.yishibao.presenter.FoundViewHolder;
 import com.xinliang.yishibao.presenter.GoodsViewHolder;
 import com.xinliang.yishibao.presenter.TravelViewHolder;
 import java.util.List;
@@ -39,11 +40,16 @@ public class HomeRecycleViewAdapter extends RecyclerView.Adapter {
      */
     public static final int GOODS_LIST_RV4 =4;
     /**
+     * 类型6：--使用ImageView实现
+     */
+    public static final int ADVERTISING_IV5=5;
+    /**
      * 当前类型
      */
     public int currentType = GOODS_BANNER0;
     private final Context mContext;
     private final List moduleBeanList;
+    private static final int RECYCLEVIEW_ITEM_COUNT = 6;
     /**
      * 以后用它来初始化布局
      */
@@ -65,9 +71,11 @@ public class HomeRecycleViewAdapter extends RecyclerView.Adapter {
         }else if(viewType==CATEGRAY_NEW_GV2){
             return new CategrayViewHolder(mContext, mLayoutInflater.inflate(R.layout.gv_channel_categray,null));
         }else if(viewType==ADVERTISING_IV3) {
-            return new AdvertisingViewHolder(mContext, mLayoutInflater.inflate(R.layout.iv_pinpai, null));
+            return new AdvertisingViewHolder(mContext, mLayoutInflater.inflate(R.layout.iv_advertising, null));
         }else if(viewType== GOODS_LIST_RV4) {
             return new GoodsViewHolder(mContext, mLayoutInflater.inflate(R.layout.dapeiqs_rv, null));
+        }else if(viewType== ADVERTISING_IV5) {
+            return new FoundViewHolder(mContext, mLayoutInflater.inflate(R.layout.iv_found, null));
         }
         return null;
     }
@@ -95,12 +103,16 @@ public class HomeRecycleViewAdapter extends RecyclerView.Adapter {
             GoodsViewHolder goodsViewHolder = (GoodsViewHolder) holder;
 //            List<WomenBean.WomenData.ModuleBean.DataBean> dapeiqs6data = moduleBeanList.get(6).getData();
             goodsViewHolder.setData(moduleBeanList);
+        }else if(getItemViewType(position)== ADVERTISING_IV5) {
+            FoundViewHolder foundViewHolder = (FoundViewHolder) holder;
+//            List<WomenBean.WomenData.ModuleBean.DataBean> dapeiqs6data = moduleBeanList.get(6).getData();
+            foundViewHolder.setData(moduleBeanList);
         }
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return RECYCLEVIEW_ITEM_COUNT;
     }
 
     @Override
@@ -120,6 +132,9 @@ public class HomeRecycleViewAdapter extends RecyclerView.Adapter {
                 break;
             case GOODS_LIST_RV4:
                 currentType = GOODS_LIST_RV4;
+                break;
+            case ADVERTISING_IV5:
+                currentType = ADVERTISING_IV5;
                 break;
         }
         return currentType;

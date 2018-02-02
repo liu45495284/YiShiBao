@@ -8,10 +8,22 @@
     <string name="tab_shop">商城</string>
     <string name="tab_self">我的</string>
     <string name="recommend">推荐商品</string>
+    <string name="found">发现内容</string>
     <string name="free_high">免费高端团游</string>
     <string name="good_self">精品自助团游</string>
     <string name="more">更多</string>
     <string name="city_name">广西</string>
+    <string name="snap_up">立即抢购</string>
+    <string name="input_invite_code">输入邀请码</string>
+    <string name="invite_code">邀请码 :</string>
+    <string name="please_input_invite_code">请输入您收到的邀请码</string>
+    <string name="next">下一步</string>
+    <string name="order_pay">订单支付</string>
+    <string name="need_pay">需支付 :</string>
+    <string name="remain_integral">剩余积分 :</string>
+    <string name="integral">积分</string>
+    <string name="go_pay">去付款</string>
+    <string name="integral_top_up">积分充值</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

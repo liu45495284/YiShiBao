@@ -27,6 +27,7 @@ import com.xinliang.yishibao.view.fragment.HomeFragment;
 import com.xinliang.yishibao.view.fragment.SelfFragment;
 import com.xinliang.yishibao.view.fragment.ShopFragment;
 import com.xinliang.yishibao.view.fragment.TravelFragment;
+import com.xinliang.yishibao.view.fragment.TravelFragmentContainer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,12 +61,12 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
         mViewPager = (ViewPager)findViewById(R.id.pager);
 
         Fragment homeFragment = new HomeFragment();
-        Fragment travelFragment = new TravelFragment();
-        Fragment findFragment = new FindFragment();
+        Fragment travelFragmentContainer = new TravelFragmentContainer();
+        Fragment foundFragment = new FindFragment();
         Fragment shopFragment = new ShopFragment();
         Fragment selfFragment = new SelfFragment();
 
-        mFragments = new Fragment[]{homeFragment,travelFragment,findFragment,shopFragment,selfFragment};
+        mFragments = new Fragment[]{homeFragment,travelFragmentContainer,foundFragment,shopFragment,selfFragment};
 
         MyViewPagerAdapter adapter = new MyViewPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(adapter);
@@ -109,7 +110,6 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
             mViewPager.setCurrentItem(0, false);
         }
     }
-
 
     class MyViewPagerAdapter extends FragmentPagerAdapter {
 

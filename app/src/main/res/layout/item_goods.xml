@@ -7,7 +7,7 @@
     <ImageView
         android:id="@+id/iv_shangpin"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:src="@drawable/ic_launcher_background"
         android:layout_centerHorizontal="true"
         android:padding="10dp"

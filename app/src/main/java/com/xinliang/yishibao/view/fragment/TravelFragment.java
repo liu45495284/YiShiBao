@@ -25,6 +25,7 @@ import com.xinliang.yishibao.R;
 import com.xinliang.yishibao.module.adapter.HomeRecycleViewAdapter;
 import com.xinliang.yishibao.module.adapter.TravelRecycleViewAdapter;
 import com.xinliang.yishibao.presenter.ItmeCallBackListener;
+import com.xinliang.yishibao.presenter.TravelLinearLayoutManager;
 import com.xinliang.yishibao.view.MainActivity;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TravelFragment extends BaseFragment {
+public class TravelFragment extends TravelFragmentContainer {
 
     private MainActivity mActivity;
     private View mView;
@@ -79,18 +80,22 @@ public class TravelFragment extends BaseFragment {
         mFreeButton.setBackgroundResource(R.drawable.travel_btn_bg);
         mFreeButton.setTextColor(getResources().getColor(R.color.white));
         mSelfButton.setOnClickListener(new GoodSelfListener());
+        mSelfButton.setBackgroundResource(R.drawable.travel_btn_bg_normal);
+
+        ImageButton dropButton = mView.findViewById(R.id.ib_drop);
+        dropButton.setOnClickListener(new DropButtonListener());
 
         mPullRefreshLayout = mView.findViewById(R.id.tr_swipeRefreshLayout);
         mPullRefreshLayout.setOnRefreshListener(new myRefreshListener());
         mPullRefreshLayout.setRefreshStyle(PullRefreshLayout.STYLE_MATERIAL);
 
         mRecyclerView = mView.findViewById(R.id.rv_travel);
-        mTravelRecycleAdapter = new TravelRecycleViewAdapter(mActivity, moduleBeanList);
+        mTravelRecycleAdapter = new TravelRecycleViewAdapter(mActivity, moduleBeanList,this);
         mRecyclerView.setAdapter(mTravelRecycleAdapter);
 
         //recycleView不仅要设置适配器还要设置布局管理者,否则图片不显示
         //第一个参数是上下文，第二个参数是只有一列
-        LinearLayoutManager manager = new LinearLayoutManager(mActivity);
+        TravelLinearLayoutManager manager = new TravelLinearLayoutManager(mActivity);
         mRecyclerView.setLayoutManager(manager);
 
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -142,13 +147,10 @@ public class TravelFragment extends BaseFragment {
         public void onClick(View v) {
             mFreeButton.setBackgroundResource(R.drawable.travel_btn_bg);
             mFreeButton.setTextColor(getResources().getColor(R.color.white));
-            mSelfButton.setBackgroundResource(R.color.transparent);
+            mSelfButton.setBackgroundResource(R.drawable.travel_btn_bg_normal);
             mSelfButton.setTextColor(getResources().getColor(R.color.black));
             updateDate(FREE_HIGH);
 //            handler.obtainMessage(FREE_HIGH).sendToTarget();
-//            moduleBeanList = freeList;
-//            mTravelRecycleAdapter = new TravelRecycleViewAdapter(mActivity, moduleBeanList);
-//            mRecyclerView.setAdapter(mTravelRecycleAdapter);
             Toast.makeText(mActivity , "1111" , Toast.LENGTH_SHORT).show();
         }
     }
@@ -157,16 +159,21 @@ public class TravelFragment extends BaseFragment {
 
         @Override
         public void onClick(View v) {
-            mFreeButton.setBackgroundResource(R.color.transparent);
+            mFreeButton.setBackgroundResource(R.drawable.travel_btn_bg_normal);
             mFreeButton.setTextColor(getResources().getColor(R.color.black));
             mSelfButton.setBackgroundResource(R.drawable.travel_btn_bg);
             mSelfButton.setTextColor(getResources().getColor(R.color.white));
             updateDate(GOOD_SELF);
 //            handler.obtainMessage(GOOD_SELF).sendToTarget();
-//            moduleBeanList = highList;
-//            mTravelRecycleAdapter = new TravelRecycleViewAdapter(mActivity, moduleBeanList);
-//            mRecyclerView.setAdapter(mTravelRecycleAdapter);
             Toast.makeText(mActivity , "2222" , Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public class DropButtonListener implements View.OnClickListener{
+
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(mActivity,"44444" , Toast.LENGTH_SHORT).show();
         }
     }
 

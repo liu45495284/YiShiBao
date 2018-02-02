@@ -82,13 +82,11 @@ public class HomeFragment extends BaseFragment {
         recyclerView.setLayoutManager(manager);
         recyclerView.getAdapter().getItemViewType(1);
 
-//        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
-//            mActivity.getWindow().setStatusBarColor(getResources().getColor(R.color.white));
-//        }
     }
 
     public void initDate() {
-        int iconBanner[] = { R.mipmap.i4, R.mipmap.i2, R.mipmap.i3,};
+        int iconBanner[] = { R.mipmap.i4, R.mipmap.i2, R.mipmap.i3,R.mipmap.i4, R.mipmap.i2,
+                R.mipmap.i3,R.mipmap.i4, R.mipmap.i2};
         for (int i = 0 ; i < iconBanner.length ; i++) {
             moduleBeanList.add(iconBanner[i]);
         }

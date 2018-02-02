@@ -17,12 +17,12 @@ import java.util.List;
  * Created by JackLiu on 2018-01-30.
  */
 
-public class DaPeiQSRecycleViewAdapter extends RecyclerView.Adapter {
+public class GoodsRecycleViewAdapter extends RecyclerView.Adapter {
     private final Context mContext;
 //    private final List<WomenBean.WomenData.ModuleBean.DataBean> dapeiqs6data;
     private final List dapeiqs6data;
 
-    public DaPeiQSRecycleViewAdapter(Context mContext, List dapeiqs6data) {
+    public GoodsRecycleViewAdapter(Context mContext, List dapeiqs6data) {
         this.mContext = mContext;
         this.dapeiqs6data = dapeiqs6data;
     }
@@ -30,7 +30,7 @@ public class DaPeiQSRecycleViewAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        return new MyViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_dapeiqs, null));
+        return new MyViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_goods, null));
     }
 
     @Override
@@ -63,7 +63,7 @@ public class DaPeiQSRecycleViewAdapter extends RecyclerView.Adapter {
 //            WomenBean.WomenData.ModuleBean.DataBean dapeiBean = dapeiqs6data.get(position);
             //使用Glide加载图片
             Glide.with(mContext)
-                    .load(R.mipmap.guide3)
+                    .load(dapeiqs6data.get(position))
                     .into(iv_figure);
 
             tv_name.setText("梦想");
