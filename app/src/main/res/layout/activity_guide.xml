@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xinliang.yishibao.view.MainActivity">
+    tools:context="com.xnliang.yishibao.view.MainActivity">
 
     <com.zhengsr.viewpagerlib.view.GlideViewPager
         android:id="@+id/splase_viewpager"

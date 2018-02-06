@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_head"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/ic_launcher_round"/>
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="一米阳光0563"
+        android:textColor="@color/blue"
+        android:textSize="15sp"
+        android:layout_toRightOf="@+id/iv_head"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="来一场说走就走的旅行"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_toRightOf="@+id/iv_head"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/tv_user_name"
+        />
+
+    <ImageView
+        android:id="@+id/iv_content_1"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="70dp"
+        android:layout_below="@+id/iv_head"
+        android:background="@mipmap/ic_launcher_round"
+        android:scaleType="fitXY"
+        />
+
+    <ImageView
+        android:id="@+id/iv_content_2"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/iv_head"
+        android:background="@mipmap/ic_launcher_round"
+        android:layout_toRightOf="@+id/iv_content_1"
+        android:scaleType="fitXY"
+        />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_content_1"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginBottom="20dp"
+        android:text="2小时前发布"/>
+
+    <ImageView
+        android:id="@+id/iv_heart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/heart"
+        android:layout_marginTop="33dp"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@+id/iv_content_1"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="70dp"
+        android:layout_toLeftOf="@+id/tv_heart_number"
+        />
+
+    <TextView
+        android:id="@+id/tv_heart_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@+id/iv_content_1"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"
+        android:text="33"/>
+
+</RelativeLayout>

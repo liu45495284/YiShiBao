@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xinliang.yishibao.view.fragment.HomeFragment"
+    tools:context="com.xnliang.yishibao.view.fragment.HomeFragment"
     android:id="@+id/fragment_home">
 
     <android.support.v7.widget.Toolbar

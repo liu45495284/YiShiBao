@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xnliang.yishibao.view.fragment.FoundFragment">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@color/white"
+        >
+
+        <TextView
+            android:id="@+id/tv_found_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/tab_found"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <com.baoyz.widget.PullRefreshLayout
+        android:id="@+id/fo_swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_found"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </com.baoyz.widget.PullRefreshLayout>
+
+</RelativeLayout>

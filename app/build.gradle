@@ -1,9 +1,27 @@
 apply plugin: 'com.android.application'
 
+def getSignInfo(propFileName) {
+    def com.android.build.gradle.internal.dsl.SigningConfig signingConfig = new com.android.build.gradle.internal.dsl.SigningConfig("signInfo")
+    File propFile = file(propFileName);
+    if (propFile.exists()) {
+        def Properties props = new Properties()
+        props.load(new FileInputStream(propFile))
+        signingConfig.storeFile = file(props['STORE_FILE'])
+        signingConfig.storePassword = props['STORE_PASSWORD']
+        signingConfig.keyAlias = props['KEY_ALIAS']
+        signingConfig.keyPassword = props['KEY_PASSWORD']
+        println('signConfig is exits')
+    } else {
+        println('sign config is null')
+        signingConfig = null
+    }
+    return signingConfig;
+}
+
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.xinliang.yishibao"
+        applicationId "com.xnliang.yishibao"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
@@ -17,9 +35,27 @@ android {
         }
     }
     buildTypes {
+        //实现自动签名
+        debug {
+            signingConfig getSignInfo("../sign.properties");
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig getSignInfo("../sign.properties");
+        }
+    }
+}
+
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        //def date = new Date().format("yyyyMMdd" , TimeZone.getTimeZone("Asia/Shanghai"))
+        def date = new Date().format("yyyyMMdd" , TimeZone.getTimeZone("GMT+08"))
+        if(variant.buildType.name.equals('debug')){
+            outputFileName = "YiShiBao_${date}_V${versionName}_debug.apk"
+        }
+        if(variant.buildType.name.equals('release')){
+            outputFileName = "YiShiBao_${date}_V${versionName}_release.apk"
         }
     }
 }

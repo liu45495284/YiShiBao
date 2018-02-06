@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.xinliang.yishibao.view.customview.CategrayGridView
+    <com.xnliang.yishibao.view.customview.CategrayGridView
         android:id="@+id/gv_channel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
