@@ -22,8 +22,8 @@ public class FoundItemRecycleViewAdapter extends RecyclerView.Adapter {
     private final List mData;
     private MyViewHolder mHolder;
 
-    public FoundItemRecycleViewAdapter(Context mContext, List data) {
-        this.mContext = mContext;
+    public FoundItemRecycleViewAdapter(Context context, List data) {
+        this.mContext = context;
         this.mData = data;
     }
 

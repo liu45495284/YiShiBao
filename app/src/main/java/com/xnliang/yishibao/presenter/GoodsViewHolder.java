@@ -26,10 +26,10 @@ public class GoodsViewHolder extends BaseViewHolder {
         dapeiqs_rv= itemView.findViewById(R.id.dapeiqs_rv);
     }
 
-    public void setData(List dapeiqs6data) {
+    public void setData(List data) {
         //1.已有数据
         //2.设置适配器：-->设置文本和recycleView的数据
-        GoodsRecycleViewAdapter adapter=new GoodsRecycleViewAdapter(mContext,dapeiqs6data);
+        GoodsRecycleViewAdapter adapter=new GoodsRecycleViewAdapter(mContext,data);
         //设置adapter
         dapeiqs_rv.setAdapter(adapter);
         dapeiqs_rv.addItemDecoration(new DividerGridItemDecoration(mContext));

@@ -31,12 +31,11 @@ import java.util.List;
  */
 public class HomeFragment extends BaseFragment {
 
-//    private final MainActivity mActivity;
+    private MainActivity mActivity;
     public List moduleBeanList = new ArrayList();
     private PullRefreshLayout mPullRefreshLayout;
     private HomeRecycleViewAdapter mHomeRecycleAdapter;
     private View mView;
-    private MainActivity mActivity;
 
 
     public HomeFragment() {

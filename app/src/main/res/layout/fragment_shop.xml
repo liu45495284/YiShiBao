@@ -1,13 +1,56 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xnliang.yishibao.view.fragment.ShopFragment">
+    tools:context="com.xnliang.yishibao.view.fragment.HomeFragment"
+    android:id="@+id/fragment_home">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@color/white"
+        >
+
+        <android.support.v7.widget.SearchView
+            android:id="@+id/shop_search_view"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@+id/toolbar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/gray_cccc"
+            android:queryHint="@string/search_hint"
+            />
+
+        <ImageButton
+            android:id="@+id/shopping_cart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:layout_alignParentRight="true"
+            android:layout_toEndOf="@+id/shop_search_view"
+            android:layout_toRightOf="@+id/shop_search_view"
+            android:src="@mipmap/shopping_cart"
+            android:background="@android:color/transparent"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <com.baoyz.widget.PullRefreshLayout
+        android:id="@+id/shop_swipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="4" />
+        android:layout_below="@+id/toolbar"
+        >
 
-</FrameLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_shop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </com.baoyz.widget.PullRefreshLayout>
+
+</android.support.percent.PercentRelativeLayout>
+

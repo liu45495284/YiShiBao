@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class HomeRecycleViewAdapter extends RecyclerView.Adapter {
     /**
-     * 5种类型
+     * 6种类型
      */
     /**
      * 类型1：--使用banner实现
