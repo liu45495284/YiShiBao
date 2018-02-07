@@ -25,6 +25,7 @@
     <string name="go_pay">去付款</string>
     <string name="go_pay_integral">去充值</string>
     <string name="integral_top_up">积分充值</string>
+    <string name="integral_take_out">积分提现</string>
     <string name="pay_style">支付方式</string>
     <string name="weixin_icon">微信</string>
     <string name="zhifubao_icon">支付宝</string>
@@ -34,6 +35,19 @@
     <string name="team_buy">团购</string>
     <string name="ten_integral_pay">10积分</string>
     <string name="one_integral_pay">1积分</string>
+    <string name="user_name">用户名</string>
+    <string name="phone_number">手机号</string>
+    <string name="cash_integral">现金积分</string>
+    <string name="shop_integral">购物积分</string>
+    <string name="my_order">我的订单</string>
+    <string name="my_team">我的团队</string>
+    <string name="recommend_friend">推荐好友</string>
+    <string name="address_management">地址管理</string>
+    <string name="help_center">帮助中心</string>
+    <string name="about_us">关于我们</string>
+    <string name="modify_password">修改密码</string>
+    <string name="integral_list">积分列表</string>
+    <string name="cash_list">提现列表</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
