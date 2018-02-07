@@ -26,8 +26,8 @@ public class ShopCategrayRecycleViewAdapter extends RecyclerView.Adapter {
     private WeakHashMap<Integer,Integer> hashMap;
     private WeakHashMap<Integer,String> nameHashMap;
 
-    public ShopCategrayRecycleViewAdapter(Context mContext, List data) {
-        this.mContext = mContext;
+    public ShopCategrayRecycleViewAdapter(Context context, List data) {
+        this.mContext = context;
         this.data = data;
     }
 

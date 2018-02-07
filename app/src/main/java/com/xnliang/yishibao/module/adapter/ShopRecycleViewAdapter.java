@@ -7,7 +7,12 @@ import android.view.ViewGroup;
 
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.presenter.GoodsCategrayViewHolder;
+import com.xnliang.yishibao.presenter.OneIntegralBuyViewHolder;
+import com.xnliang.yishibao.presenter.IntegralGoodsViewHolder;
 import com.xnliang.yishibao.presenter.ShopViewHolder;
+import com.xnliang.yishibao.presenter.TeamBuyGoodsViewHolder;
+import com.xnliang.yishibao.presenter.TeamBuyViewHolder;
+import com.xnliang.yishibao.presenter.TenIntegralBuyViewHolder;
 
 import java.util.List;
 
@@ -56,7 +61,7 @@ public class ShopRecycleViewAdapter extends RecyclerView.Adapter {
      * 当前类型
      */
     public int currentType = SHOP_BANNER0;
-    private static final int SHOP_ITEM_COUNT = 2;
+    private static final int SHOP_ITEM_COUNT = 8;
     /**
      * 以后用它来初始化布局
      */
@@ -64,6 +69,7 @@ public class ShopRecycleViewAdapter extends RecyclerView.Adapter {
 
     private final Context mContext;
     private final List mData;
+    RecyclerView.ViewHolder holder = null;
 
     public ShopRecycleViewAdapter(Context context , List data) {
         this.mContext = context;
@@ -73,16 +79,35 @@ public class ShopRecycleViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        RecyclerView.ViewHolder holder = null;
         switch (viewType) {
             case SHOP_BANNER0:
                 holder = new ShopViewHolder(mContext, mLayoutInflater.inflate(R.layout.shop_banner_viewpager, null));
                 break;
             case GOODS_CATEGRAY_GV1:
                 holder = new GoodsCategrayViewHolder(mContext, mLayoutInflater.inflate(R.layout.shop_goods_categray, null));
+                break;
+            case ONE_INTEGRAL_IV2:
+                holder = new OneIntegralBuyViewHolder(mContext, mLayoutInflater.inflate(R.layout.shop_integral_buy_title, null));
+                break;
+            case ONE_INTEGRAL_GOODS_RV3:
+                holder = new IntegralGoodsViewHolder(mContext, mLayoutInflater.inflate(R.layout.shop_one_integral_goods, null));
+                break;
+            case TEN_INTEGRAL_IV4:
+                holder = new TenIntegralBuyViewHolder(mContext, mLayoutInflater.inflate(R.layout.shop_integral_buy_title, null));
+                break;
+            case TEN_INTEGRAL_GOODS_RV5:
+                holder = new IntegralGoodsViewHolder(mContext, mLayoutInflater.inflate(R.layout.shop_one_integral_goods, null));
+                break;
+            case TEAM_BUY_IV6:
+                holder = new TeamBuyViewHolder(mContext, mLayoutInflater.inflate(R.layout.shop_integral_buy_title, null));
+                break;
+            case TEAM_BUY_DETAIL_RV7:
+                holder = new TeamBuyGoodsViewHolder(mContext, mLayoutInflater.inflate(R.layout.shop_team_buy_goods, null));
+                break;
         }
         return holder;
     }
+
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
@@ -94,6 +119,31 @@ public class ShopRecycleViewAdapter extends RecyclerView.Adapter {
             case GOODS_CATEGRAY_GV1:
                 GoodsCategrayViewHolder goodsCategrayViewHolder = (GoodsCategrayViewHolder) holder;
                 goodsCategrayViewHolder.setData(mData);
+                break;
+            case ONE_INTEGRAL_IV2:
+                OneIntegralBuyViewHolder oneIntegralBuyViewHolder = (OneIntegralBuyViewHolder) holder;
+                oneIntegralBuyViewHolder.setData();
+                break;
+            case ONE_INTEGRAL_GOODS_RV3:
+                IntegralGoodsViewHolder oneIntegralViewHolder = (IntegralGoodsViewHolder) holder;
+                oneIntegralViewHolder.setData(mData);
+                break;
+            case TEN_INTEGRAL_IV4:
+                TenIntegralBuyViewHolder integralBuyViewHolder = (TenIntegralBuyViewHolder) holder;
+                integralBuyViewHolder.setData();
+                break;
+            case TEN_INTEGRAL_GOODS_RV5:
+                IntegralGoodsViewHolder tenIntegralViewHolder = (IntegralGoodsViewHolder) holder;
+                tenIntegralViewHolder.setData(mData);
+                break;
+            case TEAM_BUY_IV6:
+                TeamBuyViewHolder teamBuyViewHolder = (TeamBuyViewHolder) holder;
+                teamBuyViewHolder.setData();
+                break;
+            case TEAM_BUY_DETAIL_RV7:
+                TeamBuyGoodsViewHolder teamBuyGoodsViewHolder = (TeamBuyGoodsViewHolder) holder;
+                teamBuyGoodsViewHolder.setData(mData);
+                break;
         }
     }
 

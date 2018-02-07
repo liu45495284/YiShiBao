@@ -29,6 +29,11 @@
     <string name="weixin_icon">微信</string>
     <string name="zhifubao_icon">支付宝</string>
     <string name="content_pay">积分最小为1分，充值需为整数</string>
+    <string name="one_integral">1积分抢购</string>
+    <string name="ten_integral">10积分抢购</string>
+    <string name="team_buy">团购</string>
+    <string name="ten_integral_pay">10积分</string>
+    <string name="one_integral_pay">1积分</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

@@ -35,7 +35,6 @@ public class ShopFragment extends BaseFragment {
     private View mView;
     public List moduleBeanList = new ArrayList();
     private PullRefreshLayout mPullRefreshLayout;
-    private ShopRecycleViewAdapter mShopRecycleAdapter;
 
     public ShopFragment() {
         // Required empty public constructor
@@ -67,8 +66,8 @@ public class ShopFragment extends BaseFragment {
         mPullRefreshLayout.setRefreshStyle(PullRefreshLayout.STYLE_MATERIAL);
 
         RecyclerView recyclerView = mView.findViewById(R.id.rv_shop);
-        mShopRecycleAdapter = new ShopRecycleViewAdapter(mActivity, moduleBeanList);
-        recyclerView.setAdapter(mShopRecycleAdapter);
+        ShopRecycleViewAdapter shopRecycleAdapter = new ShopRecycleViewAdapter(mActivity, moduleBeanList);
+        recyclerView.setAdapter(shopRecycleAdapter);
 
         //recycleView不仅要设置适配器还要设置布局管理者,否则图片不显示
         //第一个参数是上下文，第二个参数是只有一列

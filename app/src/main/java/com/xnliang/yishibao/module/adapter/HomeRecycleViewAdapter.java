@@ -55,8 +55,8 @@ public class HomeRecycleViewAdapter extends RecyclerView.Adapter {
      */
     private final LayoutInflater mLayoutInflater;
 
-    public HomeRecycleViewAdapter(Context mContext, List moduleBeanList) {
-        this.mContext = mContext;
+    public HomeRecycleViewAdapter(Context context, List moduleBeanList) {
+        this.mContext = context;
         this.moduleBeanList = moduleBeanList;
         //以后用它来初始化布局
         mLayoutInflater = LayoutInflater.from(mContext);

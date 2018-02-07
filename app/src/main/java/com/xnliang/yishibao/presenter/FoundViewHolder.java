@@ -30,7 +30,7 @@ public class FoundViewHolder extends BaseViewHolder {
     }
 
     //        public void setData(List<WomenBean.WomenData.ModuleBean.DataBean> pinpai2data) {
-    public void setData(List pinpai2data) {
+    public void setData(List data) {
         //使用Glide加载图片
         Glide.with(mContext)
                 .load(R.mipmap.guide3)

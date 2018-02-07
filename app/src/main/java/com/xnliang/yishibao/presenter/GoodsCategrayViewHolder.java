@@ -20,7 +20,7 @@ public class GoodsCategrayViewHolder extends BaseViewHolder {
     private final Context mContext;
     private final RecyclerView mRecyclerView;
 
-    public GoodsCategrayViewHolder(Context context , View itemView) {
+    public  GoodsCategrayViewHolder(Context context , View itemView) {
         super(itemView);
         this.mContext = context;
         mRecyclerView = itemView.findViewById(R.id.rv_shop_categray);
