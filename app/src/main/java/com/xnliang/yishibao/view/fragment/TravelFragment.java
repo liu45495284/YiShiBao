@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.baoyz.widget.PullRefreshLayout;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.adapter.TravelRecycleViewAdapter;
+import com.xnliang.yishibao.module.utils.ListDecoration;
 import com.xnliang.yishibao.presenter.ItmeCallBackListener;
 import com.xnliang.yishibao.presenter.TravelLinearLayoutManager;
 import com.xnliang.yishibao.view.MainActivity;
@@ -86,7 +87,7 @@ public class TravelFragment extends BaseFragment {
         mRecyclerView = mView.findViewById(R.id.rv_travel);
         mTravelRecycleAdapter = new TravelRecycleViewAdapter(mActivity, moduleBeanList,this);
         mRecyclerView.setAdapter(mTravelRecycleAdapter);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(mActivity,DividerItemDecoration.VERTICAL));
+        mRecyclerView.addItemDecoration(new ListDecoration(mActivity,ListDecoration.VERTICAL_LIST,R.drawable.list_divide));
         //recycleView不仅要设置适配器还要设置布局管理者,否则图片不显示
         //第一个参数是上下文，第二个参数是只有一列
         TravelLinearLayoutManager manager = new TravelLinearLayoutManager(mActivity);

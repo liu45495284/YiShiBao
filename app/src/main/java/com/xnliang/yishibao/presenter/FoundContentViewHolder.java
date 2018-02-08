@@ -10,6 +10,7 @@ import android.view.View;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.adapter.FoundItemRecycleViewAdapter;
 import com.xnliang.yishibao.module.utils.DividerGridItemDecoration;
+import com.xnliang.yishibao.module.utils.ListDecoration;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class FoundContentViewHolder extends BaseViewHolder {
         FoundItemRecycleViewAdapter adapter = new FoundItemRecycleViewAdapter(mContext,data);
         //设置adapter
         mItemView.setAdapter(adapter);
-        mItemView.addItemDecoration(new DividerItemDecoration(mContext,DividerItemDecoration.VERTICAL));
+        mItemView.addItemDecoration(new ListDecoration(mContext,ListDecoration.VERTICAL_LIST,R.drawable.list_divide));
 
         //recycleView不仅要设置适配器还要设置布局管理者,否则图片不显示
         GridLayoutManager manager= new GridLayoutManager(mContext , 1);

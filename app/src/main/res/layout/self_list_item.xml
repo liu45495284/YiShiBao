@@ -4,12 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="10dp"
-    android:paddingBottom="10dp">
+    android:paddingBottom="10dp"
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/iv_self_item"
         android:layout_width="18dp"
-        android:layout_height="wrap_content"
+        android:layout_height="18dp"
         android:src="@mipmap/per_icon_order"
         android:layout_centerVertical="true"
         android:layout_marginLeft="15dp"/>

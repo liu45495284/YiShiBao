@@ -27,10 +27,10 @@ public class ListDecoration extends RecyclerView.ItemDecoration{
             android.R.attr.listDivider
     };
 
-    public ListDecoration(Context context, int orientation) {
+    public ListDecoration(Context context, int orientation , int resId) {
         this.mContext = context;
         final TypedArray ta = context.obtainStyledAttributes(ATRRS);
-        this.mDivider = ta.getDrawable(0);
+        this.mDivider = this.mContext.getResources().getDrawable(resId);
         ta.recycle();
         setOrientation(orientation);
     }
@@ -88,7 +88,9 @@ public class ListDecoration extends RecyclerView.ItemDecoration{
     //由于Divider也有长宽高，每一个Item需要向下或者向右偏移
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        if(mOrientation == HORIZONTAL_LIST){
+        int itemPosition = ((RecyclerView.LayoutParams)view.getLayoutParams()).getViewLayoutPosition();
+        int childCount = parent.getAdapter().getItemCount();
+        if(mOrientation == VERTICAL_LIST && itemPosition < childCount -1 ){
             //画横线，就是往下偏移一个分割线的高度
             outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
         }else {

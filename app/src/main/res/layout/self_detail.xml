@@ -112,7 +112,8 @@
         android:id="@+id/rl_self_second"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@+id/rl_self_one">
+        android:layout_below="@+id/rl_self_one"
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/iv_per_c"

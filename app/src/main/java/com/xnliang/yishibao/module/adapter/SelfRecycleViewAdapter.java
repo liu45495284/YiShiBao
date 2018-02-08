@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.presenter.SelfDetailViewHolder;
+import com.xnliang.yishibao.presenter.SelfIntegralListViewHolder;
 import com.xnliang.yishibao.presenter.SelfListViewHolder;
 import com.xnliang.yishibao.view.MainActivity;
 import com.xnliang.yishibao.view.TravelDetailActivity;
@@ -36,12 +37,11 @@ public class SelfRecycleViewAdapter extends RecyclerView.Adapter {
     private final List moduleBeanList;
     private final LayoutInflater mLayoutInflater;
     private FragmentTransaction mFragmentTransaction;
-    private WeakHashMap<Integer, Integer> icon;
-    private WeakHashMap<Integer, Integer> title;
     public int currentType = SELF_DETAIL;
     private static final int SELF_DETAIL = 0;
     private static final int SELF_LIST = 1;
-    RecyclerView.ViewHolder mHolder = null;
+    private static final int SELF_INTEGRAL = 2;
+    private RecyclerView.ViewHolder mHolder = null;
 
     public SelfRecycleViewAdapter(Context mContext, List moduleBeanList, SelfFragment fragment) {
         this.mContext = mContext;
@@ -61,6 +61,9 @@ public class SelfRecycleViewAdapter extends RecyclerView.Adapter {
             case SELF_LIST:
                 mHolder = new SelfListViewHolder(mContext, mLayoutInflater.inflate(R.layout.self_list, null));
                 break;
+            case SELF_INTEGRAL:
+                mHolder = new SelfIntegralListViewHolder(mContext, mLayoutInflater.inflate(R.layout.self_integral_bottom, null));
+                break;
         }
         return mHolder;
     }
@@ -77,22 +80,6 @@ public class SelfRecycleViewAdapter extends RecyclerView.Adapter {
                 selfListViewHolder.setData(moduleBeanList);
                 break;
         }
-//        ViewHolder viewHolder= (ViewHolder) holder;
-////        viewHolder.setData(moduleBeanList , position);
-//        viewHolder.initData();
-//        //将数据填充到具体的view中
-//        mHolder.mIcon.setImageResource(icon.get(position));
-//        mHolder.mName.setText(title.get(position));
-//
-//        if (mHolder.itemView != null) {
-//            mHolder.itemView.setOnClickListener(new View.OnClickListener() {
-//
-//                @Override
-//                public void onClick(View v) {
-//
-//                }
-//            });
-//        }
     }
 
     @Override
@@ -102,7 +89,7 @@ public class SelfRecycleViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 3;
     }
 
     @Override
@@ -114,35 +101,10 @@ public class SelfRecycleViewAdapter extends RecyclerView.Adapter {
             case SELF_LIST:
                 currentType = SELF_LIST;
                 break;
+            case SELF_INTEGRAL:
+                currentType = SELF_INTEGRAL;
+                break;
         }
         return currentType;
     }
-
-    class ViewHolder extends RecyclerView.ViewHolder {
-
-        public ImageView mIcon;
-        public TextView mName;
-        public ImageView mInto;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            //由于itemView是item的布局文件，我们需要的是里面的textView，因此利用itemView.findViewById获
-            //取里面的textView实例，后面通过onBindViewHolder方法能直接填充数据到每一个textView了
-            mIcon = (ImageView) itemView.findViewById(R.id.iv_self_item);
-            mName = (TextView) itemView.findViewById(R.id.tv_self_item);
-            mInto = (ImageView) itemView.findViewById(R.id.iv_self_into);
-
-        }
-        public void setData(List module0data , int position) {
-
-            mIcon.setScaleType(ImageView.ScaleType.FIT_XY);
-
-            //Glide 加载图片简单用法
-            Glide.with(mContext).load(moduleBeanList.get(position)).into(mIcon);
-
-        }
-
-
-    }
-
 }

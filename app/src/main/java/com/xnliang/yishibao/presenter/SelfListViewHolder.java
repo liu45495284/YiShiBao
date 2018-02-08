@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.adapter.SelfListItemRecycleViewAdapter;
 import com.xnliang.yishibao.module.utils.DividerGridItemDecoration;
+import com.xnliang.yishibao.module.utils.ListDecoration;
 import com.xnliang.yishibao.view.MainActivity;
 import com.xnliang.yishibao.view.fragment.SelfFragment;
 
@@ -35,10 +36,10 @@ public class SelfListViewHolder extends BaseViewHolder {
     public void setData(List data) {
         //1.已有数据
         //2.设置适配器：-->设置文本和recycleView的数据
-        SelfListItemRecycleViewAdapter adapter=new SelfListItemRecycleViewAdapter(mContext,data);
+        SelfListItemRecycleViewAdapter adapter = new SelfListItemRecycleViewAdapter(mContext,data);
         //设置adapter
         mRecyclerView.setAdapter(adapter);
-        mRecyclerView.addItemDecoration(new DividerGridItemDecoration(mContext));
+        mRecyclerView.addItemDecoration(new ListDecoration(mContext,ListDecoration.VERTICAL_LIST , R.drawable.list_divide));
 
         //recycleView不仅要设置适配器还要设置布局管理者,否则图片不显示
         LinearLayoutManager manager= new LinearLayoutManager(mContext,LinearLayoutManager.VERTICAL ,false);
