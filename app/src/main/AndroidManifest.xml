@@ -33,6 +33,8 @@
         </activity>
         <activity android:name="com.xnliang.yishibao.view.IntegralTopUpActivity">
         </activity>
+        <activity android:name="com.xnliang.yishibao.view.GoodsDetailActivity">
+        </activity>
     </application>
 
 </manifest>

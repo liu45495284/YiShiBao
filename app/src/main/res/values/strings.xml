@@ -48,6 +48,12 @@
     <string name="modify_password">修改密码</string>
     <string name="integral_list">积分列表</string>
     <string name="cash_list">提现列表</string>
+    <string name="cate_normal">综合</string>
+    <string name="cate_sales">销量</string>
+    <string name="cate_price">价格</string>
+    <string name="goods_detail">商品详情页</string>
+    <string name="put_into_cart">加入购物车</string>
+    <string name="buy_now">立即购买</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

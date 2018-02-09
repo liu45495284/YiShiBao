@@ -1,14 +1,20 @@
 package com.xnliang.yishibao.module.adapter;
 
+import android.app.Fragment;
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.view.MainActivity;
+import com.xnliang.yishibao.view.fragment.CategrayItemFragment;
 
 import java.util.List;
 
@@ -20,16 +26,18 @@ public class CategrayAdapter extends BaseAdapter {
 
         private final Context mContext;
 //        private final List<WomenBean.WomenData.ModuleBean.DataBean> module1data;
-          private final List module1data;
+        private final List module1data;
+        private final MainActivity mActivity;
 
 //        public TravelViewItemAdapter(Context mContext, List<WomenBean.WomenData.ModuleBean.DataBean> module1data) {
 //            this.mContext = mContext;
 //            this.module1data = module1data;
 //        }
 
-        public CategrayAdapter(Context mContext, List module1data) {
-            this.mContext = mContext;
+        public CategrayAdapter(Context context, List module1data) {
+            this.mContext = context;
             this.module1data = module1data;
+            this.mActivity = (MainActivity)context;
         }
 
         @Override

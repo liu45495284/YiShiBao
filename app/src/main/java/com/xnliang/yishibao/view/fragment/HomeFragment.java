@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -40,7 +39,6 @@ public class HomeFragment extends BaseFragment {
 
     public HomeFragment() {
         // Required empty public constructor
-//        mActivity = getActivity();
     }
 
 
@@ -71,7 +69,7 @@ public class HomeFragment extends BaseFragment {
         mPullRefreshLayout.setRefreshStyle(PullRefreshLayout.STYLE_MATERIAL);
 
         RecyclerView recyclerView = mView.findViewById(R.id.rv_home);
-        mHomeRecycleAdapter = new HomeRecycleViewAdapter(mActivity, moduleBeanList);
+        mHomeRecycleAdapter = new HomeRecycleViewAdapter(mActivity, moduleBeanList , this);
         recyclerView.setAdapter(mHomeRecycleAdapter);
 
         //recycleView不仅要设置适配器还要设置布局管理者,否则图片不显示
@@ -125,7 +123,15 @@ public class HomeFragment extends BaseFragment {
                     mPullRefreshLayout.setRefreshing(false);
                     Toast.makeText(getActivity(), "更新了五条数据...", Toast.LENGTH_SHORT).show();
                 }
-            } , 5000);
+            } , 3000);
         }
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        if (mActivity != null) {
+            mActivity.finish();
+        }
+        return true;
     }
 }

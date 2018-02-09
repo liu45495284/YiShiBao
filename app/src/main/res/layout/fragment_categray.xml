@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.xnliang.yishibao.view.fragment.CategrayItemFragment"
+    android:id="@+id/fragment_categray_item">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@color/white"
+        >
+
+        <ImageButton
+            android:id="@+id/ib_categray_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/back_arrow"
+            />
+
+        <android.support.v7.widget.SearchView
+            android:id="@+id/categray_search_view"
+            android:layout_width="270dp"
+            android:layout_height="30dp"
+            android:layout_above="@+id/categray_refresh"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="35dp"
+            android:layout_marginStart="35dp"
+            android:background="@color/gray_cccc"
+            android:queryHint="@string/search_hint" />
+
+        <ImageButton
+            android:id="@+id/ib_categray_cart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:layout_alignParentRight="true"
+            android:layout_toEndOf="@+id/categray_search_view"
+            android:layout_toRightOf="@+id/categray_search_view"
+            android:src="@mipmap/shopping_cart"
+            android:background="@android:color/transparent"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/ll_categray_sort"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:baselineAligned="false"
+        android:layout_below="@+id/toolbar">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cate_normal"
+            android:textColor="@color/black"
+            android:gravity="center"/>
+
+        <ImageView
+            android:id="@+id/iv_normal_arrow_up"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:background="@drawable/categray_sort_up_selector"
+            />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_sales"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cate_sales"
+                android:textColor="@color/black"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toRightOf="@+id/tv_sales">
+
+                <ImageView
+                    android:id="@+id/iv_sales_arrow_up"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:background="@drawable/categray_sort_up_selector"
+                    android:layout_marginTop="-1dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_sales_arrow_down"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:background="@drawable/categray_sort_down_selector"
+                    android:layout_marginTop="-11dp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cate_price"
+                android:textColor="@color/black"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toRightOf="@+id/tv_price">
+
+                <ImageView
+                    android:id="@+id/iv_price_arrow_up"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:background="@drawable/categray_sort_up_selector"
+                    android:layout_marginTop="-1dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_price_arrow_down"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:background="@drawable/categray_sort_down_selector"
+                    android:layout_marginTop="-11dp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.baoyz.widget.PullRefreshLayout
+        android:id="@+id/categray_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_categray_sort"
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_categray_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </com.baoyz.widget.PullRefreshLayout>
+
+</RelativeLayout>

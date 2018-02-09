@@ -1,11 +1,21 @@
 package com.xnliang.yishibao.presenter;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.adapter.CategrayAdapter;
+import com.xnliang.yishibao.view.MainActivity;
 import com.xnliang.yishibao.view.customview.CategrayGridView;
+import com.xnliang.yishibao.view.fragment.CategrayItemFragment;
+import com.xnliang.yishibao.view.fragment.HomeContainerFragment;
+import com.xnliang.yishibao.view.fragment.HomeFragment;
 
 import java.util.List;
 
@@ -17,18 +27,42 @@ public class CategrayViewHolder extends BaseViewHolder {
 
     private final Context mContext;
     private CategrayGridView gridView;
+    private final MainActivity mActivity;
+    private HomeFragment mFragment;
+    public static final String CATEGORY_TAG = "category";
 
-    public CategrayViewHolder(Context mContext, View itemView) {
+    public CategrayViewHolder(Context context, View itemView , HomeFragment fragment) {
         super(itemView);
-        this.mContext = mContext;
+        this.mContext = context;
+        this.mActivity = (MainActivity)context;
+        this.mFragment = fragment;
         gridView = itemView.findViewById(R.id.gv_channel_categray);
     }
 
     //        public void setData(List<WomenBean.WomenData.ModuleBean.DataBean> module1data) {
-    public void setData (List module0data){
+    public void setData (List data){
         //已得到数据了
         //设置适配器
-        CategrayAdapter adapter = new CategrayAdapter(mContext, module0data);
+        CategrayAdapter adapter = new CategrayAdapter(mContext, data);
         gridView.setAdapter(adapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    CategrayItemFragment itemFragment = new CategrayItemFragment();
+                    FragmentManager manager = mFragment.getFragmentManager();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(CATEGORY_TAG, position);
+                    itemFragment.setArguments(bundle);
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    HomeFragment homeFragment = (HomeFragment)manager.findFragmentByTag("home");
+                    transaction.add(R.id.fragment_home_container ,itemFragment ,"categray");
+                    transaction.hide(homeFragment);
+                    transaction.addToBackStack("categray");
+                    transaction.commit();
+
+                    Toast.makeText(mContext , "121314" , Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

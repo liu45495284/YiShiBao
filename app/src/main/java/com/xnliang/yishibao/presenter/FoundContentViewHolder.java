@@ -23,9 +23,9 @@ public class FoundContentViewHolder extends BaseViewHolder {
 
     private final RecyclerView mItemView;
 
-    public FoundContentViewHolder(Context mContext, View itemView) {
+    public FoundContentViewHolder(Context context, View itemView) {
         super(itemView);
-        this.mContext = mContext;
+        this.mContext = context;
         mItemView = itemView.findViewById(R.id.rv_found_list);
     }
 

@@ -16,8 +16,10 @@ import android.widget.AdapterView;
 import android.widget.RadioGroup;
 
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.module.utils.HandlerBackUtil;
 import com.xnliang.yishibao.presenter.ItmeCallBackListener;
 import com.xnliang.yishibao.view.fragment.FoundFragment;
+import com.xnliang.yishibao.view.fragment.HomeContainerFragment;
 import com.xnliang.yishibao.view.fragment.HomeFragment;
 import com.xnliang.yishibao.view.fragment.SelfFragment;
 import com.xnliang.yishibao.view.fragment.ShopFragment;
@@ -45,8 +47,6 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
 
         setContentView(R.layout.activity_main);
         initView();
-
-
     }
 
     public void initView () {
@@ -54,13 +54,14 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
 
         mViewPager = (ViewPager)findViewById(R.id.pager);
 
-        Fragment homeFragment = new HomeFragment();
+//        Fragment homeFragment = new HomeFragment();
+        Fragment containerFragment = new HomeContainerFragment();
         Fragment travelFragment = new TravelFragment();
         Fragment foundFragment = new FoundFragment();
         Fragment shopFragment = new ShopFragment();
         Fragment selfFragment = new SelfFragment();
 
-        mFragments = new Fragment[]{homeFragment,travelFragment,foundFragment,shopFragment,selfFragment};
+        mFragments = new Fragment[]{containerFragment,travelFragment,foundFragment,shopFragment,selfFragment};
 
         MyViewPagerAdapter adapter = new MyViewPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(adapter);
@@ -157,6 +158,13 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!HandlerBackUtil.handleBackPress(this)) {
+            super.onBackPressed();
+        }
     }
 
     private final int CHECK_PERMISSIONS_REQUEST = 10010;

@@ -138,11 +138,9 @@ public class DividerGridItemDecoration extends RecyclerView.ItemDecoration {
         } else if (isLastColum(parent, itemPosition, spanCount, childCount))// 如果是最后一列，则不需要绘制右边
         {
             outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
-            Log.i("yishibao" , "itemPosition = " + itemPosition);
         } else {
             outRect.set(0, 0, mDivider.getIntrinsicWidth(),
                     mDivider.getIntrinsicHeight());
-            Log.i("yishibao" , "Position = " + itemPosition);
         }
     }
 }

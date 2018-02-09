@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/goods_detail">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/white"
+        >
+
+        <RelativeLayout
+            android:id="@+id/rl_goods_detail_back"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            >
+            <ImageButton
+                android:id="@+id/ib_detail_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/back_arrow"
+                android:layout_marginLeft="5dp"
+                />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_travel_detail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:text="@string/goods_detail"
+            android:textSize="20sp"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/iv_six_line"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/whitesmoke"
+        android:layout_below="@+id/toolbar"/>
+
+    <FrameLayout
+        android:id="@+id/fl_goods_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_six_line">
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/bt_put_into"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="@string/put_into_cart"
+            android:textSize="18sp"
+            android:textColor="@color/red"
+            android:background="@color/white"/>
+
+        <Button
+            android:id="@+id/bt_buy_now"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="@string/buy_now"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:background="@color/red"/>
+
+    </LinearLayout>
+</RelativeLayout>

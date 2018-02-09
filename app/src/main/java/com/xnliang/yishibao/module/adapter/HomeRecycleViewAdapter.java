@@ -11,6 +11,8 @@ import com.xnliang.yishibao.presenter.CategrayViewHolder;
 import com.xnliang.yishibao.presenter.FoundViewHolder;
 import com.xnliang.yishibao.presenter.GoodsViewHolder;
 import com.xnliang.yishibao.presenter.TravelViewHolder;
+import com.xnliang.yishibao.view.fragment.HomeFragment;
+
 import java.util.List;
 /**
  * Created by JackLiu on 2018-01-29.
@@ -49,15 +51,17 @@ public class HomeRecycleViewAdapter extends RecyclerView.Adapter {
     public int currentType = GOODS_BANNER0;
     private final Context mContext;
     private final List moduleBeanList;
+    private HomeFragment mFragment;
     private static final int RECYCLEVIEW_ITEM_COUNT = 6;
     /**
      * 以后用它来初始化布局
      */
     private final LayoutInflater mLayoutInflater;
 
-    public HomeRecycleViewAdapter(Context context, List moduleBeanList) {
+    public HomeRecycleViewAdapter(Context context, List moduleBeanList , HomeFragment fragment) {
         this.mContext = context;
         this.moduleBeanList = moduleBeanList;
+        this.mFragment = fragment;
         //以后用它来初始化布局
         mLayoutInflater = LayoutInflater.from(mContext);
     }
@@ -69,7 +73,7 @@ public class HomeRecycleViewAdapter extends RecyclerView.Adapter {
         }else if(viewType==TRAVEL_CITY_GV1){
             return new TravelViewHolder(mContext, mLayoutInflater.inflate(R.layout.gv_channel,null));
         }else if(viewType==CATEGRAY_NEW_GV2){
-            return new CategrayViewHolder(mContext, mLayoutInflater.inflate(R.layout.gv_channel_categray,null));
+            return new CategrayViewHolder(mContext, mLayoutInflater.inflate(R.layout.gv_channel_categray,null) , mFragment);
         }else if(viewType==ADVERTISING_IV3) {
             return new AdvertisingViewHolder(mContext, mLayoutInflater.inflate(R.layout.iv_advertising, null));
         }else if(viewType== GOODS_LIST_RV4) {
