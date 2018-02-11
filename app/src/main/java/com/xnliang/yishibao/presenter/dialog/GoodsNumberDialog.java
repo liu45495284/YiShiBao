@@ -73,7 +73,8 @@ public class GoodsNumberDialog extends AlertDialog implements View.OnClickListen
                 }
                 break;
             case R.id.bt_confirm:
-                Toast.makeText(mContext , "555" , Toast.LENGTH_SHORT).show();
+                dismiss();
+                Toast.makeText(mContext , "添加成功" , Toast.LENGTH_SHORT).show();
                 break;
         }
         mEtNumber.clearFocus();
@@ -97,10 +98,6 @@ public class GoodsNumberDialog extends AlertDialog implements View.OnClickListen
             amount = Integer.valueOf(s.toString());
             if (amount > goods_storage) {
                 mEtNumber.setText(goods_storage + "");
-                return;
-            }
-            if (amount < 1) {
-                mEtNumber.setText(amount + "");
                 return;
             }
         }

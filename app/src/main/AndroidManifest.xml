@@ -25,7 +25,7 @@
         </activity>
         <activity android:name="com.xnliang.yishibao.view.SearchViewActivity">
         </activity>
-        <activity android:name="com.xnliang.yishibao.view.ShoppingActivity">
+        <activity android:name="com.xnliang.yishibao.view.ShoppingCartActivity">
         </activity>
         <activity android:name="com.xnliang.yishibao.view.TravelDetailActivity">
         </activity>

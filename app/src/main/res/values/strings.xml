@@ -59,6 +59,12 @@
     <string name="buy_drop">-</string>
     <string name="buy_plus">+</string>
     <string name="confirm_button">确定</string>
+    <string name="shopping_cart">购物车</string>
+    <string name="cart_all_check">全选</string>
+    <string name="cart_no_freight">不含运费</string>
+    <string name="cart_total">合计: %1$d积分</string>
+    <string name="cart_settlement">结算(%1$d)</string>
+
 
 
     <!-- TODO: Remove or change this placeholder text -->

@@ -152,4 +152,5 @@
     <color name="gray_8f">#8f8f8f</color><!--灰色8f -->
     <color name="mycolor">#2b8fff</color>
     <color name="divider">#ffd2d2d2</color>
+    <color name="white_low">#EEEEEE</color>
 </resources>

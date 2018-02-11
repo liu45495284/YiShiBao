@@ -20,7 +20,7 @@ import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.adapter.HomeRecycleViewAdapter;
 import com.xnliang.yishibao.view.MainActivity;
 import com.xnliang.yishibao.view.SearchViewActivity;
-import com.xnliang.yishibao.view.ShoppingActivity;
+import com.xnliang.yishibao.view.ShoppingCartActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,7 +109,7 @@ public class HomeFragment extends BaseFragment {
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(mActivity,ShoppingActivity.class);
+            Intent intent = new Intent(mActivity,ShoppingCartActivity.class);
             startActivity(intent);
         }
     }

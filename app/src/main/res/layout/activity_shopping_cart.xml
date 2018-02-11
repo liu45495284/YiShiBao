@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/white"
+        >
+
+        <RelativeLayout
+            android:id="@+id/rl_cart_back"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            >
+            <ImageButton
+                android:id="@+id/ib_cart_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/back_arrow"
+                android:layout_marginLeft="5dp"
+                />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_cart_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:text="@string/shopping_cart"
+            android:textSize="20sp"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/iv_six_line"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/whitesmoke"
+        android:layout_below="@+id/toolbar"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_cart_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_six_line">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rl_cart_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white_low"
+        android:layout_above="@+id/rl_cart_bottom"/>
+    <RelativeLayout
+        android:id="@+id/rl_cart_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        >
+
+        <CheckBox
+            android:id="@+id/cb_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/checkbox_bg_selector"
+            android:button="@null"
+            android:checked="false"/>
+
+        <TextView
+            android:id="@+id/tv_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/cb_all"
+            android:layout_centerVertical="true"
+            android:text="@string/cart_all_check"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_cart_no_freight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_all"
+            android:layout_centerVertical="true"
+            android:text="@string/cart_no_freight"
+            android:textSize="13sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/red"/>
+
+        <TextView
+            android:id="@+id/tv_cart_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_cart_no_freight"
+            android:layout_centerVertical="true"
+            android:text="@string/cart_total"
+            android:layout_marginLeft="3dp"
+            android:textColor="@color/red"
+            />
+
+        <ImageView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/tv_cart_total"
+            android:background="@color/white_low"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_cart_settlement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cart_settlement"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/red"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
