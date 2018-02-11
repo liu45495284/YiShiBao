@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_detail_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+
+    <ImageView
+        android:id="@+id/iv_detail_dialog"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@mipmap/i2"
+        android:scaleType="fitXY"
+        android:layout_marginLeft="20dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_detail_title"
+        android:layout_width="235dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_detail_dialog"
+        android:layout_marginLeft="8dp"
+        android:singleLine="true"
+        android:text="力士洗发水/护发素套装/450g+450g"
+        android:textSize="14sp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tv_detail_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_detail_dialog"
+        android:layout_below="@+id/tv_detail_title"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="5dp"
+        android:textSize="14sp"
+        android:text="礼盒套装"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:id="@+id/tv_detail_integral"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@+id/iv_detail_dialog"
+        android:layout_below="@+id/tv_detail_type"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="5dp"
+        android:textSize="16sp"
+        android:text="1500积分"
+        android:textColor="@color/red"
+        />
+
+    <TextView
+        android:id="@+id/tv_detail_number"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@+id/iv_detail_dialog"
+        android:layout_below="@+id/tv_detail_integral"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="5dp"
+        android:textSize="14sp"
+        android:text="库存450件"
+        android:textColor="@color/gray_8f"
+        />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_seven_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_F4"
+        android:layout_below="@+id/rl_detail_item"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_seven_line"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buy_number"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp"
+            android:textSize="15sp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:divider="@drawable/divider"
+            android:background="@drawable/bg_amount_layout"
+            android:showDividers="middle"
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp">
+
+        <Button
+            android:id="@+id/bt_detail_drop"
+            android:layout_width="36dp"
+            android:layout_height="30dp"
+            android:background="@drawable/btn_amount"
+            android:gravity="center"
+            android:text="@string/buy_drop"/>
+
+        <EditText
+            android:id="@+id/et_detail_number"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:inputType="number"
+            android:gravity="center"
+            android:text="1"/>
+
+        <Button
+            android:id="@+id/bt_detail_plus"
+            android:layout_width="36dp"
+            android:layout_height="30dp"
+            android:background="@drawable/btn_amount"
+            android:gravity="center"
+            android:text="@string/buy_plus"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/bt_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/confirm_button"
+        android:layout_alignParentBottom="true"
+        android:background="@color/red"
+        android:textColor="@color/white"
+        android:textSize="18sp"/>
+
+</RelativeLayout>

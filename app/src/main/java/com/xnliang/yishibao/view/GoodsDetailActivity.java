@@ -1,5 +1,6 @@
 package com.xnliang.yishibao.view;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -7,11 +8,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.utils.HandlerBackUtil;
+import com.xnliang.yishibao.presenter.dialog.GoodsNumberDialog;
 import com.xnliang.yishibao.view.fragment.GoodsDetailFragment;
 
 /**
@@ -19,9 +20,12 @@ import com.xnliang.yishibao.view.fragment.GoodsDetailFragment;
  */
 
 public class GoodsDetailActivity extends BaseActivity {
+
+    public Context mContext;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = this;
         setContentView(R.layout.activity_goods_detail);
         initView();
     }
@@ -59,6 +63,9 @@ public class GoodsDetailActivity extends BaseActivity {
 
         @Override
         public void onClick(View v) {
+            //TODO modify data
+            GoodsNumberDialog dialog = new GoodsNumberDialog(mContext , 50);
+            dialog.show();
             Toast.makeText(getApplicationContext(),"222",Toast.LENGTH_SHORT).show();
         }
     }
@@ -67,6 +74,7 @@ public class GoodsDetailActivity extends BaseActivity {
 
         @Override
         public void onClick(View v) {
+            //TODO
             Toast.makeText(getApplicationContext(),"333",Toast.LENGTH_SHORT).show();
         }
     }

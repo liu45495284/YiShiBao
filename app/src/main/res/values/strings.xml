@@ -54,6 +54,11 @@
     <string name="goods_detail">商品详情页</string>
     <string name="put_into_cart">加入购物车</string>
     <string name="buy_now">立即购买</string>
+    <string name="buy_number">数量</string>
+    <string name="buy_change_number">1</string>
+    <string name="buy_drop">-</string>
+    <string name="buy_plus">+</string>
+    <string name="confirm_button">确定</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
