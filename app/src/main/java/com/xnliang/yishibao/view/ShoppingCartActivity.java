@@ -30,12 +30,18 @@ public class ShoppingCartActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void initData() {
+        data.clear();
+        int iconBanner[] = { R.mipmap.i4, R.mipmap.i2, R.mipmap.i3,R.mipmap.i4, R.mipmap.i2,
+                R.mipmap.i3,R.mipmap.i4, R.mipmap.i2};
+        for (int i = 0 ; i < iconBanner.length ; i++) {
+            data.add(iconBanner[i]);
+        }
     }
 
     private void initView() {
         ImageButton backButton = findViewById(R.id.ib_cart_back);
         backButton.setOnClickListener(this);
-        RecyclerView recyclerView = new RecyclerView(this);
+        RecyclerView recyclerView = findViewById(R.id.rl_cart_item);
         CartRecycleViewAdapter adapter = new CartRecycleViewAdapter(this, data);
         recyclerView.setAdapter(adapter);
 

@@ -35,7 +35,7 @@ public class CartRecycleViewAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case CART_ITEM_LIST:
-                mViewHolder = new CartItemViewHolder(mContext ,mInflater.inflate(R.layout.cart_item_view , parent ,false));
+                mViewHolder = new CartItemViewHolder(mContext ,mInflater.inflate(R.layout.cart_item_recycle_view, null));
                 break;
         }
         return mViewHolder;

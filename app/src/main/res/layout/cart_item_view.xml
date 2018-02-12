@@ -2,13 +2,115 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="100dp">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_cart_item"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <CheckBox
+        android:id="@+id/cb_single_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/checkbox_bg_selector"
+        android:button="@null"
+        android:layout_marginLeft="10dp"
+        android:layout_centerVertical="true"
+        />
 
-    </android.support.v7.widget.RecyclerView>
+    <ImageView
+        android:id="@+id/iv_cart_picture"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:src="@mipmap/guide2"
+        android:layout_toRightOf="@+id/cb_single_check"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:scaleType="fitXY"/>
+
+    <TextView
+        android:id="@+id/tv_cart_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_cart_picture"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/ib_cart_edit"
+        android:text="超值组合鲜活炫亮/友链魅族沐浴露洗发水/护发素组合套装"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tv_cart_integral"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_cart_picture"
+        android:layout_below="@+id/tv_cart_item_title"
+        android:layout_marginTop="10dp"
+        android:text="@string/cart_item_integral"
+        android:textColor="@color/red"/>
+
+    <ImageButton
+        android:id="@+id/ib_cart_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/cart_item_edit"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cart_item_number"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tv_cart_item_title"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"/>
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:background="@color/red"
+        android:text="@string/cart_item_finish"
+        android:textColor="@color/white"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:divider="@drawable/divider"
+        android:background="@drawable/bg_amount_layout"
+        android:showDividers="middle"
+        android:orientation="horizontal"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/iv_cart_picture"
+        android:layout_marginLeft="20dp"
+        android:visibility="gone"
+        >
+
+        <Button
+            android:id="@+id/bt_detail_drop"
+            android:layout_width="36dp"
+            android:layout_height="30dp"
+            android:background="@drawable/btn_amount"
+            android:gravity="center"
+            android:text="@string/buy_drop"/>
+
+        <EditText
+            android:id="@+id/et_detail_number"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:inputType="number"
+            android:gravity="center"
+            android:text="1"/>
+
+        <Button
+            android:id="@+id/bt_detail_plus"
+            android:layout_width="36dp"
+            android:layout_height="30dp"
+            android:background="@drawable/btn_amount"
+            android:gravity="center"
+            android:text="@string/buy_plus"/>
+    </LinearLayout>
 
 </RelativeLayout>

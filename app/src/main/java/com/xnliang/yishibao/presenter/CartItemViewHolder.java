@@ -26,7 +26,7 @@ public class CartItemViewHolder extends BaseViewHolder{
     }
 
     public void setData(List data){
-        CartItemViewAdapter itemViewAdapter = new CartItemViewAdapter();
+        CartItemViewAdapter itemViewAdapter = new CartItemViewAdapter(mContext , data);
         mView.setAdapter(itemViewAdapter);
 
         mView.addItemDecoration(new ListDecoration(mContext , ListDecoration.VERTICAL_LIST ,R.drawable.list_divide));
