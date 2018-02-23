@@ -71,6 +71,9 @@ public class ShopFragment extends BaseFragment {
 
         //recycleView不仅要设置适配器还要设置布局管理者,否则图片不显示
         //第一个参数是上下文，第二个参数是只有一列
+        /*
+        fix recycleview item width not match_parent
+         */
         LinearLayoutManager manager = new LinearLayoutManager(mActivity){
             @Override
             public RecyclerView.LayoutParams generateDefaultLayoutParams() {

@@ -44,6 +44,16 @@ public class GuideActivity extends BaseActivity {
         button = (Button) findViewById(R.id.splase_start_btn);
         tvTime = (TextView) this.findViewById(R.id.tv_time);
 
+        tvTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GuideActivity.this , MainActivity.class);
+                startActivity(intent);
+                myCountDownTimer.cancel();
+                finish();
+            }
+        });
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +101,8 @@ public class GuideActivity extends BaseActivity {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            tvTime.setText(millisUntilFinished/1000+"s");
+            String skip = String.format(getResources().getString(R.string.guide_skip),  millisUntilFinished/1000);
+            tvTime.setText(skip+"s");
         }
 
         @Override

@@ -19,7 +19,7 @@
         android:layout_alignParentTop="true"
         android:padding="20dp"
         android:textColor="#000000"
-        android:text="11"/>
+        android:text="@string/guide_skip"/>
 
     <Button
         android:id="@+id/splase_start_btn"

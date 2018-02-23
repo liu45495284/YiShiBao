@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.presenter.CartItemViewHolder;
+import com.xnliang.yishibao.presenter.CartReItemViewHolder;
+import com.xnliang.yishibao.presenter.CartRecommendViewHolder;
+import com.xnliang.yishibao.view.ShoppingCartActivity;
 
 import java.util.List;
 
@@ -17,6 +20,7 @@ import java.util.List;
 public class CartRecycleViewAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
+    private ShoppingCartActivity cartActivity;
     private List mData;
     private static final int CART_ITEM_LIST = 0;
     private static final int CART_RECOMMEND = 1;
@@ -27,6 +31,7 @@ public class CartRecycleViewAdapter extends RecyclerView.Adapter {
 
     public CartRecycleViewAdapter(Context context , List data) {
         this.mContext = context;
+        this.cartActivity = (ShoppingCartActivity) context;
         this.mData = data;
         mInflater = LayoutInflater.from(mContext);
     }
@@ -37,6 +42,12 @@ public class CartRecycleViewAdapter extends RecyclerView.Adapter {
             case CART_ITEM_LIST:
                 mViewHolder = new CartItemViewHolder(mContext ,mInflater.inflate(R.layout.cart_item_recycle_view, null));
                 break;
+            case CART_RECOMMEND:
+                mViewHolder = new CartRecommendViewHolder(mContext ,mInflater.inflate(R.layout.cart_item_recommend, null));
+                break;
+            case CART_RECOMMEND_ITEM:
+                mViewHolder = new CartReItemViewHolder(mContext ,mInflater.inflate(R.layout.cart_re_item_recycle_view, null));
+                break;
         }
         return mViewHolder;
     }
@@ -46,7 +57,12 @@ public class CartRecycleViewAdapter extends RecyclerView.Adapter {
         switch (getItemViewType(position)) {
             case CART_ITEM_LIST:
                 CartItemViewHolder itemViewHolder = (CartItemViewHolder) holder;
+                cartActivity.setCartItemListener(itemViewHolder);
                 itemViewHolder.setData(mData);
+                break;
+            case CART_RECOMMEND_ITEM:
+                CartReItemViewHolder reItemViewHolder = (CartReItemViewHolder) holder;
+                reItemViewHolder.setData(mData);
                 break;
         }
 
@@ -54,7 +70,7 @@ public class CartRecycleViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 1;
+        return 3;
     }
 
     @Override

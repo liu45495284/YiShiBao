@@ -2,7 +2,8 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="100dp"
+    android:background="@color/white">
 
     <CheckBox
         android:id="@+id/cb_single_check"
@@ -12,6 +13,7 @@
         android:button="@null"
         android:layout_marginLeft="10dp"
         android:layout_centerVertical="true"
+        android:checked="false"
         />
 
     <ImageView
@@ -24,11 +26,15 @@
         android:layout_margin="10dp"
         android:scaleType="fitXY"/>
 
+    <RelativeLayout
+        android:id="@+id/rl_cart_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_cart_picture">
     <TextView
         android:id="@+id/tv_cart_item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/iv_cart_picture"
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/ib_cart_edit"
@@ -39,7 +45,6 @@
         android:id="@+id/tv_cart_integral"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/iv_cart_picture"
         android:layout_below="@+id/tv_cart_item_title"
         android:layout_marginTop="10dp"
         android:text="@string/cart_item_integral"
@@ -56,6 +61,7 @@
         />
 
     <TextView
+        android:id="@+id/tv_cart_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cart_item_number"
@@ -64,7 +70,10 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"/>
 
+    </RelativeLayout>
+
     <Button
+        android:id="@+id/bt_cart_edit_finish"
         android:layout_width="50dp"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
@@ -74,6 +83,7 @@
         android:visibility="gone"/>
 
     <LinearLayout
+        android:id="@+id/ll_cart_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:focusable="true"
@@ -88,7 +98,7 @@
         >
 
         <Button
-            android:id="@+id/bt_detail_drop"
+            android:id="@+id/bt_cart_drop"
             android:layout_width="36dp"
             android:layout_height="30dp"
             android:background="@drawable/btn_amount"
@@ -96,7 +106,7 @@
             android:text="@string/buy_drop"/>
 
         <EditText
-            android:id="@+id/et_detail_number"
+            android:id="@+id/et_cart_number"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -105,7 +115,7 @@
             android:text="1"/>
 
         <Button
-            android:id="@+id/bt_detail_plus"
+            android:id="@+id/bt_cart_plus"
             android:layout_width="36dp"
             android:layout_height="30dp"
             android:background="@drawable/btn_amount"

@@ -67,6 +67,8 @@
     <string name="cart_item_integral">%1$d积分</string>
     <string name="cart_item_number">X%1$d</string>
     <string name="cart_item_finish">完成</string>
+    <string name="cart_item_recommend">推荐商品</string>
+    <string name="guide_skip">跳过 %1$d</string>
 
 
 
