@@ -38,10 +38,10 @@ public class BannerViewHolder extends RecyclerView.ViewHolder {
 //                String image=module0data.get(i).getImg();
 //                imageUrls.add(image);
 //            }
-    public void setData(List module0data) {
+    public void setData(List data) {
 
         //新版的banner的使用----偷下懒的使用方法
-        banner.setImages(module0data).setImageLoader(new GlideImageLoader()).start();
+        banner.setImages(data).setImageLoader(new GlideImageLoader()).start();
 
         //设置item的点击事件
         banner.setOnBannerClickListener(new OnBannerClickListener() {

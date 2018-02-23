@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.baoyz.widget.PullRefreshLayout;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.adapter.CategrayItemAdapter;
+import com.xnliang.yishibao.module.bean.ShoppingCartBean;
 import com.xnliang.yishibao.module.utils.ListDecoration;
 import com.xnliang.yishibao.view.MainActivity;
 import com.xnliang.yishibao.view.SearchViewActivity;
@@ -92,8 +93,10 @@ public class CategrayItemFragment extends BaseFragment {
         moduleBeanList.clear();
         int iconBanner[] = { R.mipmap.i4, R.mipmap.i2, R.mipmap.i3,R.mipmap.i4, R.mipmap.i2,
                 R.mipmap.i3,R.mipmap.i4, R.mipmap.i2};
+        ShoppingCartBean shoppingCartBean = new ShoppingCartBean();
         for (int i = 0 ; i < iconBanner.length ; i++) {
-            moduleBeanList.add(iconBanner[i]);
+            shoppingCartBean.setId(iconBanner[i]);
+            moduleBeanList.add(shoppingCartBean);
         }
     }
 

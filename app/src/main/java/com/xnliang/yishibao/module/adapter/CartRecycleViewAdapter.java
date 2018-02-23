@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.module.bean.ShoppingCartBean;
 import com.xnliang.yishibao.presenter.CartItemViewHolder;
 import com.xnliang.yishibao.presenter.CartReItemViewHolder;
 import com.xnliang.yishibao.presenter.CartRecommendViewHolder;
@@ -21,7 +22,7 @@ public class CartRecycleViewAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
     private ShoppingCartActivity cartActivity;
-    private List mData;
+    private List<ShoppingCartBean> mData;
     private static final int CART_ITEM_LIST = 0;
     private static final int CART_RECOMMEND = 1;
     private static final int CART_RECOMMEND_ITEM = 2;
@@ -29,7 +30,7 @@ public class CartRecycleViewAdapter extends RecyclerView.Adapter {
     private RecyclerView.ViewHolder mViewHolder;
     private final LayoutInflater mInflater;
 
-    public CartRecycleViewAdapter(Context context , List data) {
+    public CartRecycleViewAdapter(Context context , List<ShoppingCartBean> data) {
         this.mContext = context;
         this.cartActivity = (ShoppingCartActivity) context;
         this.mData = data;

@@ -1,5 +1,6 @@
 package com.xnliang.yishibao.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.adapter.CartItemViewAdapter;
@@ -53,6 +55,8 @@ public class ShoppingCartActivity extends BaseActivity implements View.OnClickLi
         backButton.setOnClickListener(this);
         mCheckAll = findViewById(R.id.cb_all);
         mCheckAll.setOnClickListener(this);
+        TextView settlement = findViewById(R.id.tv_cart_settlement);
+        settlement.setOnClickListener(this);
         RecyclerView recyclerView = findViewById(R.id.rl_cart_item);
         mCartAdapter = new CartRecycleViewAdapter(this, data);
         recyclerView.setAdapter(mCartAdapter);
@@ -107,6 +111,10 @@ public class ShoppingCartActivity extends BaseActivity implements View.OnClickLi
                     }
                     cartItemListener.cartItem();
                 }
+                break;
+            case R.id.tv_cart_settlement:
+                Intent intent = new Intent(this,OrderSubmitActivity.class);
+                startActivity(intent);
                 break;
         }
     }

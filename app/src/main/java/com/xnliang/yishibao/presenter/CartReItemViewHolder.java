@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.module.adapter.CartRecommendAdapter;
 import com.xnliang.yishibao.module.adapter.ShopOneIntegralAdapter;
 import com.xnliang.yishibao.module.utils.DividerGridItemDecoration;
 
@@ -28,7 +29,7 @@ public class CartReItemViewHolder extends BaseViewHolder {
     }
 
     public void setData(List data){
-        ShopOneIntegralAdapter shopCategray = new ShopOneIntegralAdapter(mContext , data);
+        CartRecommendAdapter shopCategray = new CartRecommendAdapter(mContext , data);
         mView.setAdapter(shopCategray);
         if (mDecoration == null) {
             mDecoration = new DividerGridItemDecoration(mContext);

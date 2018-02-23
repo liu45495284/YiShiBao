@@ -117,6 +117,7 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_order_integral"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/ll_remain"
@@ -143,6 +144,14 @@
             />
 
     </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/order_pay_text"
+        android:layout_below="@+id/rl_order_integral"
+        android:textColor="@color/gray"
+        android:padding="10dp"/>
 
     <Button
         android:id="@+id/bt_pay"

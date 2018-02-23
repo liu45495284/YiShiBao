@@ -39,6 +39,7 @@ public class CartItemViewHolder extends BaseViewHolder implements ShoppingCartAc
         LinearLayoutManager manager = new LinearLayoutManager(mContext ,LinearLayoutManager.VERTICAL , false);
         mView.setLayoutManager(manager);
 
+
     }
 
     @Override

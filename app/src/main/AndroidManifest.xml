@@ -35,6 +35,8 @@
         </activity>
         <activity android:name="com.xnliang.yishibao.view.GoodsDetailActivity">
         </activity>
+        <activity android:name="com.xnliang.yishibao.view.OrderSubmitActivity">
+        </activity>
     </application>
 
 </manifest>

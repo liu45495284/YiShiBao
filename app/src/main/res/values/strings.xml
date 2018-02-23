@@ -59,6 +59,7 @@
     <string name="buy_drop">-</string>
     <string name="buy_plus">+</string>
     <string name="confirm_button">确定</string>
+    <string name="cancle_button">取消</string>
     <string name="shopping_cart">购物车</string>
     <string name="cart_all_check">全选</string>
     <string name="cart_no_freight">不含运费</string>
@@ -69,7 +70,15 @@
     <string name="cart_item_finish">完成</string>
     <string name="cart_item_recommend">推荐商品</string>
     <string name="guide_skip">跳过 %1$d</string>
-
+    <string name="remove_goods">删除</string>
+    <string name="order_pay_text">注：旅游商品只能通过现金积分支付，实物商品可以通过购物积分和现金积分支付，
+        优先扣除购物积分</string>
+    <string name="order_submit_title">提交订单</string>
+    <string name="order_submit_path">上海市浦东新区金桥镇金海路1000号56栋201</string>
+    <string name="order_submit_content">超值组合鲜活炫亮/友链魅族沐浴露洗发水/护发素组合套装</string>
+    <string name="submit_settlement">结算金额</string>
+    <string name="submit_integral">%1$d积分</string>
+    <string name="submit_freight">运费%1$d</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

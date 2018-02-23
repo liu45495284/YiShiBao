@@ -1,6 +1,9 @@
 package com.xnliang.yishibao.module.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
@@ -177,6 +181,40 @@ public class CartItemViewAdapter extends RecyclerView.Adapter  {
                 mCartEdit = itemView.findViewById(R.id.et_cart_number);
                 mCartItemNum = itemView.findViewById(R.id.tv_cart_num);
                 mSingleCheck = itemView.findViewById(R.id.cb_single_check);
+
+                itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        showRemoveDialog();
+                        return false;
+                    }
+                });
+            }
+
+        private void showRemoveDialog() {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            builder.setTitle(R.string.remove_goods);
+            builder.setNegativeButton(R.string.confirm_button, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    removeData(getAdapterPosition());
+                }
+            });
+
+            builder.setPositiveButton(R.string.cancle_button, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.show();
+        }
+
+        public void removeData(int position){
+                if (mData.size() != 0) {
+                    mData.remove(position);
+                    notifyItemRemoved(position);
+                }
             }
 
             public void setData(List moduledata, int position) {

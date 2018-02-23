@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.module.bean.ShoppingCartBean;
 import com.xnliang.yishibao.presenter.AdvertisingViewHolder;
 import com.xnliang.yishibao.presenter.BannerViewHolder;
 import com.xnliang.yishibao.presenter.CategrayViewHolder;
@@ -50,7 +51,7 @@ public class HomeRecycleViewAdapter extends RecyclerView.Adapter {
      */
     public int currentType = GOODS_BANNER0;
     private final Context mContext;
-    private final List moduleBeanList;
+    private final List<ShoppingCartBean> moduleBeanList;
     private HomeFragment mFragment;
     private static final int RECYCLEVIEW_ITEM_COUNT = 6;
     /**
@@ -58,7 +59,7 @@ public class HomeRecycleViewAdapter extends RecyclerView.Adapter {
      */
     private final LayoutInflater mLayoutInflater;
 
-    public HomeRecycleViewAdapter(Context context, List moduleBeanList , HomeFragment fragment) {
+    public HomeRecycleViewAdapter(Context context, List<ShoppingCartBean> moduleBeanList , HomeFragment fragment) {
         this.mContext = context;
         this.moduleBeanList = moduleBeanList;
         this.mFragment = fragment;

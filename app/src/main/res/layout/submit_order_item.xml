@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/iv_submit_picture"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:src="@mipmap/guide2"
+        android:layout_toRightOf="@+id/cb_single_check"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:scaleType="fitXY"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_cart_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/iv_submit_picture">
+        <TextView
+            android:id="@+id/tv_submit_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:text="@string/order_submit_content"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/tv_submit_integral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_submit_item_title"
+            android:layout_marginTop="10dp"
+            android:text="@string/cart_item_integral"
+            android:textColor="@color/red"/>
+
+        <TextView
+            android:id="@+id/tv_submit_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cart_item_number"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tv_submit_item_title"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -33,7 +33,6 @@ public class HomeFragment extends BaseFragment {
     private MainActivity mActivity;
     public List moduleBeanList = new ArrayList();
     private PullRefreshLayout mPullRefreshLayout;
-    private HomeRecycleViewAdapter mHomeRecycleAdapter;
     private View mView;
 
 
@@ -69,8 +68,8 @@ public class HomeFragment extends BaseFragment {
         mPullRefreshLayout.setRefreshStyle(PullRefreshLayout.STYLE_MATERIAL);
 
         RecyclerView recyclerView = mView.findViewById(R.id.rv_home);
-        mHomeRecycleAdapter = new HomeRecycleViewAdapter(mActivity, moduleBeanList , this);
-        recyclerView.setAdapter(mHomeRecycleAdapter);
+        HomeRecycleViewAdapter homeRecycleAdapter = new HomeRecycleViewAdapter(mActivity, moduleBeanList , this);
+        recyclerView.setAdapter(homeRecycleAdapter);
 
         //recycleView不仅要设置适配器还要设置布局管理者,否则图片不显示
         //第一个参数是上下文，第二个参数是只有一列
