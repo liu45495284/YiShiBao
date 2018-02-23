@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -15,12 +14,9 @@ import com.xnliang.yishibao.module.adapter.CartItemViewAdapter;
 import com.xnliang.yishibao.module.adapter.CartRecycleViewAdapter;
 import com.xnliang.yishibao.module.bean.ShoppingCartBean;
 import com.xnliang.yishibao.module.utils.ListDecoration;
-import com.xnliang.yishibao.presenter.IcheckBoxListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by JackLiu on 2018-01-26.
@@ -30,7 +26,6 @@ public class ShoppingCartActivity extends BaseActivity implements View.OnClickLi
 
     public List<ShoppingCartBean> data = new ArrayList();
     private CheckBox mCheckAll;
-    private IcheckBoxListener checkAllInterface;
     private CartItemListener cartItemListener;
     private CartRecycleViewAdapter mCartAdapter;
 
@@ -100,11 +95,6 @@ public class ShoppingCartActivity extends BaseActivity implements View.OnClickLi
                 finish();
                 break;
             case R.id.cb_all:
-//                if (mCheckAll.isChecked()){
-//                    checkAllInterface.checkAll(true);
-//                }else {
-//                    checkAllInterface.checkAll(false);
-//                }
                 if (data.size() != 0) {
                     if (mCheckAll.isChecked()) {
                         for (int i = 0; i < data.size(); i++) {
@@ -122,13 +112,7 @@ public class ShoppingCartActivity extends BaseActivity implements View.OnClickLi
     }
 
     @Override
-    public void checkGroup(int position, boolean isChecked , HashMap<Integer,Integer> hashMap) {
-//        if (hashMap.size() == data.size()){
-//            mCheckAll.setChecked(true);
-//        }else {
-//            mCheckAll.setChecked(false);
-//        }
-
+    public void checkGroup(int position, boolean isChecked) {
         data.get(position).setChoosed(isChecked);
         if (isAllCheck()) {
             mCheckAll.setChecked(true);
@@ -142,11 +126,6 @@ public class ShoppingCartActivity extends BaseActivity implements View.OnClickLi
             if (!group.isChoosed())
                 return false;
         } return true;
-    }
-
-
-    public void setCheckAllInterface(IcheckBoxListener checkAllInterface){
-        this.checkAllInterface = checkAllInterface;
     }
 
     public interface CartItemListener{
