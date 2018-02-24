@@ -1,13 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment"/>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@color/white"
+        >
 
-</android.support.constraint.ConstraintLayout>
+        <ImageButton
+            android:id="@+id/ib_my_order_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/back_arrow"
+            />
+
+        <TextView
+            android:id="@+id/tv_my_order_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/my_order"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tb_my_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="@color/red"
+        app:tabSelectedTextColor="@color/black"
+        app:tabTextColor="@color/gray">
+    </android.support.design.widget.TabLayout>
+
+    <com.xnliang.yishibao.view.customview.OrderDetailViewPager
+        android:id="@+id/vp_my_order"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.xnliang.yishibao.view.customview.OrderDetailViewPager>
+</LinearLayout>

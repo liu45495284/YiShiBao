@@ -51,7 +51,6 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
 
     public void initView () {
 
-
         mViewPager = (ViewPager)findViewById(R.id.pager);
 
 //        Fragment homeFragment = new HomeFragment();

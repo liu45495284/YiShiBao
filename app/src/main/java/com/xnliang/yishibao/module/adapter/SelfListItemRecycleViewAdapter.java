@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.view.MainActivity;
-import com.xnliang.yishibao.view.MyOrderActivity;
+import com.xnliang.yishibao.view.SelfListActivity;
 
 import java.util.List;
 import java.util.WeakHashMap;
@@ -82,7 +82,7 @@ public class SelfListItemRecycleViewAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
                     bundle.putInt("pos" , getAdapterPosition());
-                    Intent intent = new Intent(mActivity , MyOrderActivity.class);
+                    Intent intent = new Intent(mActivity , SelfListActivity.class);
                     intent.putExtras(bundle);
                     mActivity.startActivity(intent);
                 }

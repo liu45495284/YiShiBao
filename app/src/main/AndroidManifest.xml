@@ -37,7 +37,7 @@
         </activity>
         <activity android:name="com.xnliang.yishibao.view.OrderSubmitActivity">
         </activity>
-        <activity android:name="com.xnliang.yishibao.view.MyOrderActivity">
+        <activity android:name="com.xnliang.yishibao.view.SelfListActivity">
         </activity>
     </application>
 

@@ -79,6 +79,10 @@
     <string name="submit_settlement">结算金额</string>
     <string name="submit_integral">%1$d积分</string>
     <string name="submit_freight">运费%1$d</string>
+    <string name="my_order_all">全部</string>
+    <string name="my_order_no_pay">未付款</string>
+    <string name="my_order_pay">已付款</string>
+    <string name="my_order_complete">已完成</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

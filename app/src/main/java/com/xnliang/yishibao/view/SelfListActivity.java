@@ -18,7 +18,7 @@ import com.xnliang.yishibao.view.fragment.MyTeamFragment;
  * Created by JackLiu on 2018-02-23.
  */
 
-public class MyOrderActivity extends BaseActivity {
+public class SelfListActivity extends BaseActivity {
 
     private FragmentTransaction mTransaction;
 
@@ -26,6 +26,11 @@ public class MyOrderActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.self_container);
+
+        initView();
+    }
+
+    private void initView() {
         Bundle bundle = getIntent().getExtras();
         int position = bundle.getInt("pos");
 
