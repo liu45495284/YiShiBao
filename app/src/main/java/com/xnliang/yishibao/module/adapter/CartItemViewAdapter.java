@@ -42,7 +42,7 @@ public class CartItemViewAdapter extends RecyclerView.Adapter  {
     private int goods_storage = 50; //商品库存
     private CheckInterface checkInterface;
     public ShoppingCartActivity cartActivity;
-    private MyViewHolder myViewHolder;
+//    private MyViewHolder myViewHolder;
 
     public CartItemViewAdapter(Context context, List data) {
         this.mContext = context;
@@ -61,7 +61,7 @@ public class CartItemViewAdapter extends RecyclerView.Adapter  {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if (holder != null) {
-            myViewHolder = (MyViewHolder) holder;
+            final MyViewHolder myViewHolder = (MyViewHolder) holder;
             myViewHolder.setData(mData, position);
 
             myViewHolder.mItemEdit.setOnClickListener(new View.OnClickListener() {
@@ -79,9 +79,9 @@ public class CartItemViewAdapter extends RecyclerView.Adapter  {
                     myViewHolder.mRl.setVisibility(View.VISIBLE);
                     myViewHolder.mLl.setVisibility(View.GONE);
                     myViewHolder.mFinish.setVisibility(View.GONE);
-
                     String num = String.format(mContext.getResources().getString(R.string.cart_item_number),  amount);
                     myViewHolder.mCartItemNum.setText(num);
+
                     amount = 1;
                 }
             });

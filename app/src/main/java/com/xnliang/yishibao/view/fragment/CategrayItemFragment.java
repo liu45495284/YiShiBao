@@ -95,8 +95,8 @@ public class CategrayItemFragment extends BaseFragment {
                 R.mipmap.i3,R.mipmap.i4, R.mipmap.i2};
         ShoppingCartBean shoppingCartBean = new ShoppingCartBean();
         for (int i = 0 ; i < iconBanner.length ; i++) {
-            shoppingCartBean.setId(iconBanner[i]);
-            moduleBeanList.add(shoppingCartBean);
+//            shoppingCartBean.setId(iconBanner[i]);
+            moduleBeanList.add(iconBanner[i]);
         }
     }
 
