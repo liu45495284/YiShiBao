@@ -2,6 +2,7 @@ package com.xnliang.yishibao.view.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ public class MyOrderDetailFragment extends BaseFragment {
     private static final String ORDER_DETAIL = "order_detail";
     @Bind(R.id.first)
     TextView mTv;
+    private View mView;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -31,9 +33,16 @@ public class MyOrderDetailFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.my_order_detail , container ,false);
-        ButterKnife.bind(this, view);
-        return view;
+        mView = inflater.inflate(R.layout.my_order_detail , container ,false);
+        ButterKnife.bind(this, mView);
+
+        initView();
+        return mView;
+    }
+
+    private void initView() {
+        RecyclerView recyclerView = mView.findViewById(R.id.rv_my_order_detail);
+
     }
 
     public static MyOrderDetailFragment newInstance(String type){

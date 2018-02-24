@@ -11,13 +11,4 @@
 
     </android.support.v7.widget.RecyclerView>
 
-    <TextView
-        android:text="第一个界面"
-        android:textSize="40dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/first"
-        android:layout_below="@+id/rv_my_order_detail"
-    />
-
 </RelativeLayout>
