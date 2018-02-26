@@ -7,6 +7,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.xnliang.yishibao.R;
@@ -30,6 +31,8 @@ public class MyOrderFragment extends BaseFragment {
     private List<String> mTitleList;
     private List<MyOrderDetailFragment> mFragmentList;
 
+    @Bind(R.id.ib_my_order_back)
+    ImageButton mBack;
     @Bind(R.id.tb_my_order)
     TabLayout mTabLayout;
     @Bind(R.id.vp_my_order)
@@ -39,9 +42,9 @@ public class MyOrderFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.my_order , container ,false);
         ButterKnife.bind(this, mView);
-//        initView();
         initTitile();
         initFragment();
+        initView();
 
         mViewPager.setAdapter(new MyOrderDetailAdapter(getActivity().getSupportFragmentManager(), mFragmentList, mTitleList));
         //将tablayout与fragment关联
@@ -53,6 +56,28 @@ public class MyOrderFragment extends BaseFragment {
     private void initView() {
 //        TabLayout mTabLayout = mView.findViewById(R.id.tb_my_order);
 //        OrderDetailViewPager mViewPager = mView.findViewById(R.id.vp_my_order);
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
+
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     private void initTitile() {
@@ -73,10 +98,10 @@ public class MyOrderFragment extends BaseFragment {
 
     private void initFragment() {
         mFragmentList = new ArrayList<>();
-        mFragmentList.add(MyOrderDetailFragment.newInstance(mTitleList.get(0)));
-        mFragmentList.add(MyOrderDetailFragment.newInstance(mTitleList.get(1)));
-        mFragmentList.add(MyOrderDetailFragment.newInstance(mTitleList.get(2)));
-        mFragmentList.add(MyOrderDetailFragment.newInstance(mTitleList.get(3)));
+        mFragmentList.add(MyOrderDetailFragment.newInstance(0));
+        mFragmentList.add(MyOrderDetailFragment.newInstance(1));
+        mFragmentList.add(MyOrderDetailFragment.newInstance(2));
+        mFragmentList.add(MyOrderDetailFragment.newInstance(3));
 
     }
 

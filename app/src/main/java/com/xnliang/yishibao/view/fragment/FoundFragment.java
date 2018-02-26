@@ -18,6 +18,7 @@ import com.baoyz.widget.PullRefreshLayout;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.adapter.FoundItemRecycleViewAdapter;
 import com.xnliang.yishibao.module.adapter.FoundRecycleViewAdapter;
+import com.xnliang.yishibao.module.utils.ListDecoration;
 import com.xnliang.yishibao.presenter.FoundLinearLayoutManager;
 import com.xnliang.yishibao.view.MainActivity;
 
@@ -63,7 +64,7 @@ public class FoundFragment extends BaseFragment {
         RecyclerView recyclerView = mView.findViewById(R.id.rv_found);
         FoundRecycleViewAdapter foundRecycleAdapter = new FoundRecycleViewAdapter(mActivity, moduleBeanList);
         recyclerView.setAdapter(foundRecycleAdapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration(mActivity,DividerItemDecoration.VERTICAL));
+        recyclerView.addItemDecoration(new ListDecoration(mActivity ,ListDecoration.VERTICAL_LIST ,R.drawable.list_divide));
 
 
         //recycleView不仅要设置适配器还要设置布局管理者,否则图片不显示

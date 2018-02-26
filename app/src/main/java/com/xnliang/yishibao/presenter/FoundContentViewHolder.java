@@ -19,8 +19,8 @@ import java.util.List;
  */
 
 public class FoundContentViewHolder extends BaseViewHolder {
-    private final Context mContext;
 
+    private final Context mContext;
     private final RecyclerView mItemView;
 
     public FoundContentViewHolder(Context context, View itemView) {

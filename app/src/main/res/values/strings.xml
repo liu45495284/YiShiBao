@@ -83,6 +83,11 @@
     <string name="my_order_no_pay">未付款</string>
     <string name="my_order_pay">已付款</string>
     <string name="my_order_complete">已完成</string>
+    <string name="my_order_name">订单编号：</string>
+    <string name="my_order_temp_num">12345678</string>
+    <string name="my_order_time_name">订单时间：</string>
+    <string name="my_order_temp_time">2018-01-01</string>
+    <string name="my_order_go_pay">去付款</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

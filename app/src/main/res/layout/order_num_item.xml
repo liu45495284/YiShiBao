@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_order_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_order_name"/>
+
+        <TextView
+            android:id="@+id/tv_order_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_order_temp_num"
+            android:layout_toRightOf="@+id/tv_order_name"/>
+
+        <TextView
+            android:id="@+id/tv_order_time_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_order_time_name"
+            android:layout_toLeftOf="@+id/tv_order_time"
+            />
+
+        <TextView
+            android:id="@+id/tv_order_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_order_temp_time"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/whitesmoke"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_order_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/whitesmoke"/>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="10dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_order_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cart_total"
+            android:textColor="@color/red"
+            android:textSize="16sp"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_order_pay_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_order_pay"
+            android:layout_alignParentRight="true"
+            android:textSize="16sp"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/tv_order_go_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_order_go_pay"
+            android:layout_alignParentRight="true"
+            android:textSize="16sp"
+            android:textColor="@color/red"
+            android:background="@drawable/order_btn_bg"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>
