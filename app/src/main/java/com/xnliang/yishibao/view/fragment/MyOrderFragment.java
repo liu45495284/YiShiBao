@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.adapter.MyOrderDetailAdapter;
@@ -31,8 +32,8 @@ public class MyOrderFragment extends BaseFragment {
     private List<String> mTitleList;
     private List<MyOrderDetailFragment> mFragmentList;
 
-    @Bind(R.id.ib_my_order_back)
-    ImageButton mBack;
+    @Bind(R.id.rl_order_back)
+    RelativeLayout mBack;
     @Bind(R.id.tb_my_order)
     TabLayout mTabLayout;
     @Bind(R.id.vp_my_order)

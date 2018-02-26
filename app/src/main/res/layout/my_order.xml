@@ -15,12 +15,18 @@
         android:background="@color/white"
         >
 
+        <RelativeLayout
+            android:id="@+id/rl_order_back"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
         <ImageButton
             android:id="@+id/ib_my_order_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@mipmap/back_arrow"
             />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/tv_my_order_name"

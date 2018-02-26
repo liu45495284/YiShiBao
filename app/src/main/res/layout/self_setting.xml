@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@color/white"
+        >
+
+    <ImageButton
+        android:id="@+id/ib_setting_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/back_arrow"
+        />
+
+        <TextView
+            android:id="@+id/tv_setting_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/self_setting"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:id="@+id/rl_modify_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+    <ImageView
+        android:id="@+id/iv_self_modify"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:src="@mipmap/per_icon_key"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"/>
+    <TextView
+        android:id="@+id/tv_self_modify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/modify_password"
+        android:layout_toRightOf="@+id/iv_self_modify"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"/>
+
+    <ImageView
+        android:id="@+id/iv_self_moidfy_into"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/back_arrow_right"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"/>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_setting_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/whitesmoke"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_exit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+        <ImageView
+            android:id="@+id/iv_self_exit"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@mipmap/setting_exit"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"/>
+        <TextView
+            android:id="@+id/tv_self_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/setting_exit"
+            android:layout_toRightOf="@+id/iv_self_exit"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

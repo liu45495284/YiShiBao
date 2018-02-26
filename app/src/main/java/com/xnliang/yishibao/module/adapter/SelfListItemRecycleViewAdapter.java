@@ -31,9 +31,10 @@ public class SelfListItemRecycleViewAdapter extends RecyclerView.Adapter {
     private WeakHashMap<Integer, Integer> icon;
     private WeakHashMap<Integer, Integer> title;
     private int iconPer[] = {R.mipmap.per_icon_order,R.mipmap.per_icon_team,R.mipmap.per_icon_recommend,
-            R.mipmap.per_icon_add,R.mipmap.per_icon_help,R.mipmap.per_icon_us,R.mipmap.per_icon_key};
+            R.mipmap.per_icon_add,R.mipmap.per_icon_help,R.mipmap.per_icon_us};
     private int titleName[] ={R.string.my_order,R.string.my_team,R.string.recommend_friend,R.string.address_management,
-            R.string.help_center,R.string.about_us,R.string.modify_password};
+            R.string.help_center,R.string.about_us};
+    private static final int LIST_ITEM = 6;
 
     public SelfListItemRecycleViewAdapter(Context context, List data) {
         this.mContext = context;
@@ -59,7 +60,7 @@ public class SelfListItemRecycleViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 7;
+        return LIST_ITEM;
     }
 
     @Override

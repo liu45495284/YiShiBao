@@ -32,6 +32,15 @@
             android:textColor="@color/white"/>
 
         <ImageView
+            android:id="@+id/self_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/self_setting"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"/>
+
+        <ImageView
             android:id="@+id/iv_self_phone"
             android:layout_width="15dp"
             android:layout_height="15dp"

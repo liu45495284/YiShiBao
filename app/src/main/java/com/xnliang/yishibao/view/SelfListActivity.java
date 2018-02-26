@@ -13,12 +13,13 @@ import com.xnliang.yishibao.view.fragment.MyModifyFragment;
 import com.xnliang.yishibao.view.fragment.MyOrderFragment;
 import com.xnliang.yishibao.view.fragment.MyRecommendFragment;
 import com.xnliang.yishibao.view.fragment.MyTeamFragment;
+import com.xnliang.yishibao.view.fragment.MyTeamMemberFragment;
 
 /**
  * Created by JackLiu on 2018-02-23.
  */
 
-public class SelfListActivity extends BaseActivity {
+public class SelfListActivity extends BaseActivity implements MyTeamMemberFragment.ImemBerBackListener{
 
     private FragmentTransaction mTransaction;
 
@@ -74,5 +75,15 @@ public class SelfListActivity extends BaseActivity {
                 mTransaction.commit();
                 break;
         }
+    }
+
+    @Override
+    public void memberBack() {
+        onBackPressed();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

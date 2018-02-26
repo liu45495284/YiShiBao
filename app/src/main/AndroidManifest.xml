@@ -39,6 +39,8 @@
         </activity>
         <activity android:name="com.xnliang.yishibao.view.SelfListActivity">
         </activity>
+        <activity android:name="com.xnliang.yishibao.view.SettingActivity">
+        </activity>
     </application>
 
 </manifest>

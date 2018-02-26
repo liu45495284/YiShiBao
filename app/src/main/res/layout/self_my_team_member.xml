@@ -14,12 +14,12 @@
         >
 
         <RelativeLayout
-            android:id="@+id/rl_team_back"
+            android:id="@+id/rl_team_member_back"
             android:layout_width="70dp"
             android:layout_height="match_parent"
             android:gravity="center_vertical">
             <ImageButton
-                android:id="@+id/ib_my_team_back"
+                android:id="@+id/ib_my_team_member_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/back_arrow"
@@ -27,11 +27,11 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/tv_my_team_name"
+            android:id="@+id/tv_my_team_member_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/my_team_name_list"
+            android:text="@string/my_team_member_list"
             android:textColor="@color/black"
             android:textSize="25sp" />
     </android.support.v7.widget.Toolbar>
@@ -42,7 +42,7 @@
         android:background="@color/whitesmoke"/>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_my_team"
+        android:id="@+id/rv_my_team_member"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

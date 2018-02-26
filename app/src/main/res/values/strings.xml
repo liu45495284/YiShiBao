@@ -88,6 +88,13 @@
     <string name="my_order_time_name">订单时间：</string>
     <string name="my_order_temp_time">2018-01-01</string>
     <string name="my_order_go_pay">去付款</string>
+    <string name="setting_exit">退出登录</string>
+    <string name="self_setting">设置</string>
+    <string name="my_team_name">团队名称</string>
+    <string name="my_team_name_list">团队列表</string>
+    <string name="my_team_people_number">%1$d人</string>
+    <string name="my_team_member_list">成员列表</string>
+    <string name="my_team_member_name">成员名称</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
