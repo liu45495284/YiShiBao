@@ -124,7 +124,8 @@ public class MyOrderFragment extends BaseFragment {
         mTabLayout.post(new Runnable() {
             @Override
             public void run() {
-                setIndicator(mTabLayout,R.dimen.order_tab_indicator,R.dimen.order_tab_indicator);
+                setIndicator(mTabLayout,getResources().getDimensionPixelSize(R.dimen.order_tab_indicator),
+                        getResources().getDimensionPixelSize(R.dimen.order_tab_indicator));
             }
         });
     }
