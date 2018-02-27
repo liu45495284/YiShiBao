@@ -26,6 +26,12 @@
     <string name="go_pay_integral">去充值</string>
     <string name="integral_top_up">积分充值</string>
     <string name="integral_take_out">积分提现</string>
+    <string name="integral_remain">积分余额：</string>
+    <string name="integral_temp">5800</string>
+    <string name="integral_take_out_num">提现数量：</string>
+    <string name="zhifubao_accout">支付宝账号：</string>
+    <string name="integral_take_out_time">预计体现到账时间1-3个工作日</string>
+    <string name="integral_take_out_desc">65%积分返现35%购物返现5%手续费</string>
     <string name="pay_style">支付方式</string>
     <string name="weixin_icon">微信</string>
     <string name="zhifubao_icon">支付宝</string>

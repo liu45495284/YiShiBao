@@ -1,0 +1,219 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xnliang.yishibao.view.IntegralTopUpActivity"
+    android:id="@+id/fragment_detail">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/white"
+        >
+
+        <RelativeLayout
+            android:id="@+id/rl_out_back"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+            <ImageButton
+                android:id="@+id/ib_my_out_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/back_arrow"
+                />
+        </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_pay_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/integral_take_out"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+    </android.support.v7.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/tv_integral"
+            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:textColor="@color/black"
+            android:text="@string/cash_integral"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginLeft="20dp"
+            />
+
+    <RelativeLayout
+        android:id="@+id/rl_integral_remain"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tv_integral"
+        android:background="@color/white">
+    <TextView
+        android:id="@+id/tv_top_out_rem"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+
+        android:text="@string/integral_remain"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/black"
+        android:background="@color/white"/>
+
+    <TextView
+        android:id="@+id/tv_remain_integral"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="@string/integral_temp"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_toRightOf="@+id/tv_top_out_rem"
+        android:gravity="center_vertical"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_integral_top_num"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/rl_integral_remain"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/tv_top_out_num"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/integral_take_out_num"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/black"
+            android:background="@color/white"/>
+
+        <EditText
+            android:id="@+id/et_integral_num"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_toRightOf="@+id/tv_top_out_num"
+            android:gravity="center_vertical"
+            android:background="@null"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_pay_style"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/rl_integral_top_num"
+        >
+
+        <TextView
+            android:id="@+id/tv_pay_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/pay_style"
+            android:textSize="18sp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_wechat"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/ll_pay_style"
+        android:background="@color/white"
+        >
+
+        <ImageView
+            android:id="@+id/iv_weixin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/public_icon_wechat"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@string/weixin_icon"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/black"
+            android:layout_toRightOf="@+id/iv_weixin"/>
+
+        <CheckBox
+            android:id="@+id/cb_wechat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_ali"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/rl_wechat"
+        android:background="@color/white"
+        >
+
+        <ImageView
+            android:id="@+id/iv_ali"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/public_icon_pay"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@string/zhifubao_icon"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/black"
+            android:layout_toRightOf="@+id/iv_ali"/>
+
+        <CheckBox
+            android:id="@+id/cb_ali"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bt_integral"
+        android:text="@string/content_pay"
+        android:gravity="center"
+        android:layout_marginBottom="15dp"/>
+
+    <Button
+        android:id="@+id/bt_integral"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/go_pay_integral"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:background="@color/red"/>
+
+</RelativeLayout>

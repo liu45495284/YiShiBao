@@ -30,6 +30,7 @@ public class SelfDetailViewHolder extends BaseViewHolder implements View.OnClick
     private MainActivity mActivity;
     private RelativeLayout mIntegralT;
     private RelativeLayout mIntegralC;
+    private Bundle mBundle;
 
     public SelfDetailViewHolder(Context context ,View itemView) {
         super(itemView);
@@ -53,16 +54,16 @@ public class SelfDetailViewHolder extends BaseViewHolder implements View.OnClick
 
     @Override
     public void onClick(View v) {
+        mBundle = new Bundle();
         switch (v.getId()) {
             case R.id.self_setting:
                 Intent intent = new Intent(mActivity, SettingActivity.class);
                 mActivity.startActivity(intent);
                 break;
             case R.id.iv_self_picture:
-                Bundle bundle = new Bundle();
-                bundle.putInt("pos" , 7);
+                mBundle.putInt("pos" , 7);
                 Intent personIntent = new Intent(mActivity , SelfListActivity.class);
-                personIntent.putExtras(bundle);
+                personIntent.putExtras(mBundle);
                 mActivity.startActivity(personIntent);
                 break;
             case R.id.rl_detail_integral_c:
@@ -70,6 +71,11 @@ public class SelfDetailViewHolder extends BaseViewHolder implements View.OnClick
                 mActivity.startActivity(cIntent);
                 break;
             case R.id.rl_detail_integral_t:
+                Bundle bundle = new Bundle();
+                bundle.putInt("pos" , 8);
+                Intent tixianIntent = new Intent(mActivity , SelfListActivity.class);
+                tixianIntent.putExtras(bundle);
+                mActivity.startActivity(tixianIntent);
                 break;
         }
     }
