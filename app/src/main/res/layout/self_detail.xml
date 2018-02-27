@@ -117,13 +117,19 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/rl_self_second"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_below="@+id/rl_self_one"
         android:background="@color/white">
 
+        <RelativeLayout
+            android:id="@+id/rl_detail_integral_c"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
         <ImageView
             android:id="@+id/iv_per_c"
             android:layout_width="30dp"
@@ -141,6 +147,7 @@
             android:layout_marginLeft="15dp"
             android:text="@string/integral_top_up"
             android:textColor="@color/black"/>
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/iv_second_line"
@@ -150,13 +157,18 @@
             android:layout_centerHorizontal="true"
             />
 
+        <RelativeLayout
+            android:id="@+id/rl_detail_integral_t"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
         <ImageView
             android:id="@+id/iv_per_t"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@mipmap/per_icon_t"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/iv_second_line"
             android:layout_marginLeft="40dp"/>
 
         <TextView
@@ -168,8 +180,9 @@
             android:layout_marginLeft="15dp"
             android:text="@string/integral_take_out"
             android:textColor="@color/black"/>
+        </RelativeLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/iv_third_line"

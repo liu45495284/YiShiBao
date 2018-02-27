@@ -95,6 +95,25 @@
     <string name="my_team_people_number">%1$d人</string>
     <string name="my_team_member_list">成员列表</string>
     <string name="my_team_member_name">成员名称</string>
+    <string name="my_address">上海市浦东新区金桥镇金海路1000号56栋201</string>
+    <string name="default_address">默认地址</string>
+    <string name="address_edit">编辑地址</string>
+    <string name="address_save">保存</string>
+    <string name="address_name">收货人</string>
+    <string name="address_phone">联系电话</string>
+    <string name="address_local">所在区域</string>
+    <string name="address_delete">删除地址</string>
+    <string name="please_input_consignee">请输入收货人姓名</string>
+    <string name="please_input_contact">请输入联系电话</string>
+    <string name="person_data">个人资料</string>
+    <string name="person_head_picture">头像</string>
+    <string name="person_name">用户名：</string>
+    <string name="person_phone">手机号：</string>
+    <string name="please_input_person_name">请输入个人姓名</string>
+    <string name="please_input_person_phone">请输入联系电话</string>
+    <string name="please_input_old_password">请输入原密码</string>
+    <string name="please_input_new_password">请输入新密码</string>
+    <string name="please_input_new_password_again">请再输入一次新密码</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

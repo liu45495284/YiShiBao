@@ -11,6 +11,7 @@ import com.xnliang.yishibao.view.fragment.MyAddressFragment;
 import com.xnliang.yishibao.view.fragment.MyHelpFragment;
 import com.xnliang.yishibao.view.fragment.MyModifyFragment;
 import com.xnliang.yishibao.view.fragment.MyOrderFragment;
+import com.xnliang.yishibao.view.fragment.MyPersonalDataFragment;
 import com.xnliang.yishibao.view.fragment.MyRecommendFragment;
 import com.xnliang.yishibao.view.fragment.MyTeamFragment;
 import com.xnliang.yishibao.view.fragment.MyTeamMemberFragment;
@@ -19,7 +20,7 @@ import com.xnliang.yishibao.view.fragment.MyTeamMemberFragment;
  * Created by JackLiu on 2018-02-23.
  */
 
-public class SelfListActivity extends BaseActivity implements MyTeamMemberFragment.ImemBerBackListener{
+public class SelfListActivity extends BaseActivity implements MyTeamMemberFragment.ImemBerBackListener ,MyModifyFragment.ImodifyBackListener{
 
     private FragmentTransaction mTransaction;
 
@@ -42,6 +43,7 @@ public class SelfListActivity extends BaseActivity implements MyTeamMemberFragme
         MyHelpFragment myHelpFragment = new MyHelpFragment();
         MyAboutFragment myAboutFragment = new MyAboutFragment();
         MyModifyFragment myModifyFragment = new MyModifyFragment();
+        MyPersonalDataFragment personalFragment = new MyPersonalDataFragment();
 
         FragmentManager manager = getSupportFragmentManager();
         mTransaction = manager.beginTransaction();
@@ -74,6 +76,10 @@ public class SelfListActivity extends BaseActivity implements MyTeamMemberFragme
                 mTransaction.replace(R.id.self_container , myModifyFragment ,"modify");
                 mTransaction.commit();
                 break;
+            case 7:
+                mTransaction.replace(R.id.self_container , personalFragment ,"person");
+                mTransaction.commit();
+                break;
         }
     }
 
@@ -85,5 +91,10 @@ public class SelfListActivity extends BaseActivity implements MyTeamMemberFragme
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    @Override
+    public void modifyBack() {
+        onBackPressed();
     }
 }

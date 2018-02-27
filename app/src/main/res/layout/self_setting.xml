@@ -14,12 +14,18 @@
         android:background="@color/white"
         >
 
+        <RelativeLayout
+            android:id="@+id/rl_setting_back"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
     <ImageButton
         android:id="@+id/ib_setting_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@mipmap/back_arrow"
         />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/tv_setting_title"
@@ -30,6 +36,11 @@
             android:textColor="@color/black"
             android:textSize="25sp" />
     </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/whitesmoke"/>
 
     <RelativeLayout
         android:id="@+id/rl_modify_password"
