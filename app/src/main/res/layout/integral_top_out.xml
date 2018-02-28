@@ -119,99 +119,144 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:text="@string/pay_style"
+            android:text="@string/integral_take_out_style"
             android:textSize="18sp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"/>
 
     </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/rl_wechat"
+    <LinearLayout
+        android:id="@+id/ll_take_out_style"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/ll_pay_style"
-        android:background="@color/white"
-        >
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
 
-        <ImageView
-            android:id="@+id/iv_weixin"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@mipmap/public_icon_wechat"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"/>
+            android:layout_weight="1"
+            >
+            <CheckBox
+                android:id="@+id/cb_zhifubao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/checkbox_bg_selector"
+                android:button="@null"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/zhifubao_icon"
+                android:layout_toRightOf="@+id/cb_zhifubao"
+                android:layout_marginLeft="20dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="@string/weixin_icon"
-            android:textSize="18sp"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/black"
-            android:layout_toRightOf="@+id/iv_weixin"/>
+        </RelativeLayout>
 
-        <CheckBox
-            android:id="@+id/cb_wechat"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            />
-    </RelativeLayout>
+            android:layout_weight="1"
+            >
+            <CheckBox
+                android:id="@+id/cb_wechat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/checkbox_bg_selector"
+                android:button="@null"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/wechat_icon"
+                android:layout_toRightOf="@+id/cb_wechat"
+                android:layout_marginLeft="20dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+            <CheckBox
+                android:id="@+id/cb_yinlian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/checkbox_bg_selector"
+                android:button="@null"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/yinlian_icon"
+                android:layout_toRightOf="@+id/cb_yinlian"
+                android:layout_marginLeft="20dp"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/rl_ali"
+        android:id="@+id/rl_accout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/rl_wechat"
-        android:background="@color/white"
-        >
-
-        <ImageView
-            android:id="@+id/iv_ali"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/public_icon_pay"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"/>
-
+        android:layout_below="@+id/ll_take_out_style"
+        android:background="@color/white">
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="@string/zhifubao_icon"
+            android:id="@+id/tv_accout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/zhifubao_accout"
             android:textSize="18sp"
             android:gravity="center_vertical"
             android:layout_marginLeft="20dp"
             android:textColor="@color/black"
-            android:layout_toRightOf="@+id/iv_ali"/>
+            android:background="@color/white"/>
 
-        <CheckBox
-            android:id="@+id/cb_ali"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            />
+        <EditText
+            android:id="@+id/et_accout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_toRightOf="@+id/tv_accout"
+            android:gravity="center_vertical"
+            android:background="@null"/>
+
     </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_accout"
+        android:text="@string/integral_take_out_time"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/bt_integral"
-        android:text="@string/content_pay"
+        android:layout_above="@+id/bt_submit"
+        android:text="@string/integral_take_out_desc"
         android:gravity="center"
         android:layout_marginBottom="15dp"/>
 
     <Button
-        android:id="@+id/bt_integral"
+        android:id="@+id/bt_submit"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:text="@string/go_pay_integral"
+        android:text="@string/go_submit"
         android:textSize="18sp"
         android:textColor="@color/white"
         android:background="@color/red"/>

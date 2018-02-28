@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.utils.ListDecoration;
+import com.xnliang.yishibao.presenter.SelfItemBackListener;
 import com.xnliang.yishibao.view.SelfListActivity;
 
 import butterknife.Bind;
@@ -27,7 +28,7 @@ public class MyTeamMemberFragment extends BaseFragment implements View.OnClickLi
     @Bind(R.id.rv_my_team_member)
     RecyclerView mMemberView;
     private View mView;
-    private ImemBerBackListener mListener;
+    private SelfItemBackListener mListener;
 
     public MyTeamMemberFragment() {
     }
@@ -84,17 +85,14 @@ public class MyTeamMemberFragment extends BaseFragment implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rl_team_member_back:
-                mListener.memberBack();
+                mListener.viewBackListener();
                 break;
 
         }
     }
 
-    public interface ImemBerBackListener{
-        void memberBack();
-    }
 
-    public void setMemberBack(ImemBerBackListener listener){
+    public void setMemberBack(SelfItemBackListener listener){
         this.mListener = listener;
     }
 

@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.presenter.SelfItemBackListener;
 import com.xnliang.yishibao.view.SelfListActivity;
 import com.xnliang.yishibao.view.SettingActivity;
 
@@ -30,7 +31,7 @@ public class MyModifyFragment extends BaseFragment implements View.OnClickListen
     @Bind(R.id.et_modify_again)
     EditText mAgain;
 
-    private ImodifyBackListener mListener;
+    private SelfItemBackListener mListener;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class MyModifyFragment extends BaseFragment implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rl_modify_back:
-                mListener.modifyBack();
+                mListener.viewBackListener();
                 break;
             case R.id.et_modify_old:
                 break;
@@ -65,11 +66,7 @@ public class MyModifyFragment extends BaseFragment implements View.OnClickListen
         }
     }
 
-    public interface ImodifyBackListener{
-        void modifyBack();
-    }
-
-    public void setmModifyBack(ImodifyBackListener listener){
+    public void setmModifyBack(SelfItemBackListener listener){
         this.mListener = listener;
     }
 }

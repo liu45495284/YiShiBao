@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.presenter.SelfItemBackListener;
+import com.xnliang.yishibao.view.fragment.IntegralAndCashListFragment;
 import com.xnliang.yishibao.view.fragment.IntegralTopOutFragment;
 import com.xnliang.yishibao.view.fragment.MyAboutFragment;
 import com.xnliang.yishibao.view.fragment.MyAddressFragment;
@@ -21,7 +23,7 @@ import com.xnliang.yishibao.view.fragment.MyTeamMemberFragment;
  * Created by JackLiu on 2018-02-23.
  */
 
-public class SelfListActivity extends BaseActivity implements MyTeamMemberFragment.ImemBerBackListener ,MyModifyFragment.ImodifyBackListener{
+public class SelfListActivity extends BaseActivity implements SelfItemBackListener{
 
     private FragmentTransaction mTransaction;
 
@@ -46,6 +48,7 @@ public class SelfListActivity extends BaseActivity implements MyTeamMemberFragme
         MyModifyFragment myModifyFragment = new MyModifyFragment();
         MyPersonalDataFragment personalFragment = new MyPersonalDataFragment();
         IntegralTopOutFragment topOutFragment = new IntegralTopOutFragment();
+        IntegralAndCashListFragment listFragment = new IntegralAndCashListFragment();
 
         FragmentManager manager = getSupportFragmentManager();
         mTransaction = manager.beginTransaction();
@@ -86,12 +89,11 @@ public class SelfListActivity extends BaseActivity implements MyTeamMemberFragme
                 mTransaction.replace(R.id.self_container , topOutFragment ,"out");
                 mTransaction.commit();
                 break;
+            case 9:
+                mTransaction.replace(R.id.self_container , listFragment ,"list");
+                mTransaction.commit();
+                break;
         }
-    }
-
-    @Override
-    public void memberBack() {
-        onBackPressed();
     }
 
     @Override
@@ -100,7 +102,7 @@ public class SelfListActivity extends BaseActivity implements MyTeamMemberFragme
     }
 
     @Override
-    public void modifyBack() {
+    public void viewBackListener() {
         onBackPressed();
     }
 }
