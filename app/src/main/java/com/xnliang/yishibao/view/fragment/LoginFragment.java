@@ -1,6 +1,7 @@
 package com.xnliang.yishibao.view.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.presenter.SelfItemBackListener;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -20,6 +22,8 @@ import butterknife.ButterKnife;
  */
 
 public class LoginFragment extends BaseFragment implements View.OnClickListener {
+
+    private SelfItemBackListener mListener;
 
     @Bind(R.id.et_login_phone_num)
     EditText mPhoneNum;
@@ -31,6 +35,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
     TextView mForget;
     @Bind(R.id.tv_register)
     TextView mRegister;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,5 +70,11 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                 transaction.commit();
                 break;
         }
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        getActivity().finish();
+        return true;
     }
 }
