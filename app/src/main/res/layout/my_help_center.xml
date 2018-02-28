@@ -1,13 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:background="@color/white"
+        >
+
+        <RelativeLayout
+            android:id="@+id/rl_help_back"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+            <ImageButton
+                android:id="@+id/ib_my_help_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/back_arrow"
+                />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_my_help_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/feedback_online"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/whitesmoke"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_help_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/tv_help_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/help_person_name"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/black"
+            android:background="@color/white"/>
+
+        <EditText
+            android:id="@+id/et_help_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_toRightOf="@+id/tv_help_name"
+            android:gravity="center_vertical"
+            android:background="@null"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/whitesmoke"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_help_phone"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/tv_help_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/help_person_phone"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/black"
+            android:background="@color/white"/>
+
+        <EditText
+            android:id="@+id/et_help_phone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_toRightOf="@+id/tv_help_phone"
+            android:gravity="center_vertical"
+            android:background="@null"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/whitesmoke"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_help_note"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/tv_help_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/help_person_note"
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:id="@+id/et_help_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_toRightOf="@+id/tv_help_note"
+            android:gravity="center_vertical"
+            android:background="@null"
+            android:layout_marginTop="10dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <Button
+        android:id="@+id/bt_help_submit"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/help_center"/>
-
-</android.support.constraint.ConstraintLayout>
+        android:layout_alignParentBottom="true"
+        android:background="@color/red"
+        android:text="@string/go_submit"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        />
+    </RelativeLayout>
+</LinearLayout>
