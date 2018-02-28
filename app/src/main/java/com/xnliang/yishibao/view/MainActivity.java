@@ -2,6 +2,7 @@ package com.xnliang.yishibao.view;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
     private RadioGroup mHomeGroup;
     private MainActivity mContext;
     private Toolbar toolbar;
+    private Boolean isLogion = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +143,10 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
                     mViewPager.setCurrentItem(3,false);
                     break;
                 case R.id.home_radio_five:
+                    if (isLogion) {
+                        Intent intent = new Intent(mContext ,LoginAndRegisterActivity.class);
+                        startActivity(intent);
+                    }
                     mViewPager.setCurrentItem(4,false);
                     break;
             }
