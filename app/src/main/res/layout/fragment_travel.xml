@@ -80,25 +80,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:background="@color/white">
-            <TextView
-                android:id="@+id/tv_city_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:text="@string/city_name"
-                android:textColor="@color/black"
-                />
+            <!--<TextView-->
+                <!--android:id="@+id/tv_city_name"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_marginLeft="20dp"-->
+                <!--android:text="@string/city_name"-->
+                <!--android:textColor="@color/black"-->
+                <!--/>-->
 
-                <ImageButton
-                    android:id="@+id/ib_drop"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/back_arrow_drop"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"/>
+                <!--<ImageButton-->
+                    <!--android:id="@+id/ib_drop"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@mipmap/back_arrow_drop"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_marginRight="20dp"/>-->
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/spinner_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                </android.support.v7.widget.AppCompatSpinner>
             </RelativeLayout>
+
+
             <TextView
                 android:id="@+id/tv_line2"
                 android:layout_width="match_parent"

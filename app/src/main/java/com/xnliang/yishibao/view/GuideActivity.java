@@ -27,7 +27,7 @@ public class GuideActivity extends BaseActivity {
 
     private TextView tvTime;
     private MyCountDownTimer myCountDownTimer;
-    private static final int[] RES = {R.mipmap.guide1,R.mipmap.guide2,R.mipmap.guide3 };
+    private static final int[] RES = {R.mipmap.guide_01};
     private Button button;
 
     @Override

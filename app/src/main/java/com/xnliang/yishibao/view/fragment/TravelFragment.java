@@ -12,8 +12,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baoyz.widget.PullRefreshLayout;
@@ -30,7 +34,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TravelFragment extends BaseFragment {
+public class TravelFragment extends BaseFragment implements View.OnClickListener , AdapterView.OnItemSelectedListener {
 
     private MainActivity mActivity;
     private View mView;
@@ -39,12 +43,14 @@ public class TravelFragment extends BaseFragment {
     public List moduleBeanList = new ArrayList();
     public List freeList = new ArrayList();
     public List highList = new ArrayList();
+    public List cityList = new ArrayList();
     private Button mFreeButton;
     private Button mSelfButton;
     private ItmeCallBackListener mListener;
     private RecyclerView mRecyclerView;
     private static final int FREE_HIGH = 0;
     private static final int GOOD_SELF = 1;
+    private TextView mChooseCity;
 
     public TravelFragment() {
         // Required empty public constructor
@@ -77,8 +83,19 @@ public class TravelFragment extends BaseFragment {
         mSelfButton.setOnClickListener(new GoodSelfListener());
         mSelfButton.setBackgroundResource(R.drawable.travel_btn_bg_normal);
 
-        ImageButton dropButton = mView.findViewById(R.id.ib_drop);
-        dropButton.setOnClickListener(new DropButtonListener());
+//        mChooseCity = mView.findViewById(R.id.tv_city_name);
+//        mChooseCity.setOnClickListener(this);
+//        ImageButton dropButton = mView.findViewById(R.id.ib_drop);
+//        dropButton.setOnClickListener(new DropButtonListener());
+
+        Spinner citySpinner = mView.findViewById(R.id.spinner_city);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity() ,android.R.layout.simple_spinner_item , cityList);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        citySpinner.setAdapter(arrayAdapter);
+
+        citySpinner.setOnItemSelectedListener(this);
+
+
 
         mPullRefreshLayout = mView.findViewById(R.id.tr_swipeRefreshLayout);
         mPullRefreshLayout.setOnRefreshListener(new myRefreshListener());
@@ -123,6 +140,23 @@ public class TravelFragment extends BaseFragment {
         for (int i =0 ; i < freeList.size() ; i++){
             moduleBeanList.add(freeList.get(i));
         }
+        String city[] = {"上海" ,"北京" ,"深圳" ,"广州","南京","成都"};
+        for(String item : city){
+            cityList.add(item);
+        }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String str=parent.getItemAtPosition(position).toString();
+//        mChooseCity.setText(str);
+        Toast.makeText(getActivity(), "你点击的是:"+str, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
     public class myRefreshListener implements PullRefreshLayout.OnRefreshListener {
@@ -171,6 +205,16 @@ public class TravelFragment extends BaseFragment {
         @Override
         public void onClick(View v) {
             Toast.makeText(mActivity,"44444" , Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+//            case R.id.tv_city_name:
+
+//                break;
         }
     }
 

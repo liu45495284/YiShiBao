@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.view.MainActivity;
 
 import java.util.List;
 
@@ -16,17 +17,22 @@ import butterknife.ButterKnife;
  * Created by JackLiu on 2018-01-31.
  */
 
-public class FoundViewHolder extends BaseViewHolder {
+public class FoundViewHolder extends BaseViewHolder implements View.OnClickListener{
 
     private final Context mContext;
+    private final MainActivity mActivity;
+    private ItmeCallBackListener mListener;
     @Bind(R.id.iv_found)
     ImageView ivFound;
 
     public FoundViewHolder(Context mContext, View itemView) {
         super(itemView);
         this.mContext = mContext;
+        mActivity = (MainActivity)mContext;
         ButterKnife.bind(this, itemView);
         ivFound = (ImageView) itemView.findViewById(R.id.iv_found);
+        ivFound.setOnClickListener(this);
+        setFoundClickListener(mActivity);
     }
 
     //        public void setData(List<WomenBean.WomenData.ModuleBean.DataBean> pinpai2data) {
@@ -35,5 +41,14 @@ public class FoundViewHolder extends BaseViewHolder {
         Glide.with(mContext)
                 .load(R.mipmap.guide3)
                 .into(ivFound);
+    }
+
+    @Override
+    public void onClick(View v) {
+        mListener.ivFoundClickListener();
+    }
+
+    public void setFoundClickListener(ItmeCallBackListener listener) {
+        mListener = listener;
     }
 }

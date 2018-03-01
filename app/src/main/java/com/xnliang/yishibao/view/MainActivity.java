@@ -107,6 +107,13 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
         }
     }
 
+    @Override
+    public void ivFoundClickListener() {
+        if (mViewPager != null) {
+            mViewPager.setCurrentItem(2, false);
+        }
+    }
+
     class MyViewPagerAdapter extends FragmentPagerAdapter {
 
         public MyViewPagerAdapter(FragmentManager fm) {
@@ -186,7 +193,6 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
         String[] PERMISSIONS = new String[]{
                 android.Manifest.permission.READ_EXTERNAL_STORAGE,
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                android.Manifest.permission.GET_TASKS
         };
 
         List<String> perList = new ArrayList<>();

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +33,7 @@ import java.util.List;
  * Created by JackLiu on 2018-02-08.
  */
 
-public class CategrayItemFragment extends BaseFragment {
+public class CategrayItemFragment extends BaseFragment implements View.OnClickListener {
 
 
     private View mView;
@@ -54,12 +55,12 @@ public class CategrayItemFragment extends BaseFragment {
 
     private void initView() {
         ImageButton itemBack = mView.findViewById(R.id.ib_categray_back);
-        SearchView cateSearch = mView.findViewById(R.id.categray_search_view);
+        RelativeLayout searchLayout = mView.findViewById(R.id.rl_categray_search);
         ImageButton cateCrat = mView.findViewById(R.id.ib_categray_cart);
 
-        itemBack.setOnClickListener(new ItemOnClickListener());
-        cateSearch.setOnClickListener(new SearchOnClickListener());
-        cateCrat.setOnClickListener(new CartOnClickListener());
+        itemBack.setOnClickListener(this);
+        searchLayout.setOnClickListener(this);
+        cateCrat.setOnClickListener(this);
 
         TextView normalSort = mView.findViewById(R.id.tv_normal);
         mNoramalArrow = mView.findViewById(R.id.iv_normal_arrow_up);
@@ -100,33 +101,24 @@ public class CategrayItemFragment extends BaseFragment {
         }
     }
 
-    public class ItemOnClickListener implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            onBackPressed();
-        }
-    }
-
-    public class SearchOnClickListener implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            if (mActivity != null) {
-                Intent intent = new Intent(mActivity, SearchViewActivity.class);
-                startActivity(intent);
-            }
-        }
-    }
-
-    public class CartOnClickListener implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            if (mActivity != null) {
-                Intent intent = new Intent(mActivity, ShoppingCartActivity.class);
-                startActivity(intent);
-            }
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.ib_categray_back:
+                onBackPressed();
+                break;
+            case R.id.rl_categray_search:
+                if (mActivity != null) {
+                    Intent intent = new Intent(mActivity, SearchViewActivity.class);
+                    startActivity(intent);
+                }
+                break;
+            case R.id.ib_categray_cart:
+                if (mActivity != null) {
+                    Intent intent = new Intent(mActivity, ShoppingCartActivity.class);
+                    startActivity(intent);
+                }
+                break;
         }
     }
 

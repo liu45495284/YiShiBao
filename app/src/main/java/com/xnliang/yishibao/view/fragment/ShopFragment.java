@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.baoyz.widget.PullRefreshLayout;
@@ -28,7 +29,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ShopFragment extends BaseFragment {
+public class ShopFragment extends BaseFragment implements View.OnClickListener{
 
 
     private MainActivity mActivity;
@@ -56,11 +57,11 @@ public class ShopFragment extends BaseFragment {
         Toolbar toolbar = (Toolbar) mView.findViewById(R.id.toolbar);
         mActivity.setSupportActionBar(toolbar);
 
-        SearchView searchView = (SearchView) mView.findViewById(R.id.shop_search_view);
-        searchView.setOnClickListener(new ShopSearchViewClickListener());
+        RelativeLayout searchLayout = mView.findViewById(R.id.rl_shop_search);
+        searchLayout.setOnClickListener(this);
 
         ImageButton shoppingButton = (ImageButton) mView.findViewById(R.id.shopping_cart);
-        shoppingButton.setOnClickListener(new ShopListClickListener());
+        shoppingButton.setOnClickListener(this);
         mPullRefreshLayout = mView.findViewById(R.id.shop_swipeRefresh);
         mPullRefreshLayout.setOnRefreshListener(new ShopRefreshListener());
         mPullRefreshLayout.setRefreshStyle(PullRefreshLayout.STYLE_MATERIAL);
@@ -96,20 +97,17 @@ public class ShopFragment extends BaseFragment {
         }
     }
 
-    private class ShopSearchViewClickListener implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(mActivity,SearchViewActivity.class);
-            startActivity(intent);
-        }
-    }
-
-    private class ShopListClickListener implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(mActivity,ShoppingCartActivity.class);
-            startActivity(intent);
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.rl_shop_search:
+                Intent intentSearch = new Intent(mActivity,SearchViewActivity.class);
+                startActivity(intentSearch);
+                break;
+            case R.id.shopping_cart:
+                Intent intentCart = new Intent(mActivity,ShoppingCartActivity.class);
+                startActivity(intentCart);
+                break;
         }
     }
 

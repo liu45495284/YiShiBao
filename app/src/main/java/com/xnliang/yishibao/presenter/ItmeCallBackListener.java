@@ -10,4 +10,5 @@ import android.widget.AdapterView;
 public interface ItmeCallBackListener {
     public void gridViewItemClickListener(AdapterView<?> parent, View view, int position, long id);
     public void travelBackListener();
+    public void ivFoundClickListener();
 }
