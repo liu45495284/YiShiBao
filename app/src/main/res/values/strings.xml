@@ -146,6 +146,7 @@
     <string name="security_person">用户服务协议</string>
     <string name="security_and">和</string>
     <string name="security_privacy">隐私政策</string>
+    <string name="please_input_right_phone_num">请输入正确的手机号</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

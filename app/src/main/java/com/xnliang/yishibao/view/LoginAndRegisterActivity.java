@@ -10,6 +10,7 @@ import com.xnliang.yishibao.module.utils.HandlerBackUtil;
 import com.xnliang.yishibao.presenter.SelfItemBackListener;
 import com.xnliang.yishibao.view.fragment.LoginFragment;
 
+
 /**
  * Created by JackLiu on 2018-02-28.
  */
@@ -41,5 +42,10 @@ public class LoginAndRegisterActivity extends BaseActivity implements SelfItemBa
     @Override
     public void viewBackListener() {
         onBackPressed();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

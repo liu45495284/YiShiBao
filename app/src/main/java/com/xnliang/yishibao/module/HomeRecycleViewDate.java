@@ -16,10 +16,7 @@ public class HomeRecycleViewDate {
      * 使用okhttpUtils进行联网请求数据
      */
     private void getDataFromNet() {
-        String url = "http://api.funwear.com/mbfun_server/index.php?m=Home&a=getAppLayoutV2&page=" +
-                "home&cid=2&deviceCode=00000000-6469-5d7a-ffff-ffff99d603a9&osCode=android&osVersion" +
-                "=19&deviceId=00000000-6469-5d7a-ffff-ffff99d603a9&token=&source=android&version" +
-                "=v4.2.2&osName=HTC+M8t&appName=youfanguanfang";
+        String url = "http://api/user/register";
         OkHttpUtils.
                 get()
                 .url(url)

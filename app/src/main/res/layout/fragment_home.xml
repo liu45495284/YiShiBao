@@ -13,16 +13,32 @@
         android:background="@color/white"
         >
 
-        <android.support.v7.widget.SearchView
-            android:id="@+id/search_view"
+        <RelativeLayout
+            android:id="@+id/rl_home_search"
             android:layout_width="300dp"
             android:layout_height="30dp"
             android:layout_alignBottom="@+id/toolbar"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="@color/gray_cccc"
-            android:queryHint="@string/search_hint"
-            />
+            android:background="@drawable/search_view_bg">
+
+            <ImageView
+                android:id="@+id/iv_home_search_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/search"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/search_hint"
+                android:textColor="@color/gray_8f"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                />
+        </RelativeLayout>
 
         <ImageButton
             android:id="@+id/shopping_cart"
@@ -30,7 +46,6 @@
             android:layout_height="match_parent"
             android:padding="8dp"
             android:layout_alignParentRight="true"
-            android:layout_toEndOf="@+id/search_view"
             android:layout_toRightOf="@+id/search_view"
             android:src="@mipmap/shopping_cart"
             android:background="@android:color/transparent"/>

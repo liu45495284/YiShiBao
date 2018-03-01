@@ -184,8 +184,9 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
     @TargetApi(Build.VERSION_CODES.M)
     private void checkPermissionForM() {
         String[] PERMISSIONS = new String[]{
-                Manifest.permission.READ_EXTERNAL_STORAGE,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE,
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                android.Manifest.permission.GET_TASKS
         };
 
         List<String> perList = new ArrayList<>();
