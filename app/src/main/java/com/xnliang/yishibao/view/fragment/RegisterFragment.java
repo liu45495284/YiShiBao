@@ -1,9 +1,9 @@
 package com.xnliang.yishibao.view.fragment;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +20,14 @@ import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.utils.FromNetDataUtil;
 import com.xnliang.yishibao.presenter.SelfItemBackListener;
 import com.xnliang.yishibao.view.LoginAndRegisterActivity;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.util.LinkedHashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import okhttp3.Call;
 
 /**
  * Created by JackLiu on 2018-02-28.
@@ -32,7 +37,12 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
 
     private SelfItemBackListener mListener;
     private LoginAndRegisterActivity mActivity;
-    private String mUrl = "http://ysb.appxinliang.cn/api/user/code";
+    private MyCountDownTimer myCountDownTimer;
+    private static final String mUrl = "http://ysb.appxinliang.cn/api/user/code";
+    private static final String mRegisterInterface ="http://ysb.appxinliang.cn/api/user/register";
+    private static final int REGISTER_SUCESSFUL = 200;
+    private static final int REGISTER_FAILURE = 10001;
+    private LinkedHashMap<String ,String> hashMap = new LinkedHashMap<>();
 
     @Bind(R.id.rl_register_back)
     RelativeLayout mRegBack;
@@ -98,6 +108,7 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
                 send();
                 break;
             case R.id.bt_register:
+                register();
                 break;
             case R.id.tv_register:
                 break;
@@ -106,6 +117,46 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
         }
     }
 
+    private void register() {
+        String phoneNum = mRegisterPhone.getText().toString();
+        String securityNum = mRegisterCode.getText().toString();
+        String password = mPasswordNum.getText().toString();
+        String passAgain = mPasswordAgain.getText().toString();
+        if(phoneNum.isEmpty() || securityNum.isEmpty() || password.isEmpty() || passAgain.isEmpty()){
+            Toast.makeText(mActivity ,R.string.register_failure ,Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(!password.equalsIgnoreCase(passAgain)){
+            Toast.makeText(mActivity ,R.string.register_pass_failure ,Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+            OkHttpUtils
+                    .post()
+                    .url(mRegisterInterface)
+                    .addParams("username" ,phoneNum)
+                    .addParams("verification_code" ,securityNum)
+                    .addParams("password" ,password)
+                    .addParams("chk_password" ,passAgain)
+                    .build()
+                    .execute(new StringCallback() {
+                        @Override
+                        public void onError(Call call, Exception e, int id) {
+                            Log.e("TAG", "联网失败" + e.getMessage());
+                            Toast.makeText(mActivity ,R.string.register_failure ,Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onResponse(String response, int id) {
+                            Log.e("TAG", "联网成功==" + response);
+                            if (response.isEmpty()){
+                                return;
+                            }
+                            processData(response);
+                        }
+                    });
+    }
 
 
     @Override
@@ -113,23 +164,41 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
         super.onDestroyView();
     }
 
+
+
     public void send(){
         int length = mRegisterPhone.getText().length();
+        String registerPhone = mRegisterPhone.getText().toString();
+
         if(length != 11){
             Toast.makeText(getActivity() ,R.string.please_input_right_phone_num ,Toast.LENGTH_SHORT).show();
             return;
         }
-        FromNetDataUtil.getIntance().postDataFromNet(mUrl , "username" , mRegisterPhone.getText().toString());
+        hashMap.put("username" ,registerPhone);
+        FromNetDataUtil.getIntance().postDataFromNet(mUrl ,hashMap);
 
+        myCountDownTimer=new MyCountDownTimer(60000,1000);
+        //开始倒计时
+        myCountDownTimer.start();
     }
 
     private void processData(String json) {
         JSONObject jsonObject = JSON.parseObject(json);
 
-        String data = jsonObject.getString("data");
-        JSONObject jsonData = JSON.parseObject(data);
+        String code = jsonObject.getString("code");
+        String msg = jsonObject.getString("msg");
 
-        String module = jsonData.getString("module");
+        if (Integer.parseInt(code) == REGISTER_FAILURE){
+            Toast.makeText(mActivity ,msg ,Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(Integer.parseInt(code) == REGISTER_SUCESSFUL){
+            mListener.viewBackListener();
+            Toast.makeText(mActivity ,msg ,Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 
     class TextWatcher implements android.text.TextWatcher{
@@ -151,6 +220,33 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
 
         @Override
         public void afterTextChanged(Editable s) {
+        }
+    }
+
+    class MyCountDownTimer extends CountDownTimer {
+        public MyCountDownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            String skip = String .valueOf(millisUntilFinished/1000) ;
+            mSendMsg.setBackgroundResource(R.color.gray_cc);
+            mSendMsg.setText(skip);
+            mSendMsg.setOnClickListener(null);
+        }
+
+        @Override
+        public void onFinish() {
+            myCountDownTimer.cancel();
+            mSendMsg.setBackgroundResource(R.color.red);
+            mSendMsg.setText(R.string.send_security_code);
+            mSendMsg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    send();
+                }
+            });
         }
     }
 }

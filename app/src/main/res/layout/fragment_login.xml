@@ -41,7 +41,7 @@
             android:background="@mipmap/login_phone_icon"/>
     <EditText
         android:id="@+id/et_login_phone_num"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
         android:inputType="number"
@@ -67,7 +67,7 @@
             android:background="@mipmap/login_password"/>
         <EditText
             android:id="@+id/et_login_password_num"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:inputType="number"

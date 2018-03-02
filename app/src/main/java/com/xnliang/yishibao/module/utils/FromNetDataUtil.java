@@ -1,11 +1,19 @@
 package com.xnliang.yishibao.module.utils;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.xnliang.yishibao.module.bean.PersonDetailBean;
+import com.xnliang.yishibao.presenter.ResponseCallBackListener;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.util.LinkedHashMap;
+
+import javax.xml.transform.Result;
 
 import okhttp3.Call;
 import okhttp3.FormBody;
@@ -17,6 +25,9 @@ import okhttp3.FormBody;
 public class FromNetDataUtil {
 
     private static FromNetDataUtil instance;
+    private ResponseCallBackListener mListener;
+    private String response;
+    private int RESPONSE_FLAG = 1;
 
     public static synchronized FromNetDataUtil getIntance(){
         if (instance == null){
@@ -46,22 +57,23 @@ public class FromNetDataUtil {
                         Log.e("TAG", "联网成功==" + response);
 
                         //联网成功后使用fastjson解析
-                        processData(response);
+//                        processData(response);
+
                     }
                 });
     }
 
-    public void postDataFromNet(String url ,String tag , String value){
+    public void postDataFromNet(String url , LinkedHashMap<String ,String> hashMap){
 
-        FormBody formBody = new FormBody
-                .Builder()
-                .add(tag, value)
-                .build();
+//        FormBody formBody = new FormBody
+//                .Builder()
+//                .add(tag, value)
+//                .build();
 
         OkHttpUtils
                 .post()
                 .url(url)
-                .addParams(tag ,value)
+                .params(hashMap)
                 .build()
                 .execute(new StringCallback() {
                     @Override
@@ -72,17 +84,46 @@ public class FromNetDataUtil {
                     @Override
                     public void onResponse(String response, int id) {
                         Log.e("TAG", "联网成功==" + response);
+
+                        setResponse(response);
+                        mListener.getResponseCallBack(RESPONSE_FLAG);
                     }
                 });
     }
 
 
-    private void processData(String json) {
+    public void processData(String json , String flag) {
         JSONObject jsonObject = JSON.parseObject(json);
 
-        String data = jsonObject.getString("data");
-        JSONObject jsonData = JSON.parseObject(data);
+        if (flag.equals("login")){
+            String code = jsonObject.getString("code");
+            String msg = jsonObject.getString("msg");
+            JSONObject jsonData = jsonObject.getJSONObject("data");
+                String token = jsonData.getString("token");
+                JSONObject jsonUser = jsonData.getJSONObject("user");
+                    String score = jsonUser.getString("score");
+                    String coin = jsonUser.getString("coin");
+                    String userNickName = jsonUser.getString("user_nickname");
+                    String avatar = jsonUser.getString("avatar");
+                    String mobile = jsonUser.getString("mobile");
+                    String position = jsonUser.getString("position");
 
-        String module = jsonData.getString("module");
+            PersonDetailBean detailBean = new PersonDetailBean(Integer.parseInt(score) ,Integer.parseInt(coin)
+                    ,userNickName,avatar,mobile,position);
+
+            mListener.getResponseData(code ,msg);
+        }
 }
+
+    public String getResponse(){
+        return response;
+    }
+
+    public void setResponse(String response){
+        this.response = response;
+    }
+
+    public void setResponseListener(ResponseCallBackListener listener){
+        this.mListener = listener;
+    }
 }

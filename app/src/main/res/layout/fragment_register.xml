@@ -74,7 +74,7 @@
             android:background="@mipmap/login_phone_icon"/>
     <EditText
         android:id="@+id/et_register_num"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
         android:inputType="number"
@@ -105,7 +105,7 @@
             android:background="@mipmap/security_code"/>
         <EditText
             android:id="@+id/et_register_code"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:inputType="number"
@@ -148,7 +148,7 @@
             android:background="@mipmap/login_password"/>
         <EditText
             android:id="@+id/et_register_password_num"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:inputType="number"
@@ -174,7 +174,7 @@
             android:background="@mipmap/login_password"/>
         <EditText
             android:id="@+id/et_register_password_num_again"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:inputType="number"
