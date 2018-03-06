@@ -1,22 +1,16 @@
 package com.xnliang.yishibao.module.utils;
 
-import android.os.AsyncTask;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.xnliang.yishibao.module.bean.PersonDetailBean;
 import com.xnliang.yishibao.presenter.ResponseCallBackListener;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.LinkedHashMap;
 
-import javax.xml.transform.Result;
-
 import okhttp3.Call;
-import okhttp3.FormBody;
 
 /**
  * Created by JackLiu on 2018-02-28.
@@ -25,7 +19,7 @@ import okhttp3.FormBody;
 public class FromNetDataUtil {
 
     private static FromNetDataUtil instance;
-    private ResponseCallBackListener mListener;
+//    private ResponseCallBackListener mListener;
     private String response;
     private int RESPONSE_FLAG = 1;
 
@@ -77,6 +71,12 @@ public class FromNetDataUtil {
                 .build()
                 .execute(new StringCallback() {
                     @Override
+                    public void onAfter(int id) {
+                        super.onAfter(id);
+//                        mListener.getResponseCallBack(RESPONSE_FLAG);
+                    }
+
+                    @Override
                     public void onError(Call call, Exception e, int id) {
                         Log.e("TAG", "联网失败" + e.getMessage());
                     }
@@ -86,7 +86,7 @@ public class FromNetDataUtil {
                         Log.e("TAG", "联网成功==" + response);
 
                         setResponse(response);
-                        mListener.getResponseCallBack(RESPONSE_FLAG);
+
                     }
                 });
     }
@@ -108,10 +108,10 @@ public class FromNetDataUtil {
                     String mobile = jsonUser.getString("mobile");
                     String position = jsonUser.getString("position");
 
-            PersonDetailBean detailBean = new PersonDetailBean(Integer.parseInt(score) ,Integer.parseInt(coin)
-                    ,userNickName,avatar,mobile,position);
+//            PersonDetailBean detailBean = new PersonDetailBean(Integer.parseInt(score) ,Integer.parseInt(coin)
+//                    ,userNickName,avatar,mobile,position);
 
-            mListener.getResponseData(code ,msg);
+//            mListener.getResponseData(code ,msg);
         }
 }
 
@@ -124,6 +124,6 @@ public class FromNetDataUtil {
     }
 
     public void setResponseListener(ResponseCallBackListener listener){
-        this.mListener = listener;
+//        this.mListener = listener;
     }
 }

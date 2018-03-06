@@ -11,7 +11,7 @@ import com.xnliang.yishibao.module.utils.HandlerBackUtil;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BaseFragment extends Fragment implements HandlerBackUtil.HandleBackInterface {
+public class BaseFragment extends Fragment implements HandlerBackUtil.HandleBackInterface{
 
 
     public BaseFragment() {
@@ -29,4 +29,5 @@ public class BaseFragment extends Fragment implements HandlerBackUtil.HandleBack
     public boolean onBackPressed() {
         return HandlerBackUtil.handleBackPress(this);
     }
+
 }

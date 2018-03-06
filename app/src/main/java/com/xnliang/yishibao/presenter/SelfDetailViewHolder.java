@@ -2,19 +2,23 @@ package com.xnliang.yishibao.presenter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.module.db.UserDbHelp;
 import com.xnliang.yishibao.view.IntegralTopUpActivity;
 import com.xnliang.yishibao.view.MainActivity;
 import com.xnliang.yishibao.view.SelfListActivity;
 import com.xnliang.yishibao.view.SettingActivity;
-import com.youth.banner.loader.ImageLoader;
 
 import java.util.List;
 
@@ -26,30 +30,64 @@ public class SelfDetailViewHolder extends BaseViewHolder implements View.OnClick
 
     private final Context mContext;
     private ImageView mHeadPicture;
+    private TextView mSelfName;
+    private TextView mSelfPhone;
     private ImageView mSetting;
+    private TextView mCashIntegral;
+    private TextView mShopIntegral;
     private MainActivity mActivity;
     private RelativeLayout mIntegralT;
     private RelativeLayout mIntegralC;
     private Bundle mBundle;
+    private UserDbHelp dbHelper;
+
 
     public SelfDetailViewHolder(Context context ,View itemView) {
         super(itemView);
         this.mContext = context;
         this.mActivity = (MainActivity) context;
+        dbHelper = new UserDbHelp(mActivity,"UserInfo.db",null,1);
+
         mHeadPicture = itemView.findViewById(R.id.iv_self_picture);
+        mSelfName = itemView.findViewById(R.id.tv_self_name);
+        mSelfPhone = itemView.findViewById(R.id.tv_self_phone);
         mSetting = itemView.findViewById(R.id.self_setting);
+        mCashIntegral = itemView.findViewById(R.id.tv_self_cash_number);
+        mShopIntegral = itemView.findViewById(R.id.tv_self_shop_number);
         mIntegralC = itemView.findViewById(R.id.rl_detail_integral_c);
         mIntegralT = itemView.findViewById(R.id.rl_detail_integral_t);
     }
 
     public void setData(List data) {
-        mHeadPicture.setScaleType(ImageView.ScaleType.FIT_XY);
-        Glide.with(mContext).load(R.mipmap.guide3).into(mHeadPicture);
+
+        dataFromDb();
 
         mHeadPicture.setOnClickListener(this);
         mSetting.setOnClickListener(this);
         mIntegralC.setOnClickListener(this);
         mIntegralT.setOnClickListener(this);
+    }
+
+    public void dataFromDb(){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String sql = "select * from userDetail";
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToFirst()) {
+            String nickName = cursor.getString(cursor.getColumnIndex("name"));
+            String mobile = cursor.getString(cursor.getColumnIndex("mobile"));
+            String coin = cursor.getString(cursor.getColumnIndex("coin"));
+            String score = cursor.getString(cursor.getColumnIndex("score"));
+            String avatar = cursor.getString(cursor.getColumnIndex("avatar"));
+
+            Glide.with(mContext).load(avatar).into(mHeadPicture);
+            mSelfName.setText(nickName);
+            mSelfPhone.setText(mobile);
+            mCashIntegral.setText(String.valueOf(coin));
+            mShopIntegral.setText(String.valueOf(score));
+        }
+        cursor.close();
+        db.close();
+
     }
 
     @Override

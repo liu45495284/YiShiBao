@@ -1,5 +1,7 @@
 package com.xnliang.yishibao.view.fragment;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.module.db.UserDbHelp;
 import com.xnliang.yishibao.module.utils.FromNetDataUtil;
 import com.xnliang.yishibao.presenter.SelfItemBackListener;
 import com.xnliang.yishibao.view.LoginAndRegisterActivity;
@@ -63,6 +66,9 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
     @Bind(R.id.tv_privacy)
     TextView mPrivacy;
     private String mMumber;
+    private UserDbHelp dbHelper;
+    private String mPhoneNum;
+    private String mPassWord;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -91,6 +97,7 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
         mPasswordNum.addTextChangedListener(new TextWatcher(2));
         mPasswordAgain.addTextChangedListener(new TextWatcher(3));
 
+        dbHelper = new UserDbHelp(getActivity(),"UserInfo.db",null,1);
     }
 
     public void setLoginBackListener(SelfItemBackListener listener){
@@ -118,16 +125,16 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
     }
 
     private void register() {
-        String phoneNum = mRegisterPhone.getText().toString();
+        mPhoneNum = mRegisterPhone.getText().toString();
         String securityNum = mRegisterCode.getText().toString();
-        String password = mPasswordNum.getText().toString();
+        mPassWord = mPasswordNum.getText().toString();
         String passAgain = mPasswordAgain.getText().toString();
-        if(phoneNum.isEmpty() || securityNum.isEmpty() || password.isEmpty() || passAgain.isEmpty()){
+        if(mPhoneNum.isEmpty() || securityNum.isEmpty() || mPassWord.isEmpty() || passAgain.isEmpty()){
             Toast.makeText(mActivity ,R.string.register_failure ,Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if(!password.equalsIgnoreCase(passAgain)){
+        if(!mPassWord.equalsIgnoreCase(passAgain)){
             Toast.makeText(mActivity ,R.string.register_pass_failure ,Toast.LENGTH_SHORT).show();
             return;
         }
@@ -135,9 +142,9 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
             OkHttpUtils
                     .post()
                     .url(mRegisterInterface)
-                    .addParams("username" ,phoneNum)
+                    .addParams("username" , mPhoneNum)
                     .addParams("verification_code" ,securityNum)
-                    .addParams("password" ,password)
+                    .addParams("password" , mPassWord)
                     .addParams("chk_password" ,passAgain)
                     .build()
                     .execute(new StringCallback() {
@@ -156,6 +163,24 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
                             processData(response);
                         }
                     });
+
+
+
+    }
+
+    //向数据库插入数据
+    public boolean register(String username,String password){
+        SQLiteDatabase db= dbHelper.getWritableDatabase();
+        /*String sql = "insert into userData(name,password) value(?,?)";
+        Object obj[]={username,password};
+        db.execSQL(sql,obj);*/
+        ContentValues values=new ContentValues();
+        values.put("name",username);
+        values.put("password",password);
+        db.insert("userData",null,values);
+        db.close();
+        //db.execSQL("insert into userData (name,password) values (?,?)",new String[]{username,password});
+        return true;
     }
 
 
@@ -195,6 +220,9 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
 
         if(Integer.parseInt(code) == REGISTER_SUCESSFUL){
             mListener.viewBackListener();
+            if (register(mPhoneNum, mPassWord)) {
+                Log.i("TAG" ,"插入数据表成功");
+            }
             Toast.makeText(mActivity ,msg ,Toast.LENGTH_SHORT).show();
         }
 

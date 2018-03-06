@@ -17,7 +17,6 @@ import com.xnliang.yishibao.view.fragment.MyOrderFragment;
 import com.xnliang.yishibao.view.fragment.MyPersonalDataFragment;
 import com.xnliang.yishibao.view.fragment.MyRecommendFragment;
 import com.xnliang.yishibao.view.fragment.MyTeamFragment;
-import com.xnliang.yishibao.view.fragment.MyTeamMemberFragment;
 
 /**
  * Created by JackLiu on 2018-02-23.

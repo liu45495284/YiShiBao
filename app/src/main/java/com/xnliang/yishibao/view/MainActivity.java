@@ -18,6 +18,7 @@ import android.widget.RadioGroup;
 
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.utils.HandlerBackUtil;
+import com.xnliang.yishibao.module.utils.SharedPreferencesHelper;
 import com.xnliang.yishibao.presenter.ItmeCallBackListener;
 import com.xnliang.yishibao.view.fragment.FoundFragment;
 import com.xnliang.yishibao.view.fragment.HomeContainerFragment;
@@ -37,7 +38,7 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
     private RadioGroup mHomeGroup;
     private MainActivity mContext;
     private Toolbar toolbar;
-    private Boolean isLogion = true;
+    private SharedPreferencesHelper sharedPreferencesHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
 
         setContentView(R.layout.activity_main);
         initView();
+        sharedPreferencesHelper = new SharedPreferencesHelper(this, "login");
     }
 
     public void initView () {
@@ -150,10 +152,11 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
                     mViewPager.setCurrentItem(3,false);
                     break;
                 case R.id.home_radio_five:
-                    if (isLogion) {
-                        Intent intent = new Intent(mContext ,LoginAndRegisterActivity.class);
-                        startActivity(intent);
-                    }
+                    Boolean isLogion = (Boolean) sharedPreferencesHelper.getSharedPreference("isLogin" ,false);
+                        if (!isLogion) {
+                            Intent intent = new Intent(mContext, LoginAndRegisterActivity.class);
+                            startActivity(intent);
+                        }
                     mViewPager.setCurrentItem(4,false);
                     break;
             }

@@ -26,6 +26,7 @@ public class SelfFragment extends BaseFragment {
     private View mView;
     private MainActivity mActivity;
     public List moduleBeanList = new ArrayList();
+    private SelfRecycleViewAdapter mSelfAdapter;
 
     public SelfFragment() {
         // Required empty public constructor
@@ -45,8 +46,8 @@ public class SelfFragment extends BaseFragment {
 
     private void initView() {
         RecyclerView recyclerView = mView.findViewById(R.id.rv_self);
-        SelfRecycleViewAdapter adapter = new SelfRecycleViewAdapter(mActivity,moduleBeanList ,this);
-        recyclerView.setAdapter(adapter);
+        mSelfAdapter = new SelfRecycleViewAdapter(mActivity,moduleBeanList ,this);
+        recyclerView.setAdapter(mSelfAdapter);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity,LinearLayoutManager.VERTICAL , false);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -55,4 +56,11 @@ public class SelfFragment extends BaseFragment {
 
     private void initData() {
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mSelfAdapter.notifyItemRangeChanged(0,1);
+    }
+
 }
