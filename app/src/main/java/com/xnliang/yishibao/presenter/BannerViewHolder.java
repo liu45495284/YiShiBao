@@ -6,12 +6,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONArray;
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerClickListener;
 import com.youth.banner.loader.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,10 +40,15 @@ public class BannerViewHolder extends RecyclerView.ViewHolder {
 //                String image=module0data.get(i).getImg();
 //                imageUrls.add(image);
 //            }
-    public void setData(List data) {
+    public void setData(JSONArray array) {
+        ArrayList list = new ArrayList();
+
+        for(int i=0 ; i <array.size() ;i++){
+            list.add(array.getJSONObject(i).getString("image"));
+        }
 
         //新版的banner的使用----偷下懒的使用方法
-        banner.setImages(data).setImageLoader(new GlideImageLoader()).start();
+        banner.setImages(list).setImageLoader(new GlideImageLoader()).start();
 
         //设置item的点击事件
         banner.setOnBannerClickListener(new OnBannerClickListener() {

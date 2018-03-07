@@ -180,12 +180,14 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
             getActivity().startActivity(intent);
 
             sharedPreferencesHelper.put("isLogin",true);
+            sharedPreferencesHelper.put("token" ,token);
         }
     }
 
     //向数据库插入数据
     public void insertUserData(String nickname ,String mobile,String coin,String score,String avatar){
         SQLiteDatabase db= dbHelper.getWritableDatabase();
+        db.execSQL("delete from userDetail");
         ContentValues values=new ContentValues();
         values.put("name",nickname);
         values.put("mobile",mobile);

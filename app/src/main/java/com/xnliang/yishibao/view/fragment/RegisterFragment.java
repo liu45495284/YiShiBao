@@ -43,8 +43,8 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
     private MyCountDownTimer myCountDownTimer;
     private static final String mUrl = "http://ysb.appxinliang.cn/api/user/code";
     private static final String mRegisterInterface ="http://ysb.appxinliang.cn/api/user/register";
-    private static final int REGISTER_SUCESSFUL = 200;
-    private static final int REGISTER_FAILURE = 10001;
+    private static final int SUCESSFUL_CODE = 200;
+    private static final int FAILURE_CODE = 10001;
     private LinkedHashMap<String ,String> hashMap = new LinkedHashMap<>();
 
     @Bind(R.id.rl_register_back)
@@ -169,19 +169,19 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
     }
 
     //向数据库插入数据
-    public boolean register(String username,String password){
-        SQLiteDatabase db= dbHelper.getWritableDatabase();
-        /*String sql = "insert into userData(name,password) value(?,?)";
-        Object obj[]={username,password};
-        db.execSQL(sql,obj);*/
-        ContentValues values=new ContentValues();
-        values.put("name",username);
-        values.put("password",password);
-        db.insert("userData",null,values);
-        db.close();
-        //db.execSQL("insert into userData (name,password) values (?,?)",new String[]{username,password});
-        return true;
-    }
+//    public boolean register(String username,String password){
+//        SQLiteDatabase db= dbHelper.getWritableDatabase();
+//        /*String sql = "insert into userData(name,password) value(?,?)";
+//        Object obj[]={username,password};
+//        db.execSQL(sql,obj);*/
+//        ContentValues values=new ContentValues();
+//        values.put("name",username);
+//        values.put("password",password);
+//        db.insert("userData",null,values);
+//        db.close();
+//        //db.execSQL("insert into userData (name,password) values (?,?)",new String[]{username,password});
+//        return true;
+//    }
 
 
     @Override
@@ -213,16 +213,16 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
         String code = jsonObject.getString("code");
         String msg = jsonObject.getString("msg");
 
-        if (Integer.parseInt(code) == REGISTER_FAILURE){
+        if (Integer.parseInt(code) == FAILURE_CODE){
             Toast.makeText(mActivity ,msg ,Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if(Integer.parseInt(code) == REGISTER_SUCESSFUL){
+        if(Integer.parseInt(code) == SUCESSFUL_CODE){
             mListener.viewBackListener();
-            if (register(mPhoneNum, mPassWord)) {
-                Log.i("TAG" ,"插入数据表成功");
-            }
+//            if (register(mPhoneNum, mPassWord)) {
+//                Log.i("TAG" ,"插入数据表成功");
+//            }
             Toast.makeText(mActivity ,msg ,Toast.LENGTH_SHORT).show();
         }
 
@@ -260,7 +260,7 @@ public class RegisterFragment extends BaseFragment implements View.OnClickListen
         public void onTick(long millisUntilFinished) {
             String skip = String .valueOf(millisUntilFinished/1000) ;
             mSendMsg.setBackgroundResource(R.color.gray_cc);
-            mSendMsg.setText(skip);
+            mSendMsg.setText(skip + "s");
             mSendMsg.setOnClickListener(null);
         }
 

@@ -35,11 +35,10 @@ public class FoundViewHolder extends BaseViewHolder implements View.OnClickListe
         setFoundClickListener(mActivity);
     }
 
-    //        public void setData(List<WomenBean.WomenData.ModuleBean.DataBean> pinpai2data) {
-    public void setData(List data) {
+    public void setData() {
         //使用Glide加载图片
         Glide.with(mContext)
-                .load(R.mipmap.guide3)
+                .load(R.mipmap.found_banner)
                 .into(ivFound);
     }
 

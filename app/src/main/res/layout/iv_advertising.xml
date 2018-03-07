@@ -27,16 +27,16 @@
             android:text="@string/recommend"
             android:layout_alignParentBottom="true"/>
 
-        <TextView
-            android:id="@+id/tv_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:text="@string/more"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"/>
+        <!--<TextView-->
+            <!--android:id="@+id/tv_more"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:padding="10dp"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:textSize="15sp"-->
+            <!--android:text="@string/more"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentRight="true"/>-->
     </RelativeLayout>
 
 </RelativeLayout>

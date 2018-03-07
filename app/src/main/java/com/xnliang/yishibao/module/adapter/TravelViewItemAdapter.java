@@ -7,9 +7,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONArray;
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,17 +21,12 @@ import java.util.List;
 public class TravelViewItemAdapter extends BaseAdapter {
 
         private final Context mContext;
-//        private final List<WomenBean.WomenData.ModuleBean.DataBean> module1data;
-          private final List module1data;
+          private final JSONArray module1data;
 
-//        public TravelViewItemAdapter(Context mContext, List<WomenBean.WomenData.ModuleBean.DataBean> module1data) {
-//            this.mContext = mContext;
-//            this.module1data = module1data;
-//        }
 
-        public TravelViewItemAdapter(Context mContext, List module1data) {
+        public TravelViewItemAdapter(Context mContext, JSONArray data) {
             this.mContext = mContext;
-            this.module1data = module1data;
+            this.module1data = data;
         }
 
         @Override
@@ -62,12 +59,15 @@ public class TravelViewItemAdapter extends BaseAdapter {
             }
 
             //装配数据
-//            WomenBean.WomenData.ModuleBean.DataBean datasig = module1data.get(position);
+                String url = module1data.getJSONObject(position).getString("image");
+                String name = module1data.getJSONObject(position).getString("name");
 
-            //使用Glide加载图片
-            Glide.with(mContext).load(R.mipmap.i3).into(holder.iv_channel);
-            //设置文本
-            holder.tv_channel.setText("上海");
+                //使用Glide加载图片
+                Glide.with(mContext).load(url).into(holder.iv_channel);
+                //设置文本
+                holder.tv_channel.setText(name);
+                holder.tv_channel.setTextColor(mContext.getResources().getColor(R.color.white));
+
 
             return convertView;
         }

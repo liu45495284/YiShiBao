@@ -5,6 +5,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.alibaba.fastjson.JSONArray;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.adapter.GoodsRecycleViewAdapter;
 import com.xnliang.yishibao.module.utils.DividerGridItemDecoration;
@@ -26,7 +27,7 @@ public class GoodsViewHolder extends BaseViewHolder {
         dapeiqs_rv= itemView.findViewById(R.id.dapeiqs_rv);
     }
 
-    public void setData(List data) {
+    public void setData(JSONArray data) {
         //1.已有数据
         //2.设置适配器：-->设置文本和recycleView的数据
         GoodsRecycleViewAdapter adapter=new GoodsRecycleViewAdapter(mContext,data);

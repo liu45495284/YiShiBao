@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.alibaba.fastjson.JSONArray;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.adapter.TravelViewItemAdapter;
 import com.xnliang.yishibao.view.MainActivity;
@@ -31,7 +32,7 @@ public class TravelViewHolder extends BaseViewHolder {
     }
 
     //        public void setData(List<WomenBean.WomenData.ModuleBean.DataBean> module1data) {
-    public void setData (List data){
+    public void setData (JSONArray data){
         //已得到数据了
         //设置适配器
         TravelViewItemAdapter adapter = new TravelViewItemAdapter(mContext, data);

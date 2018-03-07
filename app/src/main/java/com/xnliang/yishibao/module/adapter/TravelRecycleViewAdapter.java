@@ -10,11 +10,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONArray;
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.view.MainActivity;
 import com.xnliang.yishibao.view.TravelDetailActivity;
 import com.xnliang.yishibao.view.fragment.TravelFragment;
+
 
 import java.util.List;
 
@@ -30,12 +32,12 @@ public class TravelRecycleViewAdapter extends RecyclerView.Adapter {
     private final TravelFragment mFragment;
     public int currentType = TRAVEL_ITEM;
     private final Context mContext;
-    private final List moduleBeanList;
+    private final JSONArray moduleBeanList;
     private final LayoutInflater mLayoutInflater;
     private ViewHolder mHolder;
     private FragmentTransaction mFragmentTransaction;
 
-    public TravelRecycleViewAdapter(Context mContext, List moduleBeanList, TravelFragment fragment) {
+    public TravelRecycleViewAdapter(Context mContext, JSONArray moduleBeanList, TravelFragment fragment) {
         this.mContext = mContext;
         this.moduleBeanList = moduleBeanList;
         this.mFragment = fragment;
@@ -100,17 +102,17 @@ public class TravelRecycleViewAdapter extends RecyclerView.Adapter {
             //取里面的textView实例，后面通过onBindViewHolder方法能直接填充数据到每一个textView了
             icon = (ImageView) itemView.findViewById(R.id.iv_travel_list);
             title = (TextView) itemView.findViewById(R.id.tv_travel_title);
-            time = (TextView) itemView.findViewById(R.id.tv_travel_time);
+//            time = (TextView) itemView.findViewById(R.id.tv_travel_time);
             jiFen = (TextView) itemView.findViewById(R.id.tv_travel_jifen);
 
         }
-        public void setData(List module0data , int position) {
-
+        public void setData(JSONArray data , int position) {
             icon.setScaleType(ImageView.ScaleType.FIT_XY);
 
             //Glide 加载图片简单用法
-            Glide.with(mContext).load(moduleBeanList.get(position)).into(icon);
-
+            Glide.with(mContext).load(data.getJSONObject(position).getString("image")).into(icon);
+            title.setText(data.getJSONObject(position).getString("title"));
+            jiFen.setText(data.getJSONObject(position).getString("price"));
         }
     }
 

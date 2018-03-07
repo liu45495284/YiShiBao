@@ -155,6 +155,10 @@
     <string name="login_failure">登录失败</string>
     <string name="register_pass_failure">两次密码不一致</string>
     <string name="register_security_failure">验证码或手机号不正确或账号已存在</string>
+    <string name="modify_password_text">输入错误，请重新输入</string>
+    <string name="modify_old_password">原密码不正确，请重新输入</string>
+    <string name="modify_new_password">两次新密码不一致</string>
+    <string name="refresh_no_more">没有更多数据</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

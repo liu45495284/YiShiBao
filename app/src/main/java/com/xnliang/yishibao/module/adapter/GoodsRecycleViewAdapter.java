@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONArray;
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.view.GoodsDetailActivity;
@@ -23,9 +24,9 @@ import java.util.List;
 public class GoodsRecycleViewAdapter extends RecyclerView.Adapter  {
     private final Context mContext;
     private final MainActivity mActivity;
-    private final List data;
+    private final JSONArray data;
 
-    public GoodsRecycleViewAdapter(Context context, List data) {
+    public GoodsRecycleViewAdapter(Context context, JSONArray data) {
         this.mContext = context;
         this.mActivity = (MainActivity) context;
         this.data = data;
@@ -61,20 +62,24 @@ public class GoodsRecycleViewAdapter extends RecyclerView.Adapter  {
             super(itemView);
             iv_figure = itemView.findViewById(R.id.iv_shangpin);
             tv_name = itemView.findViewById(R.id.tv_name);
-            tv_jifen = itemView.findViewById(R.id.tv_jifen);
+//            tv_jifen = itemView.findViewById(R.id.tv_jifen);
 
             itemView.setOnClickListener(this);
         }
 
         public void setData(int position) {
-//            WomenBean.WomenData.ModuleBean.DataBean dapeiBean = dapeiqs6data.get(position);
+
+            String url = data.getJSONObject(position).getString("image");
+            String name = data.getJSONObject(position).getString("goods_name");
+//            String price = data.getJSONObject(position).getString("shop_price");
+
             //使用Glide加载图片
             Glide.with(mContext)
-                    .load(data.get(position))
+                    .load(url)
                     .into(iv_figure);
 
-            tv_name.setText("梦想");
-            tv_jifen.setText("10000积分");
+            tv_name.setText(name);
+//            tv_jifen.setText(price);
         }
 
         @Override

@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.RadioGroup;
 
@@ -132,6 +133,11 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
             return mFragments.length;
         }
 
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            //TODO temp fix swich fragment lead to that build twice
+//            super.destroyItem(container, position, object);
+        }
     }
 
     public class myRadionGroupCheckedChangeListener implements RadioGroup.OnCheckedChangeListener {
@@ -153,10 +159,10 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
                     break;
                 case R.id.home_radio_five:
                     Boolean isLogion = (Boolean) sharedPreferencesHelper.getSharedPreference("isLogin" ,false);
-                        if (!isLogion) {
+//                        if (!isLogion) {
                             Intent intent = new Intent(mContext, LoginAndRegisterActivity.class);
                             startActivity(intent);
-                        }
+//                        }
                     mViewPager.setCurrentItem(4,false);
                     break;
             }

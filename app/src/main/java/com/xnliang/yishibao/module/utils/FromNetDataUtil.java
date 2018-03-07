@@ -35,7 +35,6 @@ public class FromNetDataUtil {
     }
 
     public void getDataFromNet(String url) {
-        url = "http://api/user/register";
         OkHttpUtils
                 .get()
                 .url(url)

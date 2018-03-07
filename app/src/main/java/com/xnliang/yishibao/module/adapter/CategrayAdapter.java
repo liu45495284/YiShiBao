@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONArray;
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.view.MainActivity;
@@ -26,7 +27,7 @@ public class CategrayAdapter extends BaseAdapter {
 
         private final Context mContext;
 //        private final List<WomenBean.WomenData.ModuleBean.DataBean> module1data;
-        private final List module1data;
+        private final JSONArray module1data;
         private final MainActivity mActivity;
 
 //        public TravelViewItemAdapter(Context mContext, List<WomenBean.WomenData.ModuleBean.DataBean> module1data) {
@@ -34,7 +35,7 @@ public class CategrayAdapter extends BaseAdapter {
 //            this.module1data = module1data;
 //        }
 
-        public CategrayAdapter(Context context, List module1data) {
+        public CategrayAdapter(Context context, JSONArray module1data) {
             this.mContext = context;
             this.module1data = module1data;
             this.mActivity = (MainActivity)context;
@@ -42,7 +43,7 @@ public class CategrayAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
-            return module1data == null ? 0 : 5;
+            return module1data == null ? 0 : 10;
         }
 
         @Override
@@ -70,12 +71,12 @@ public class CategrayAdapter extends BaseAdapter {
             }
 
             //装配数据
-//            WomenBean.WomenData.ModuleBean.DataBean datasig = module1data.get(position);
-
+            String url = module1data.getJSONObject(position).getString("app_icon");
+            String name = module1data.getJSONObject(position).getString("name");
             //使用Glide加载图片
-            Glide.with(mContext).load(R.mipmap.categray_chuju).into(holder.iv_channel);
+            Glide.with(mContext).load(url).into(holder.iv_channel);
             //设置文本
-            holder.tv_channel.setText("厨具");
+            holder.tv_channel.setText(name);
             return convertView;
         }
 

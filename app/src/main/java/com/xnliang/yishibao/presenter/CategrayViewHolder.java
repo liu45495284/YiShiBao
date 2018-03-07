@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONArray;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.adapter.CategrayAdapter;
 import com.xnliang.yishibao.view.MainActivity;
@@ -39,8 +40,7 @@ public class CategrayViewHolder extends BaseViewHolder {
         gridView = itemView.findViewById(R.id.gv_channel_categray);
     }
 
-    //        public void setData(List<WomenBean.WomenData.ModuleBean.DataBean> module1data) {
-    public void setData (List data){
+    public void setData (JSONArray data){
         //已得到数据了
         //设置适配器
         CategrayAdapter adapter = new CategrayAdapter(mContext, data);

@@ -10,12 +10,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class UserDbHelp extends SQLiteOpenHelper {
 
-    private static final String CREATE_USERDATA="create table userData(" +
+    private final String CREATE_USERDATA="create table userData(" +
             "id integer primary key autoincrement,"
             +"name text,"
             +"password text)";
 
-    private static final String CREATE_USEDETAIL="create table userDetail(" +
+    private final String CREATE_USEDETAIL="create table userDetail(" +
             "id integer primary key autoincrement,"
             +"name text,"
             +"password text,"
