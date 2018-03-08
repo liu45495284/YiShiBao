@@ -46,7 +46,9 @@ public class TravelInviteCodeFragment extends BaseFragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String score = getActivity().getIntent().getStringExtra("price");
                 Intent intent = new Intent(getActivity() , OrderPayActivity.class);
+                intent.putExtra("score" , score);
                 startActivity(intent);
             }
         });

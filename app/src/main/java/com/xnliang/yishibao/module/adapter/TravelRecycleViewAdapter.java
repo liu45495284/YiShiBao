@@ -68,9 +68,11 @@ public class TravelRecycleViewAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     int id = moduleBeanList.get(position).getId();
                     String title = moduleBeanList.get(position).getTitle();
+                    String score = moduleBeanList.get(position).getPrice();
                     Intent intent = new Intent(mActivity, TravelDetailActivity.class);
                     intent.putExtra("detail" , id);
                     intent.putExtra("title" , title);
+                    intent.putExtra("price" , score);
                     mActivity.startActivity(intent);
 
                 }
