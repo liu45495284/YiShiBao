@@ -159,6 +159,7 @@
     <string name="modify_old_password">原密码不正确，请重新输入</string>
     <string name="modify_new_password">两次新密码不一致</string>
     <string name="refresh_no_more">没有更多数据</string>
+    <string name="refresh_complete">"刷新完成"</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONArray;
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.module.bean.TravelListBean;
 import com.xnliang.yishibao.view.MainActivity;
 import com.xnliang.yishibao.view.TravelDetailActivity;
 import com.xnliang.yishibao.view.fragment.TravelFragment;
@@ -32,12 +33,12 @@ public class TravelRecycleViewAdapter extends RecyclerView.Adapter {
     private final TravelFragment mFragment;
     public int currentType = TRAVEL_ITEM;
     private final Context mContext;
-    private final JSONArray moduleBeanList;
+    private final List<TravelListBean.DataBeanX.DataBean> moduleBeanList;
     private final LayoutInflater mLayoutInflater;
     private ViewHolder mHolder;
     private FragmentTransaction mFragmentTransaction;
 
-    public TravelRecycleViewAdapter(Context mContext, JSONArray moduleBeanList, TravelFragment fragment) {
+    public TravelRecycleViewAdapter(Context mContext, List<TravelListBean.DataBeanX.DataBean> moduleBeanList, TravelFragment fragment) {
         this.mContext = mContext;
         this.moduleBeanList = moduleBeanList;
         this.mFragment = fragment;
@@ -106,13 +107,13 @@ public class TravelRecycleViewAdapter extends RecyclerView.Adapter {
             jiFen = (TextView) itemView.findViewById(R.id.tv_travel_jifen);
 
         }
-        public void setData(JSONArray data , int position) {
+        public void setData(List<TravelListBean.DataBeanX.DataBean> data , int position) {
             icon.setScaleType(ImageView.ScaleType.FIT_XY);
 
             //Glide 加载图片简单用法
-            Glide.with(mContext).load(data.getJSONObject(position).getString("image")).into(icon);
-            title.setText(data.getJSONObject(position).getString("title"));
-            jiFen.setText(data.getJSONObject(position).getString("price"));
+            Glide.with(mContext).load(data.get(position).getImage()).into(icon);
+            title.setText(data.get(position).getTitle());
+            jiFen.setText(data.get(position).getPrice());
         }
     }
 

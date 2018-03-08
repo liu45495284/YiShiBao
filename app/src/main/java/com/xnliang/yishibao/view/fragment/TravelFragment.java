@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,9 +26,13 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.baoyz.widget.PullRefreshLayout;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.adapter.TravelRecycleViewAdapter;
+import com.xnliang.yishibao.module.bean.TravelListBean;
 import com.xnliang.yishibao.module.utils.ListDecoration;
 import com.xnliang.yishibao.presenter.ItmeCallBackListener;
 import com.xnliang.yishibao.presenter.TravelLinearLayoutManager;
@@ -52,8 +58,6 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
     private PullRefreshLayout mPullRefreshLayout;
     private TravelRecycleViewAdapter mTravelRecycleAdapter;
     public List moduleBeanList = new ArrayList();
-    public List freeList = new ArrayList();
-    public List highList = new ArrayList();
     public List cityList = new ArrayList();
     public List cityIdList = new ArrayList();
     private Button mFreeButton;
@@ -81,6 +85,9 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
     private String mLastPage;
     private boolean isLoadingMore;
     private JSONObject mJsonData;
+    private ArrayList  dataBean = new ArrayList();
+    private int mPage = 1;
+    private ArrayList<TravelListBean.DataBeanX.DataBean> mData;
 
     public TravelFragment() {
         // Required empty public constructor
@@ -114,35 +121,13 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
         mSelfButton.setOnClickListener(new GoodSelfListener());
         mSelfButton.setBackgroundResource(R.drawable.travel_btn_bg_normal);
 
-
-
         mPullRefreshLayout = mView.findViewById(R.id.tr_swipeRefreshLayout);
         mPullRefreshLayout.setOnRefreshListener(new myRefreshListener());
         mPullRefreshLayout.setRefreshStyle(PullRefreshLayout.STYLE_MATERIAL);
 
-
     }
 
     public void initDate() {
-        moduleBeanList.clear();
-        freeList.clear();
-        highList.clear();
-        int itemFree[] = { R.mipmap.i3, R.mipmap.i3, R.mipmap.i3,R.mipmap.i3, R.mipmap.i3,
-                R.mipmap.i3,R.mipmap.i3, R.mipmap.i3, R.mipmap.i3,R.mipmap.i3, R.mipmap.i3, R.mipmap.i3};
-        int itemHigh[] = { R.mipmap.i4, R.mipmap.i4,R.mipmap.i4, R.mipmap.i4,R.mipmap.i4,
-                R.mipmap.i4,R.mipmap.i4, R.mipmap.i4,R.mipmap.i4};
-
-        for (int i = 0 ; i < itemFree.length ; i++) {
-            freeList.add(itemFree[i]);
-        }
-
-        for (int i = 0 ; i < itemHigh.length ; i++) {
-            highList.add(itemHigh[i]);
-        }
-
-        for (int i =0 ; i < freeList.size() ; i++){
-            moduleBeanList.add(freeList.get(i));
-        }
     }
 
     @Override
@@ -151,7 +136,6 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
         if (isVisibleToUser && isVisible()) {//视图可见并且控件准备好了，每次都会调用
             if (null == mIndexData) {//如果数据为空了，则需要重新联网请求
                 getDataFromNet(mTravelAreaIndex);
-                getListDataFromNet(mTravelListIndex ,1 ,1 ,1);
             }
         }
     }
@@ -206,6 +190,7 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
     }
 
     private void processCityData(String response) {
+        dataBean.clear();
         JSONObject jsonObject = JSON.parseObject(response);
 
         String code = jsonObject.getString("code");
@@ -216,6 +201,20 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
         mCurrentPage = mJsonData.getString("current_page");
         mLastPage = mJsonData.getString("last_page");
         mItemData = mJsonData.getJSONArray("data");
+
+
+//        Gson gson = new Gson();
+//        ArrayList<TravelListBean.DataBeanX.DataBean> dataBean = gson.fromJson(mJsonData.getString("data") ,
+//                new TypeToken<ArrayList<TravelListBean.DataBeanX.DataBean>>(){}.getType());
+
+        mData = JSON.parseObject(mJsonData.getString("data") ,
+                new TypeReference<ArrayList<TravelListBean.DataBeanX.DataBean>>(){}.getType());
+
+
+        for(int i = 0; i< mData.size() ; i++){
+            dataBean.add(mData.get(i));
+        }
+
         handler.obtainMessage(ITEM_LIST).sendToTarget();
 
         if (Integer.parseInt(code) == FAILURE_CODE) {
@@ -250,10 +249,10 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String str=parent.getItemAtPosition(position).toString();
-//        mChooseCity.setText(str);
         mSelectedPosition = position + 1;
-        getListDataFromNet(mTravelListIndex ,1 ,1 ,mSelectedPosition);
-        Toast.makeText(getActivity(), "你点击的是:"+str, Toast.LENGTH_SHORT).show();
+        moduleBeanList.clear();
+        getListDataFromNet(mTravelListIndex ,1 ,mTypeFlag ,mSelectedPosition);
+//        Toast.makeText(getActivity(), "你点击的是:"+str, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -269,8 +268,9 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
                 @Override
                 public void run() {
                     getListDataFromNet(mTravelListIndex ,1 ,mTypeFlag ,mSelectedPosition);
+                    mPage--;
                     mPullRefreshLayout.setRefreshing(false);
-                    Toast.makeText(getActivity(), "更新了1条数据...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.refresh_complete, Toast.LENGTH_SHORT).show();
                 }
             } , 3000);
         }
@@ -281,14 +281,14 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
         @Override
         public void onClick(View v) {
             mTypeFlag = 1;
+            mPage = 1;
             mFreeButton.setBackgroundResource(R.drawable.travel_btn_bg);
             mFreeButton.setTextColor(getResources().getColor(R.color.white));
             mSelfButton.setBackgroundResource(R.drawable.travel_btn_bg_normal);
             mSelfButton.setTextColor(getResources().getColor(R.color.black));
+            moduleBeanList.clear();
             getListDataFromNet(mTravelListIndex ,1 ,mTypeFlag ,mSelectedPosition);
-            updateDate(FREE_HIGH);
 //            handler.obtainMessage(FREE_HIGH).sendToTarget();
-            Toast.makeText(mActivity , "1111" , Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -297,14 +297,14 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
         @Override
         public void onClick(View v) {
             mTypeFlag = 2;
+            mPage = 1;
             mFreeButton.setBackgroundResource(R.drawable.travel_btn_bg_normal);
             mFreeButton.setTextColor(getResources().getColor(R.color.black));
             mSelfButton.setBackgroundResource(R.drawable.travel_btn_bg);
             mSelfButton.setTextColor(getResources().getColor(R.color.white));
+            moduleBeanList.clear();
             getListDataFromNet(mTravelListIndex ,1 ,mTypeFlag ,mSelectedPosition);
-            updateDate(GOOD_SELF);
 //            handler.obtainMessage(GOOD_SELF).sendToTarget();
-            Toast.makeText(mActivity , "2222" , Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -355,13 +355,14 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
                     citySpinner.setOnItemSelectedListener(mFragment);
                     break;
                 case ITEM_LIST:
+                    moduleBeanList.addAll(dataBean);
                     if(mRecyclerView == null) {
                         mRecyclerView = mView.findViewById(R.id.rv_travel);
                     }
                     if(mTravelRecycleAdapter == null) {
-                        mTravelRecycleAdapter = new TravelRecycleViewAdapter(mActivity, mItemData     , mFragment);
+                        mTravelRecycleAdapter = new TravelRecycleViewAdapter(mActivity, moduleBeanList, mFragment);
+                        mRecyclerView.setAdapter(mTravelRecycleAdapter);
                     }
-                    mRecyclerView.setAdapter(mTravelRecycleAdapter);
                     if (mDecoration == null) {
                         mDecoration = new ListDecoration(mActivity,ListDecoration.VERTICAL_LIST, R.drawable.list_divide);
                         mRecyclerView.addItemDecoration(mDecoration);
@@ -371,28 +372,55 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
                     final TravelLinearLayoutManager manager = new TravelLinearLayoutManager(mActivity);
                     mRecyclerView.setLayoutManager(manager);
 
+                    int position = mTravelRecycleAdapter.getItemCount();
+                    ((SimpleItemAnimator)mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
+                    mTravelRecycleAdapter.notifyItemRangeInserted( position - dataBean.size(), dataBean.size());
+                    mRecyclerView.scrollToPosition(position - dataBean.size());
+
                     mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                        @Override
+                        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                            super.onScrollStateChanged(recyclerView, newState);
+                            Log.d("test", "StateChanged = " + newState);
+                            int lastVisibleItemPosition = manager.findLastVisibleItemPosition();
+                            if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItemPosition + 1 == mTravelRecycleAdapter.getItemCount()) {
+                                Log.d("test", "loading executed");
+
+                                if (!isLoadingMore) {
+
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            int currentPage = Integer.valueOf(mCurrentPage);
+                                            int lastPage = Integer.valueOf(mLastPage);
+                                              if( currentPage >= lastPage ){
+                                                isLoadingMore = false;
+                                                getActivity().runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        Toast.makeText(getActivity() , R.string.refresh_no_more ,Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+
+                                                Log.d(TAG,"ignore manually update!");
+                                                return;
+                                            }
+
+                                                mPage++;
+                                                loadMore(mPage);
+                                                Log.d("test", "load more completed");
+                                                isLoadingMore = false;
+                                        }
+                                    }, 1000);
+                                }
+                            }
+                        }
+
                         @Override
                         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                             int topRowVerticalPosition =
                                     (recyclerView == null || recyclerView.getChildCount() == 0) ? 0 : recyclerView.getChildAt(0).getTop();
                             mPullRefreshLayout.setEnabled(topRowVerticalPosition >= 0);
-
-                            int lastVisibleItem = manager.findLastVisibleItemPosition();
-                            int totalItemCount = manager.getItemCount();
-                            int currentDataCount = mItemData.size();
-                            //lastVisibleItem >= totalItemCount - 3 表示剩下3个item自动加载，各位自由选择
-                            // dy>0 表示向下滑动
-                                if (!isLoadingMore && Integer.valueOf(mTotal) > currentDataCount && dy > 0 && totalItemCount < lastVisibleItem + 5){
-                                    if(Integer.valueOf(mCurrentPage).equals(Integer.valueOf(mLastPage))){
-                                        isLoadingMore = true;
-                                        Toast.makeText(getActivity() , R.string.refresh_no_more ,Toast.LENGTH_SHORT).show();
-                                        Log.d(TAG,"ignore manually update!");
-                                    }else{
-//                                        loadMore();
-                                        isLoadingMore = false;
-                                    }
-                                }
                         }
                     });
 
@@ -401,33 +429,14 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
         }
     };
 
-    private void loadMore() {
-        int page = Integer.valueOf(mCurrentPage);
-
-        getListDataFromNet(mTravelListIndex , 1,mTypeFlag ,mSelectedPosition);
+    private void loadMore(int i) {
+        isLoadingMore = true;
+        getListDataFromNet(mTravelListIndex , i,mTypeFlag ,mSelectedPosition);
     }
 
-    public void runOnUiThread() {
-        mActivity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                mTravelRecycleAdapter.notifyItemRangeInserted(0,moduleBeanList.size());
-            }
-        });}
-
-    public void updateDate(int flag) {
-
-        moduleBeanList.clear();
-        switch (flag){
-            case FREE_HIGH:
-                mTravelRecycleAdapter.notifyItemRangeRemoved(0,highList.size());
-                moduleBeanList.addAll(freeList);
-                break;
-            case GOOD_SELF:
-                mTravelRecycleAdapter.notifyItemRangeRemoved(0,freeList.size());
-                moduleBeanList.addAll(highList);
-                break;
-        }
-        runOnUiThread();
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        dataBean.clear();
     }
 }
