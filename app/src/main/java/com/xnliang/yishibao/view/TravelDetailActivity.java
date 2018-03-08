@@ -22,28 +22,13 @@ public class TravelDetailActivity extends BaseActivity {
     }
 
     private void initView() {
+        int id = getIntent().getIntExtra("detail" , 0);
         TravelDetailFragment travelDetailFragment = new TravelDetailFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_base , travelDetailFragment , "detail");
         fragmentTransaction.addToBackStack("detail");
         fragmentTransaction.commitAllowingStateLoss();
-//        Button detailBack = findViewById(R.id.bt_detail);
-//        TextView cityName = findViewById(R.id.tv_travel_detail_name);
-//        Button snapUp = findViewById(R.id.bt_snap_up);
-//        detailBack.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onBackPressed();
-//            }
-//        });
-//
-//        snapUp.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
     }
 
     @Override

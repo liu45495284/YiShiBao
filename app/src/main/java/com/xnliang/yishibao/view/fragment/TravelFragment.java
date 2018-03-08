@@ -72,7 +72,6 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
     private JSONArray mItemData;
     private static final String mTravelAreaIndex ="http://ysb.appxinliang.cn/api/tourism/area";
     private static final String mTravelListIndex ="http://ysb.appxinliang.cn/api/tourism/lists";
-    private static final String mTravelDetailIndex ="http://ysb.appxinliang.cn/api/tourism/detail";
     private static final int AREAS = 2;
     private static final int ITEM_LIST = 3;
     private static int mTypeFlag = 1 ;
@@ -267,10 +266,14 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    getListDataFromNet(mTravelListIndex ,1 ,mTypeFlag ,mSelectedPosition);
-                    mPage--;
+//                    if (mPage == 1){
+//                        Toast.makeText(getActivity(), R.string.refresh_no_more, Toast.LENGTH_SHORT).show();
+//                    }else {
+//                        getListDataFromNet(mTravelListIndex, 1, mTypeFlag, mSelectedPosition);
+//                        mPage--;
+//                        Toast.makeText(getActivity(), R.string.refresh_complete, Toast.LENGTH_SHORT).show();
+//                    }
                     mPullRefreshLayout.setRefreshing(false);
-                    Toast.makeText(getActivity(), R.string.refresh_complete, Toast.LENGTH_SHORT).show();
                 }
             } , 3000);
         }

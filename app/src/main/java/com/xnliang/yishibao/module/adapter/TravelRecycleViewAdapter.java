@@ -58,12 +58,6 @@ public class TravelRecycleViewAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         ViewHolder viewHolder= (ViewHolder) holder;
         viewHolder.setData(moduleBeanList , position);
-//        holder.setIsRecyclable(false);
-        //将数据填充到具体的view中
-//        mHolder.icon.setImageResource((int)moduleBeanList.get(position));
-//        mHolder.title.setText(moduleBeanList.get(position));
-//        mHolder.time.setText(moduleBeanList.get(position));
-//        mHolder.jiFen.setText(moduleBeanList.get(position));
 
         if (mHolder.itemView != null) {
             mHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +66,11 @@ public class TravelRecycleViewAdapter extends RecyclerView.Adapter {
 
                 @Override
                 public void onClick(View v) {
+                    int id = moduleBeanList.get(position).getId();
+                    String title = moduleBeanList.get(position).getTitle();
                     Intent intent = new Intent(mActivity, TravelDetailActivity.class);
+                    intent.putExtra("detail" , id);
+                    intent.putExtra("title" , title);
                     mActivity.startActivity(intent);
 
                 }
@@ -99,8 +97,6 @@ public class TravelRecycleViewAdapter extends RecyclerView.Adapter {
 
         public ViewHolder(View itemView) {
             super(itemView);
-            //由于itemView是item的布局文件，我们需要的是里面的textView，因此利用itemView.findViewById获
-            //取里面的textView实例，后面通过onBindViewHolder方法能直接填充数据到每一个textView了
             icon = (ImageView) itemView.findViewById(R.id.iv_travel_list);
             title = (TextView) itemView.findViewById(R.id.tv_travel_title);
 //            time = (TextView) itemView.findViewById(R.id.tv_travel_time);

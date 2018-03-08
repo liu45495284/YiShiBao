@@ -38,6 +38,15 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/bt_snap_up">
+
+    </WebView>
+
     <Button
         android:id="@+id/bt_snap_up"
         android:layout_width="match_parent"

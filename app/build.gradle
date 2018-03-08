@@ -91,5 +91,6 @@ dependencies {
     compile "com.android.support:design:26.1.0"
     compile 'com.contrarywind:Android-PickerView:3.2.7'
     compile 'com.google.code.gson:gson:2.8.0'
+    compile 'org.jsoup:jsoup:1.11.2'
 
 }
