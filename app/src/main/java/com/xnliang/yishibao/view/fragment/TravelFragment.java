@@ -370,13 +370,13 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
                         mDecoration = new ListDecoration(mActivity,ListDecoration.VERTICAL_LIST, R.drawable.list_divide);
                         mRecyclerView.addItemDecoration(mDecoration);
                     }
+                    mRecyclerView.setItemAnimator(null);
                     //recycleView不仅要设置适配器还要设置布局管理者,否则图片不显示
                     //第一个参数是上下文，第二个参数是只有一列
                     final TravelLinearLayoutManager manager = new TravelLinearLayoutManager(mActivity);
                     mRecyclerView.setLayoutManager(manager);
 
                     int position = mTravelRecycleAdapter.getItemCount();
-                    ((SimpleItemAnimator)mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
                     mTravelRecycleAdapter.notifyItemRangeInserted( position - dataBean.size(), dataBean.size());
                     mRecyclerView.scrollToPosition(position - dataBean.size());
 
