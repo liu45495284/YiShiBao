@@ -6,10 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SimpleItemAnimator;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +17,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
@@ -66,7 +62,7 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
     private RecyclerView mRecyclerView;
     private static final int FREE_HIGH = 0;
     private static final int GOOD_SELF = 1;
-    private static final int SUCESSFUL_CODE = 200;
+    private static final int SUCCESSFUL_CODE = 200;
     private static final int FAILURE_CODE = 10001;
     private JSONArray mIndexData;
     private JSONArray mItemData;
@@ -199,7 +195,6 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
         mPerPage = mJsonData.getString("per_page");
         mCurrentPage = mJsonData.getString("current_page");
         mLastPage = mJsonData.getString("last_page");
-        mItemData = mJsonData.getJSONArray("data");
 
 
 //        Gson gson = new Gson();
@@ -221,7 +216,7 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
             return;
         }
 
-        if (Integer.parseInt(code) == SUCESSFUL_CODE) {
+        if (Integer.parseInt(code) == SUCCESSFUL_CODE) {
             Toast.makeText(mActivity, msg, Toast.LENGTH_SHORT).show();
         }
     }
@@ -239,7 +234,7 @@ public class TravelFragment extends BaseFragment implements View.OnClickListener
             return;
         }
 
-        if (Integer.parseInt(code) == SUCESSFUL_CODE) {
+        if (Integer.parseInt(code) == SUCCESSFUL_CODE) {
             Toast.makeText(mActivity, msg, Toast.LENGTH_SHORT).show();
         }
     }

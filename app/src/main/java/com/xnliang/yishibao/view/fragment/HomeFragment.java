@@ -66,11 +66,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         @Override
         public void handleMessage(Message msg) {
             if(msg.what == SUCEESS){
+                mRecyclerView = mView.findViewById(R.id.rv_home);
                 if(homeRecycleAdapter == null){
                     homeRecycleAdapter = new HomeRecycleViewAdapter(mActivity, mIndexData , mFragment);
+                    mRecyclerView.setAdapter(homeRecycleAdapter);
                 }
-                mRecyclerView = mView.findViewById(R.id.rv_home);
-                mRecyclerView.setAdapter(homeRecycleAdapter);
 
                 //recycleView不仅要设置适配器还要设置布局管理者,否则图片不显示
                 //第一个参数是上下文，第二个参数是只有一列
@@ -102,16 +102,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         mActivity = (MainActivity)getActivity();
         mFragment = this;
-
-//        if (null != mView) {
-//            ViewGroup parent = (ViewGroup) mView.getParent();
-//            if (null != parent) {
-//                parent.removeView(mView);
-//            }
-//        } else {
-//            mView = inflater.inflate(R.layout.fragment_home, container, false);
-//            initView();// 控件初始化
-//        }
 
         // Inflate the layout for this fragment
         if(tempView == null) {

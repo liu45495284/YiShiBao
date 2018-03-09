@@ -32,14 +32,6 @@ public class BannerViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    //        public void setData(List<WomenBean.WomenData.ModuleBean.DataBean> module0data) {
-//            //设置Banner的数据
-//            //得到图片地址的集合
-//            List<String> imageUrls=new ArrayList<>();
-//            for (int i=0;i<module0data.size();i++){
-//                String image=module0data.get(i).getImg();
-//                imageUrls.add(image);
-//            }
     public void setData(JSONArray array) {
         ArrayList list = new ArrayList();
 

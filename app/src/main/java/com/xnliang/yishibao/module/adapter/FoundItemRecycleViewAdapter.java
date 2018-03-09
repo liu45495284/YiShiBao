@@ -1,7 +1,9 @@
 package com.xnliang.yishibao.module.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +12,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.module.bean.FoundListBean;
+import com.xnliang.yishibao.module.utils.DividerGridItemDecoration;
+import com.xnliang.yishibao.module.utils.ListDecoration;
+import com.xnliang.yishibao.view.MainActivity;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -19,11 +26,14 @@ import java.util.List;
 
 public class FoundItemRecycleViewAdapter extends RecyclerView.Adapter {
     private final Context mContext;
-    private final List mData;
+    private final LinkedHashMap<String , List> mData;
     private MyViewHolder mHolder;
+    private MainActivity mActivity;
+    private DividerGridItemDecoration mListDecoration;
 
-    public FoundItemRecycleViewAdapter(Context context, List data) {
+    public FoundItemRecycleViewAdapter(Context context, LinkedHashMap<String , List> data) {
         this.mContext = context;
+        this.mActivity = (MainActivity)context;
         this.mData = data;
     }
 
@@ -49,7 +59,8 @@ public class FoundItemRecycleViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        List<FoundListBean.DataBeanX.ListsBean.DataBean> listData = mData.get("data");
+        return listData.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -57,8 +68,9 @@ public class FoundItemRecycleViewAdapter extends RecyclerView.Adapter {
         private final TextView mUserName;
         private final TextView mContent;
         private final TextView mTime;
-        private final ImageView mImageContentOne;
-        private final ImageView mImageContentTwo;
+        private final RecyclerView mImageView;
+        private final ImageView mHeart;
+        private final TextView mHeartNum;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -66,17 +78,37 @@ public class FoundItemRecycleViewAdapter extends RecyclerView.Adapter {
         mUserName = (TextView) itemView.findViewById(R.id.tv_user_name);
         mContent = (TextView) itemView.findViewById(R.id.tv_content);
         mTime = (TextView) itemView.findViewById(R.id.tv_time);
-        mImageContentOne = itemView.findViewById(R.id.iv_content_1);
-        mImageContentTwo = itemView.findViewById(R.id.iv_content_2);
-
+        mImageView = itemView.findViewById(R.id.rv_image);
+        mHeart = itemView.findViewById(R.id.iv_heart);
+        mHeartNum = itemView.findViewById(R.id.tv_heart_number);
         }
 
-        public void setData(List moduledata,int position) {
+        public void setData(LinkedHashMap<String , List> data,int position) {
+            List<FoundListBean.DataBeanX.ListsBean.DataBean> listData = data.get("data");
             //使用Glide加载图片
             Glide.with(mContext)
-                    .load(mData.get(position))
-                    .into(mImageContentOne);
+                    .load(listData.get(position).getAvatar())
+                    .into(mHead);
+
+            mUserName.setText(listData.get(position).getUser_nickname());
+            mContent.setText(listData.get(position).getContent());
+            mTime.setText(listData.get(position).getCreate_time());
+            mHeartNum.setText(String.valueOf(listData.get(position).getLike_count()));
+
+            List imageNum = listData.get(position).getImages();
+            for (int i = 0 ; i < imageNum.size() ; i++){
+                if(TextUtils.isEmpty(imageNum.get(i).toString())){
+                    return;
+                }
+            }
+            FoundContentAdapter contentAdapter = new FoundContentAdapter(mActivity ,imageNum);
+            mImageView.setAdapter(contentAdapter);
+            if(mListDecoration == null) {
+                mListDecoration = new DividerGridItemDecoration(mContext);
+            }
+            mImageView.addItemDecoration(mListDecoration);
+            GridLayoutManager manager = new GridLayoutManager(mContext ,4);
+            mImageView.setLayoutManager(manager);
         }
     }
-
 }
