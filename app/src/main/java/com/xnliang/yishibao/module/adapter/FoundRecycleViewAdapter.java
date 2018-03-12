@@ -22,15 +22,15 @@ public class FoundRecycleViewAdapter extends RecyclerView.Adapter {
 
     private final LayoutInflater mLayoutInflater;
     private final Context mContext;
-    private final LinkedHashMap<String ,List> moduleBeanList;
+    private final LinkedHashMap<String ,String> moduleBeanList;
     private static final int HEAD_VIEW = 0;
     private static final int CONTENT_ITEM = 1;
     private static final int LOADING_FOOT = 2;
-    private static final int RECYCLEVIEW_ITEM_COUNT = 2;
+    private static final int RECYCLEVIEW_ITEM_COUNT = 3;
     private int mCurrentType = HEAD_VIEW;
     private FoundFragment mFragment;
 
-    public FoundRecycleViewAdapter(Context mContext, LinkedHashMap<String ,List> moduleBeanList , FoundFragment foundFragment) {
+    public FoundRecycleViewAdapter(Context mContext, LinkedHashMap<String ,String> moduleBeanList , FoundFragment foundFragment) {
         this.mContext = mContext;
         this.mFragment = foundFragment;
         this.moduleBeanList = moduleBeanList;
@@ -54,12 +54,13 @@ public class FoundRecycleViewAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == HEAD_VIEW) {
             FoundHeadViewHolder headViewHolder= (FoundHeadViewHolder) holder;
-//            headViewHolder.setData(moduleBeanList);
+            headViewHolder.setData();
         }else if(getItemViewType(position)==CONTENT_ITEM) {
             FoundContentViewHolder contentViewHolder= (FoundContentViewHolder) holder;
             contentViewHolder.setData();
         }else if(getItemViewType(position)==LOADING_FOOT){
-
+            FoundFootViewHolder footViewHolder = (FoundFootViewHolder) holder;
+            footViewHolder.setData(moduleBeanList);
         }
 
     }

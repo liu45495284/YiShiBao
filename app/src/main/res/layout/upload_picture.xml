@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <EditText
+        android:id="@+id/et_upload_text"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:maxLines="5"
+        android:background="@null"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:maxLength="200"
+        android:hint="@string/found_send_text"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_upload_picture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_upload_text"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
+    </android.support.v7.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/iv_plus_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/upload_picture"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/rv_upload_picture"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/iv_plus_picture">
+    <Button
+        android:id="@+id/bt_upload"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/red"
+        android:text="@string/found_upload_content"
+        android:textSize="18sp"
+        android:textColor="@color/white"/>
+    </RelativeLayout>
+
+</RelativeLayout>

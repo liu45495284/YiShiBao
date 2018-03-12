@@ -20,5 +20,13 @@
         android:padding="10dp"
         android:text="@string/refresh_no_more"/>
 
+    <TextView
+        android:id="@+id/tv_loading_data"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="10dp"
+        android:text="@string/found_loading"/>
+
 
 </RelativeLayout>

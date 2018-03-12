@@ -12,14 +12,29 @@
         android:background="@color/white"
         >
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <TextView
             android:id="@+id/tv_found_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_centerInParent="true"
             android:text="@string/tab_found"
             android:textColor="@color/black"
             android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/bt_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:text="@string/found_send"
+            android:textColor="@color/red"
+            android:layout_alignParentRight="true"
+            android:textSize="14sp"
+            />
+        </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
     <com.baoyz.widget.PullRefreshLayout

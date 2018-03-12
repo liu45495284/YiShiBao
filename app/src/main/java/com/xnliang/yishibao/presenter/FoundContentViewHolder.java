@@ -1,6 +1,7 @@
 package com.xnliang.yishibao.presenter;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
@@ -44,12 +45,13 @@ public class FoundContentViewHolder extends BaseViewHolder implements FoundFragm
     private final RecyclerView mItemView;
     private ListDecoration mListDecoration;
     private FoundItemRecycleViewAdapter mItemAdapter;
-    private int count = 1;
     private LinearLayoutManager manager;
     private static final String mFoundIndex ="http://ysb.appxinliang.cn/api/discover";
     private static final int SUCCESSFUL_CODE = 200;
     private static final int FAILURE_CODE = 10001;
     private static final int SUCCESSFUL = 0;
+    private static final int REFRESH = 1;
+    private static final int PULL_REFRESH = 2;
     private JSONObject mJsonData;
     private JSONObject mListsData;
     private String mTotal;
@@ -62,6 +64,9 @@ public class FoundContentViewHolder extends BaseViewHolder implements FoundFragm
     private ArrayList<FoundListBean.DataBeanX.ListsBean.DataBean> mDatasBean = new ArrayList();
     private List<FoundListBean.DataBeanX.ListsBean.DataBean> datasBean = new ArrayList();
     private LinkedHashMap<String , List> linkedHashMap = new LinkedHashMap<>();
+    private boolean isRefresh = false;
+    private boolean isPullRefresh = false;
+    private ProgressDialog pb;
 
     public FoundContentViewHolder(Context context, View itemView , FoundFragment foundFragment) {
         super(itemView);
@@ -87,16 +92,16 @@ public class FoundContentViewHolder extends BaseViewHolder implements FoundFragm
                     if(mListDecoration == null){
                         mListDecoration = new ListDecoration(mContext,ListDecoration.VERTICAL_LIST, R.drawable.list_divide);
                         mItemView.addItemDecoration(mListDecoration);
-                        manager = new LinearLayoutManager(mContext ,LinearLayoutManager.VERTICAL ,false);
-                        mItemView.setLayoutManager(manager);
                     }
+                    manager = new LinearLayoutManager(mContext ,LinearLayoutManager.VERTICAL ,false);
+                    mItemView.setLayoutManager(manager);
 
                     if (Integer.valueOf(mCurrentPage) > 1) {
                         int position = mItemAdapter.getItemCount();
-                        mItemAdapter.notifyItemRangeChanged(position - mDatasBean.size() , mDatasBean.size());
-//                        mItemAdapter.notifyDataSetChanged();
-                        mItemView.scrollToPosition(position);
+                        mItemAdapter.notifyItemRangeInserted(position - mDatasBean.size() , mDatasBean.size());
+                        mItemView.scrollToPosition(position - mDatasBean.size());
                     }
+                    mItemView.setItemAnimator(null);
 
                     mItemView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                         @Override
@@ -107,7 +112,8 @@ public class FoundContentViewHolder extends BaseViewHolder implements FoundFragm
                             if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItemPosition + 1 == mItemAdapter.getItemCount()) {
                                 Log.d("test", "loading executed");
 
-
+                                // scroll conflict no work
+//                                loadMore();
                             }
                         }
 
@@ -116,11 +122,21 @@ public class FoundContentViewHolder extends BaseViewHolder implements FoundFragm
                         }
                     });
                     break;
+                case REFRESH:
+                    mItemAdapter.notifyDataSetChanged();
+                    pb.dismiss();
+                    isRefresh = false;
+                    break;
+                case PULL_REFRESH:
+                    mItemAdapter.notifyDataSetChanged();
+                    isPullRefresh = false;
+                    break;
             }
         }
     };
 
     public void setData() {
+        datasBean.clear();
         initData(mFoundIndex , 1);
     }
 
@@ -176,8 +192,13 @@ public class FoundContentViewHolder extends BaseViewHolder implements FoundFragm
         }
         linkedHashMap.put("data" , datasBean);
 
-
-        handler.obtainMessage(SUCCESSFUL).sendToTarget();
+        if(isRefresh){
+            handler.obtainMessage(REFRESH).sendToTarget();
+        }else if (isPullRefresh){
+            handler.obtainMessage(PULL_REFRESH).sendToTarget();
+        }else {
+            handler.obtainMessage(SUCCESSFUL).sendToTarget();
+        }
 
         if (Integer.parseInt(code) == FAILURE_CODE) {
             Toast.makeText(mActivity, msg, Toast.LENGTH_SHORT).show();
@@ -218,5 +239,26 @@ public class FoundContentViewHolder extends BaseViewHolder implements FoundFragm
                 }
             }, 1000);
         }
+    }
+
+    @Override
+    public void refreshNew() {
+        isRefresh = true;
+        showDialog();
+        setData();
+    }
+
+    @Override
+    public void pullRefresh() {
+        isPullRefresh = true;
+//        showDialog();
+        setData();
+    }
+
+    public void showDialog(){
+        pb = new ProgressDialog(mActivity);
+        pb.setMessage(mActivity.getResources().getString(R.string.found_uploading));
+        pb.setCancelable(false);
+        pb.show();
     }
 }
