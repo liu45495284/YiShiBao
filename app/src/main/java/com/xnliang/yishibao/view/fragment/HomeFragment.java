@@ -158,12 +158,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
 
     public void initData() {
-        moduleBeanList.clear();
-        int iconBanner[] = { R.mipmap.i4, R.mipmap.i2, R.mipmap.i3,R.mipmap.i4, R.mipmap.i2,
-                R.mipmap.i3,R.mipmap.i4, R.mipmap.i2};
-        for (int i = 0 ; i < iconBanner.length ; i++) {
-            moduleBeanList.add(iconBanner[i]);
-        }
+//        moduleBeanList.clear();
+//        int iconBanner[] = { R.mipmap.i4, R.mipmap.i2, R.mipmap.i3,R.mipmap.i4, R.mipmap.i2,
+//                R.mipmap.i3,R.mipmap.i4, R.mipmap.i2};
+//        for (int i = 0 ; i < iconBanner.length ; i++) {
+//            moduleBeanList.add(iconBanner[i]);
+//        }
 
         dataFromNet();
     }

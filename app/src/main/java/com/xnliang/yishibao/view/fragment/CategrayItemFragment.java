@@ -43,6 +43,8 @@ public class CategrayItemFragment extends BaseFragment implements View.OnClickLi
     private ImageView mNoramalArrow;
     private ImageView mSalesUpArrow;
     private ImageView mPriceUpArrow;
+    public static final String SHOP_CATEGORY_TAG = "shop_category";
+    public static final String CATEGORY_TAG = "category";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -168,12 +170,20 @@ public class CategrayItemFragment extends BaseFragment implements View.OnClickLi
 
     @Override
     public boolean onBackPressed() {
+        int flag = getArguments().getInt("flag");
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        HomeFragment homeFragment = (HomeFragment)manager.findFragmentByTag("home");
-        transaction.hide(this);
-        transaction.show(homeFragment);
-        transaction.commit();
+        if (flag == 0) {
+            HomeFragment homeFragment = (HomeFragment) manager.findFragmentByTag("home");
+            transaction.hide(this);
+            transaction.show(homeFragment);
+            transaction.commit();
+        }else if(flag == 1){
+            ShopFragment shopFragment = (ShopFragment) manager.findFragmentByTag("shop");
+            transaction.hide(this);
+            transaction.show(shopFragment);
+            transaction.commit();
+        }
         return true;
     }
 }

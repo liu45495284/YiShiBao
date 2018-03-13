@@ -19,6 +19,7 @@ import com.xnliang.yishibao.presenter.TeamBuyGoodsViewHolder;
 import com.xnliang.yishibao.presenter.TeamBuyViewHolder;
 import com.xnliang.yishibao.presenter.TenIntegralBuyViewHolder;
 import com.xnliang.yishibao.presenter.TenIntegralGoodsViewHolder;
+import com.xnliang.yishibao.view.fragment.ShopFragment;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -76,11 +77,13 @@ public class ShopRecycleViewAdapter extends RecyclerView.Adapter {
 
     private final Context mContext;
     private final JSONObject mData;
-    RecyclerView.ViewHolder holder = null;
+    private RecyclerView.ViewHolder holder = null;
+    private ShopFragment mShopFragment;
 
-    public ShopRecycleViewAdapter(Context context , JSONObject data) {
+    public ShopRecycleViewAdapter(Context context , JSONObject data , ShopFragment shopFragment) {
         this.mContext = context;
         this.mData = data;
+        this.mShopFragment = shopFragment;
         mLayoutInflater = LayoutInflater.from(mContext);
     }
 
@@ -91,7 +94,7 @@ public class ShopRecycleViewAdapter extends RecyclerView.Adapter {
                 holder = new ShopViewHolder(mContext, mLayoutInflater.inflate(R.layout.shop_banner_viewpager, null));
                 break;
             case GOODS_CATEGRAY_GV1:
-                holder = new GoodsCategrayViewHolder(mContext, mLayoutInflater.inflate(R.layout.shop_goods_categray, null));
+                holder = new GoodsCategrayViewHolder(mContext, mLayoutInflater.inflate(R.layout.shop_goods_categray, null) , mShopFragment);
                 break;
             case ONE_INTEGRAL_IV2:
                 holder = new OneIntegralBuyViewHolder(mContext, mLayoutInflater.inflate(R.layout.shop_integral_buy_title, null));

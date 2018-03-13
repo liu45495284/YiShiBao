@@ -53,6 +53,7 @@ public class CategrayViewHolder extends BaseViewHolder {
                     FragmentManager manager = mFragment.getFragmentManager();
                     Bundle bundle = new Bundle();
                     bundle.putSerializable(CATEGORY_TAG, position);
+                    bundle.putInt("flag" , 0);
                     itemFragment.setArguments(bundle);
                     FragmentTransaction transaction = manager.beginTransaction();
                     HomeFragment homeFragment = (HomeFragment)manager.findFragmentByTag("home");

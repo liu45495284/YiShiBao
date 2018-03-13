@@ -2,6 +2,9 @@ package com.xnliang.yishibao.module.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +15,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.bean.ShopIndexBean;
+import com.xnliang.yishibao.view.fragment.CategrayItemFragment;
+import com.xnliang.yishibao.view.fragment.ShopFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +31,13 @@ public class ShopCategrayRecycleViewAdapter extends RecyclerView.Adapter {
     private final List<ShopIndexBean.DataBean.CateBean> mData;
     private WeakHashMap<Integer,Integer> hashMap;
     private WeakHashMap<Integer,String> nameHashMap;
+    public static final String CATEGORY_TAG = "category";
+    private ShopFragment mShopFragment;
 
-    public ShopCategrayRecycleViewAdapter(Context context, List<ShopIndexBean.DataBean.CateBean> data) {
+    public ShopCategrayRecycleViewAdapter(Context context, List<ShopIndexBean.DataBean.CateBean> data , ShopFragment shopFragment) {
         this.mContext = context;
         this.mData = data;
+        this.mShopFragment = shopFragment;
     }
 
     @Override
@@ -52,7 +60,7 @@ public class ShopCategrayRecycleViewAdapter extends RecyclerView.Adapter {
         return 10;
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView mShopCategray;
         private TextView mCategrayName;
 
@@ -60,6 +68,8 @@ public class ShopCategrayRecycleViewAdapter extends RecyclerView.Adapter {
             super(itemView);
             mShopCategray = itemView.findViewById(R.id.img_shop_categray);
             mCategrayName = itemView.findViewById(R.id.tv_shop_categray);
+
+            itemView.setOnClickListener(this);
 
         }
 
@@ -71,6 +81,22 @@ public class ShopCategrayRecycleViewAdapter extends RecyclerView.Adapter {
                     .into(mShopCategray);
 
             mCategrayName.setText(mData.get(position).getName());
+        }
+
+        @Override
+        public void onClick(View v) {
+            CategrayItemFragment itemFragment = new CategrayItemFragment();
+            FragmentManager manager = mShopFragment.getFragmentManager();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(CATEGORY_TAG, getAdapterPosition());
+            bundle.putInt("flag" , 1);
+            itemFragment.setArguments(bundle);
+            FragmentTransaction transaction = manager.beginTransaction();
+            ShopFragment shopFragment = (ShopFragment)manager.findFragmentByTag("shop");
+            transaction.add(R.id.fragment_home_container ,itemFragment ,"categray");
+            transaction.hide(shopFragment);
+            transaction.addToBackStack("categray");
+            transaction.commit();
         }
     }
 

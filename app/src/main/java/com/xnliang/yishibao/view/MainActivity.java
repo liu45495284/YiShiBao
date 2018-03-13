@@ -25,6 +25,7 @@ import com.xnliang.yishibao.view.fragment.FoundFragment;
 import com.xnliang.yishibao.view.fragment.HomeContainerFragment;
 import com.xnliang.yishibao.view.fragment.HomeFragment;
 import com.xnliang.yishibao.view.fragment.SelfFragment;
+import com.xnliang.yishibao.view.fragment.ShopContainerFragment;
 import com.xnliang.yishibao.view.fragment.ShopFragment;
 import com.xnliang.yishibao.view.fragment.TravelFragment;
 
@@ -62,10 +63,10 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
         Fragment containerFragment = new HomeContainerFragment();
         Fragment travelFragment = new TravelFragment();
         Fragment foundFragment = new FoundFragment();
-        Fragment shopFragment = new ShopFragment();
+        Fragment shopContainerFragment = new ShopContainerFragment();
         Fragment selfFragment = new SelfFragment();
 
-        mFragments = new Fragment[]{containerFragment,travelFragment,foundFragment,shopFragment,selfFragment};
+        mFragments = new Fragment[]{containerFragment,travelFragment,foundFragment,shopContainerFragment,selfFragment};
 
         MyViewPagerAdapter adapter = new MyViewPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(adapter);

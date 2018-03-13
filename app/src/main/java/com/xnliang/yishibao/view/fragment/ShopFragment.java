@@ -62,6 +62,7 @@ public class ShopFragment extends BaseFragment implements View.OnClickListener{
     private LinkedHashMap<String ,JSONArray> hashMap = new LinkedHashMap<>();
     private ArrayList<ShopIndexBean.DataBean.SlidesBean> mDatasBean = new ArrayList();
     private static final int SHOP_INDEX = 0;
+    private ShopFragment mShopFragment;
 
     public ShopFragment() {
         // Required empty public constructor
@@ -72,6 +73,7 @@ public class ShopFragment extends BaseFragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mActivity = (MainActivity)getActivity();
+        mShopFragment = this;
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_shop, container, false);
         initView();
@@ -195,7 +197,7 @@ public class ShopFragment extends BaseFragment implements View.OnClickListener{
             switch (msg.what){
                 case SHOP_INDEX:
                     RecyclerView recyclerView = mView.findViewById(R.id.rv_shop);
-                    ShopRecycleViewAdapter shopRecycleAdapter = new ShopRecycleViewAdapter(mActivity, mIndexData);
+                    ShopRecycleViewAdapter shopRecycleAdapter = new ShopRecycleViewAdapter(mActivity, mIndexData , mShopFragment);
                     recyclerView.setAdapter(shopRecycleAdapter);
                     recyclerView.setItemAnimator(null);
                     //recycleView不仅要设置适配器还要设置布局管理者,否则图片不显示
