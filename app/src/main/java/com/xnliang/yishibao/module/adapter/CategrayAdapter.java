@@ -26,14 +26,8 @@ import java.util.List;
 public class CategrayAdapter extends BaseAdapter {
 
         private final Context mContext;
-//        private final List<WomenBean.WomenData.ModuleBean.DataBean> module1data;
         private final JSONArray module1data;
         private final MainActivity mActivity;
-
-//        public TravelViewItemAdapter(Context mContext, List<WomenBean.WomenData.ModuleBean.DataBean> module1data) {
-//            this.mContext = mContext;
-//            this.module1data = module1data;
-//        }
 
         public CategrayAdapter(Context context, JSONArray module1data) {
             this.mContext = context;

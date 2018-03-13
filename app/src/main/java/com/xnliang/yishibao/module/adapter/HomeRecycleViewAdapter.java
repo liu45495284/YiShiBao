@@ -103,7 +103,7 @@ public class HomeRecycleViewAdapter extends RecyclerView.Adapter {
         }else if(getItemViewType(position)==CATEGRAY_NEW_GV2) {
             CategrayViewHolder categrayViewHolder= (CategrayViewHolder) holder;
             JSONArray cates = mIndex.getJSONArray("cates");
-            categrayViewHolder.setData(cates);
+            categrayViewHolder.setData(cates ,position);
         }else if(getItemViewType(position)==ADVERTISING_IV3) {
             AdvertisingViewHolder advertisingViewHolder = (AdvertisingViewHolder) holder;
             String turntable = mIndex.getString("turntable");

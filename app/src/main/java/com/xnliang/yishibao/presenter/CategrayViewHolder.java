@@ -31,6 +31,7 @@ public class CategrayViewHolder extends BaseViewHolder {
     private final MainActivity mActivity;
     private HomeFragment mFragment;
     public static final String CATEGORY_TAG = "category";
+    private String mCateId;
 
     public CategrayViewHolder(Context context, View itemView , HomeFragment fragment) {
         super(itemView);
@@ -40,8 +41,9 @@ public class CategrayViewHolder extends BaseViewHolder {
         gridView = itemView.findViewById(R.id.gv_channel_categray);
     }
 
-    public void setData (JSONArray data){
+    public void setData (JSONArray data , int position){
         //已得到数据了
+        mCateId = data.getJSONObject(position).getString("id");
         //设置适配器
         CategrayAdapter adapter = new CategrayAdapter(mContext, data);
         gridView.setAdapter(adapter);
@@ -54,6 +56,7 @@ public class CategrayViewHolder extends BaseViewHolder {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable(CATEGORY_TAG, position);
                     bundle.putInt("flag" , 0);
+                    bundle.putInt("id" , Integer.valueOf(mCateId));
                     itemFragment.setArguments(bundle);
                     FragmentTransaction transaction = manager.beginTransaction();
                     HomeFragment homeFragment = (HomeFragment)manager.findFragmentByTag("home");

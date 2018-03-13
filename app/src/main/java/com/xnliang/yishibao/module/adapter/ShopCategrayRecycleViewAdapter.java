@@ -33,6 +33,7 @@ public class ShopCategrayRecycleViewAdapter extends RecyclerView.Adapter {
     private WeakHashMap<Integer,String> nameHashMap;
     public static final String CATEGORY_TAG = "category";
     private ShopFragment mShopFragment;
+    private int mCateId;
 
     public ShopCategrayRecycleViewAdapter(Context context, List<ShopIndexBean.DataBean.CateBean> data , ShopFragment shopFragment) {
         this.mContext = context;
@@ -81,6 +82,7 @@ public class ShopCategrayRecycleViewAdapter extends RecyclerView.Adapter {
                     .into(mShopCategray);
 
             mCategrayName.setText(mData.get(position).getName());
+            mCateId = mData.get(position).getId();
         }
 
         @Override
@@ -90,6 +92,7 @@ public class ShopCategrayRecycleViewAdapter extends RecyclerView.Adapter {
             Bundle bundle = new Bundle();
             bundle.putSerializable(CATEGORY_TAG, getAdapterPosition());
             bundle.putInt("flag" , 1);
+            bundle.putInt("id" , mCateId);
             itemFragment.setArguments(bundle);
             FragmentTransaction transaction = manager.beginTransaction();
             ShopFragment shopFragment = (ShopFragment)manager.findFragmentByTag("shop");

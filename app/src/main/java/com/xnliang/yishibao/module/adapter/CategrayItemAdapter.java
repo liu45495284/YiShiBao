@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.module.bean.CategroyListBean;
 import com.xnliang.yishibao.view.GoodsDetailActivity;
 import com.xnliang.yishibao.view.MainActivity;
 
@@ -23,11 +25,11 @@ import java.util.List;
 public class CategrayItemAdapter extends RecyclerView.Adapter {
 
     private final Context mContext;
-    private final List mData;
+    private final List<CategroyListBean.DataBeanX.DataBean> mData;
     private MyViewHolder mHolder;
     private MainActivity mActivity;
 
-    public CategrayItemAdapter(Context context, List data) {
+    public CategrayItemAdapter(Context context, List<CategroyListBean.DataBeanX.DataBean> data) {
         this.mContext = context;
         this.mData = data;
         this.mActivity = (MainActivity) context;
@@ -76,11 +78,16 @@ public class CategrayItemAdapter extends RecyclerView.Adapter {
 
         }
 
-        public void setData(List moduledata, int position) {
+        public void setData(List<CategroyListBean.DataBeanX.DataBean> moduledata, int position) {
+
+            String image = moduledata.get(position).getImage();
             //使用Glide加载图片
             Glide.with(mContext)
-                    .load(mData.get(position))
+                    .load(image)
                     .into(mItemPicture);
+
+            mItemName.setText(moduledata.get(position).getGoods_name());
+            mItemIngegral.setText(moduledata.get(position).getShop_price());
         }
     }
 }
