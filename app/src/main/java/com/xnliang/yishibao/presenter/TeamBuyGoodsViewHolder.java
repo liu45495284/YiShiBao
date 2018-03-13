@@ -8,6 +8,8 @@ import android.view.View;
 
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.adapter.ShopOneIntegralAdapter;
+import com.xnliang.yishibao.module.adapter.ShopTeamIntegralAdapter;
+import com.xnliang.yishibao.module.bean.ShopIndexBean;
 import com.xnliang.yishibao.module.utils.DividerGridItemDecoration;
 
 import java.util.List;
@@ -28,8 +30,8 @@ public class TeamBuyGoodsViewHolder extends BaseViewHolder {
         mTeamBuy = itemView.findViewById(R.id.rv_team_buy);
     }
 
-    public void setData(List data) {
-        ShopOneIntegralAdapter shopCategray = new ShopOneIntegralAdapter(mContext , data);
+    public void setData(List<ShopIndexBean.DataBean.TgListsBean> data) {
+        ShopTeamIntegralAdapter shopCategray = new ShopTeamIntegralAdapter(mContext , data);
         mTeamBuy.setAdapter(shopCategray);
         if (mDecoration == null) {
             mDecoration = new DividerGridItemDecoration(mContext);

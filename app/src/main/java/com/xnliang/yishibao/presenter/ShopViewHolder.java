@@ -7,10 +7,12 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.module.bean.ShopIndexBean;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerClickListener;
 import com.youth.banner.loader.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +23,7 @@ public class ShopViewHolder extends BaseViewHolder {
 
     private final Context mContext;
     private Banner banner;
+    private ArrayList list = new ArrayList();
 
 
     public ShopViewHolder(Context context ,View itemView) {
@@ -29,9 +32,11 @@ public class ShopViewHolder extends BaseViewHolder {
         banner = itemView.findViewById(R.id.shop_banner);
     }
 
-    public void setData(List module0data) {
-
-        banner.setImages(module0data).setImageLoader(new GlideImageLoader()).start();
+    public void setData(List<ShopIndexBean.DataBean.SlidesBean> data , int position) {
+        for (int i = 0 ; i < data.size() ;i++ ){
+            list.add(data.get(i).getImage());
+        }
+        banner.setImages(list).setImageLoader(new GlideImageLoader()).start();
 
         banner.setOnBannerClickListener(new OnBannerClickListener() {
             @Override

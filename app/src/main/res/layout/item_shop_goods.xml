@@ -22,6 +22,10 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/iv_shop_goods"
         android:textColor="@color/black"
+        android:maxWidth="100dp"
+        android:singleLine="true"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
         android:text="@string/app_name"
         />
 

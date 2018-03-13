@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.adapter.ShopCategrayRecycleViewAdapter;
+import com.xnliang.yishibao.module.bean.ShopIndexBean;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class GoodsCategrayViewHolder extends BaseViewHolder {
         mRecyclerView = itemView.findViewById(R.id.rv_shop_categray);
     }
 
-    public void setData(List data) {
+    public void setData(List<ShopIndexBean.DataBean.CateBean> data) {
         ShopCategrayRecycleViewAdapter shopCategray = new ShopCategrayRecycleViewAdapter(mContext , data);
         mRecyclerView.setAdapter(shopCategray);
 

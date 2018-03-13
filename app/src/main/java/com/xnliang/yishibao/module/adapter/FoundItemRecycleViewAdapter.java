@@ -1,6 +1,7 @@
 package com.xnliang.yishibao.module.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -21,6 +22,7 @@ import com.xnliang.yishibao.module.utils.DividerGridItemDecoration;
 import com.xnliang.yishibao.module.utils.ListDecoration;
 import com.xnliang.yishibao.module.utils.SharedPreferencesHelper;
 import com.xnliang.yishibao.view.MainActivity;
+import com.xnliang.yishibao.view.PicturePreviewActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -98,7 +100,7 @@ public class FoundItemRecycleViewAdapter extends RecyclerView.Adapter {
         mHeart = itemView.findViewById(R.id.iv_heart);
         mHeartNum = itemView.findViewById(R.id.tv_heart_number);
 
-        mImageView.setOnClickListener(this);
+//        mImageView.setOnClickListener(this);
         mHeart.setOnClickListener(this);
         }
 
@@ -128,6 +130,12 @@ public class FoundItemRecycleViewAdapter extends RecyclerView.Adapter {
             mImageView.addItemDecoration(mListDecoration);
             GridLayoutManager manager = new GridLayoutManager(mContext ,4);
             mImageView.setLayoutManager(manager);
+
+            String id = sharedPreferencesHelper.getSharedPreference("" + getAdapterPosition() ,"").toString();
+            if (id.equals(getAdapterPosition() + "" )){
+                mHeart.setBackgroundResource(R.mipmap.heart_red);
+                sharedPreferencesHelper.put("select" + getAdapterPosition() , false);
+            }
         }
 
         @Override
@@ -139,7 +147,11 @@ public class FoundItemRecycleViewAdapter extends RecyclerView.Adapter {
                 case R.id.iv_heart:
                     mHeart.setBackgroundResource(R.mipmap.heart_red);
                     postHeartForNet(mHeartIndex , getAdapterPosition() + 1);
-                    mHeartNum.setText(String.valueOf(mListData.get(getAdapterPosition()).getLike_count() + 1));
+                    Boolean isSelected = (Boolean) sharedPreferencesHelper.getSharedPreference("select" + getAdapterPosition() , true);
+                    if (isSelected) {
+                        mHeartNum.setText(String.valueOf(mListData.get(getAdapterPosition()).getLike_count() + 1));
+                        sharedPreferencesHelper.put("" + getAdapterPosition() , getAdapterPosition() + "");
+                    }
                     break;
             }
         }

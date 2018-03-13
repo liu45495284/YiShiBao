@@ -5,7 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.module.bean.ShopIndexBean;
 import com.xnliang.yishibao.presenter.GoodsCategrayViewHolder;
 import com.xnliang.yishibao.presenter.OneIntegralBuyViewHolder;
 import com.xnliang.yishibao.presenter.IntegralGoodsViewHolder;
@@ -13,7 +18,9 @@ import com.xnliang.yishibao.presenter.ShopViewHolder;
 import com.xnliang.yishibao.presenter.TeamBuyGoodsViewHolder;
 import com.xnliang.yishibao.presenter.TeamBuyViewHolder;
 import com.xnliang.yishibao.presenter.TenIntegralBuyViewHolder;
+import com.xnliang.yishibao.presenter.TenIntegralGoodsViewHolder;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -68,10 +75,10 @@ public class ShopRecycleViewAdapter extends RecyclerView.Adapter {
     private final LayoutInflater mLayoutInflater;
 
     private final Context mContext;
-    private final List mData;
+    private final JSONObject mData;
     RecyclerView.ViewHolder holder = null;
 
-    public ShopRecycleViewAdapter(Context context , List data) {
+    public ShopRecycleViewAdapter(Context context , JSONObject data) {
         this.mContext = context;
         this.mData = data;
         mLayoutInflater = LayoutInflater.from(mContext);
@@ -96,7 +103,7 @@ public class ShopRecycleViewAdapter extends RecyclerView.Adapter {
                 holder = new TenIntegralBuyViewHolder(mContext, mLayoutInflater.inflate(R.layout.shop_integral_buy_title, null));
                 break;
             case TEN_INTEGRAL_GOODS_RV5:
-                holder = new IntegralGoodsViewHolder(mContext, mLayoutInflater.inflate(R.layout.shop_one_integral_goods, null));
+                holder = new TenIntegralGoodsViewHolder(mContext, mLayoutInflater.inflate(R.layout.shop_one_integral_goods, null));
                 break;
             case TEAM_BUY_IV6:
                 holder = new TeamBuyViewHolder(mContext, mLayoutInflater.inflate(R.layout.shop_integral_buy_title, null));
@@ -114,11 +121,15 @@ public class ShopRecycleViewAdapter extends RecyclerView.Adapter {
         switch (getItemViewType(position)) {
             case SHOP_BANNER0:
                 ShopViewHolder shopViewHolder = (ShopViewHolder) holder;
-                shopViewHolder.setData(mData);
+                List<ShopIndexBean.DataBean.SlidesBean> slidesBeans = JSON.parseObject(mData.getString("slides"),
+                        new TypeReference<List<ShopIndexBean.DataBean.SlidesBean>>(){}.getType());
+                shopViewHolder.setData(slidesBeans , position);
                 break;
             case GOODS_CATEGRAY_GV1:
                 GoodsCategrayViewHolder goodsCategrayViewHolder = (GoodsCategrayViewHolder) holder;
-                goodsCategrayViewHolder.setData(mData);
+                List<ShopIndexBean.DataBean.CateBean> cateBeans = JSON.parseObject(mData.getString("cate"),
+                        new TypeReference<List<ShopIndexBean.DataBean.CateBean>>(){}.getType());
+                goodsCategrayViewHolder.setData(cateBeans);
                 break;
             case ONE_INTEGRAL_IV2:
                 OneIntegralBuyViewHolder oneIntegralBuyViewHolder = (OneIntegralBuyViewHolder) holder;
@@ -126,15 +137,19 @@ public class ShopRecycleViewAdapter extends RecyclerView.Adapter {
                 break;
             case ONE_INTEGRAL_GOODS_RV3:
                 IntegralGoodsViewHolder oneIntegralViewHolder = (IntegralGoodsViewHolder) holder;
-                oneIntegralViewHolder.setData(mData);
+                List<ShopIndexBean.DataBean.YjfListsBean> yjfListsBeans = JSON.parseObject(mData.getString("yjf_lists"),
+                        new TypeReference<List<ShopIndexBean.DataBean.YjfListsBean>>(){}.getType());
+                oneIntegralViewHolder.setData(yjfListsBeans);
                 break;
             case TEN_INTEGRAL_IV4:
                 TenIntegralBuyViewHolder integralBuyViewHolder = (TenIntegralBuyViewHolder) holder;
                 integralBuyViewHolder.setData();
                 break;
             case TEN_INTEGRAL_GOODS_RV5:
-                IntegralGoodsViewHolder tenIntegralViewHolder = (IntegralGoodsViewHolder) holder;
-                tenIntegralViewHolder.setData(mData);
+                TenIntegralGoodsViewHolder tenIntegralViewHolder = (TenIntegralGoodsViewHolder) holder;
+                List<ShopIndexBean.DataBean.SjfListsBean> sjfListsBeans = JSON.parseObject(mData.getString("sjf_lists"),
+                        new TypeReference<List<ShopIndexBean.DataBean.SjfListsBean>>(){}.getType());
+                tenIntegralViewHolder.setData(sjfListsBeans);
                 break;
             case TEAM_BUY_IV6:
                 TeamBuyViewHolder teamBuyViewHolder = (TeamBuyViewHolder) holder;
@@ -142,7 +157,9 @@ public class ShopRecycleViewAdapter extends RecyclerView.Adapter {
                 break;
             case TEAM_BUY_DETAIL_RV7:
                 TeamBuyGoodsViewHolder teamBuyGoodsViewHolder = (TeamBuyGoodsViewHolder) holder;
-                teamBuyGoodsViewHolder.setData(mData);
+                List<ShopIndexBean.DataBean.TgListsBean> tgListsBeans = JSON.parseObject(mData.getString("tg_lists"),
+                        new TypeReference<List<ShopIndexBean.DataBean.TgListsBean>>(){}.getType());
+                teamBuyGoodsViewHolder.setData(tgListsBeans);
                 break;
         }
     }

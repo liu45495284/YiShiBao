@@ -18,10 +18,10 @@ import java.util.List;
  * Created by JackLiu on 2018-02-07.
  */
 
-public class ShopOneIntegralAdapter extends RecyclerView.Adapter {
+public class ShopTeamIntegralAdapter extends RecyclerView.Adapter {
     private final Context mContext;
-    private final List<ShopIndexBean.DataBean.YjfListsBean> mData;
-    public ShopOneIntegralAdapter(Context context , List<ShopIndexBean.DataBean.YjfListsBean> data) {
+    private final List<ShopIndexBean.DataBean.TgListsBean> mData;
+    public ShopTeamIntegralAdapter(Context context , List<ShopIndexBean.DataBean.TgListsBean> data) {
         this.mContext = context;
         this.mData = data;
     }

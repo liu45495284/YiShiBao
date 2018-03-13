@@ -1,6 +1,7 @@
 package com.xnliang.yishibao.module.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -13,6 +14,8 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.bean.FoundListBean;
+import com.xnliang.yishibao.view.MainActivity;
+import com.xnliang.yishibao.view.PicturePreviewActivity;
 
 import java.util.List;
 
@@ -23,11 +26,14 @@ import java.util.List;
 public class FoundContentAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
+    private MainActivity mActivity;
     private List mData;
     private LayoutInflater mLayoutInflater;
+    private static final String mFoundIndex ="http://ysb.appxinliang.cn/api/discover";
 
     public FoundContentAdapter(Context context , List data) {
         this.mContext = context;
+        this.mActivity = (MainActivity)context;
         this.mData = data;
         mLayoutInflater = LayoutInflater.from(mContext);
     }
@@ -57,6 +63,15 @@ public class FoundContentAdapter extends RecyclerView.Adapter {
         public MyViewHolder(View itemView ) {
             super(itemView);
             mContentView = itemView.findViewById(R.id.iv_content);
+            mContentView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.setClass(mActivity, PicturePreviewActivity.class);
+                    intent.putExtra("url", mData.get(getAdapterPosition()).toString());
+                    mActivity.startActivity(intent);
+                }
+            });
         }
 
         public void setData(List mData , int position) {

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.module.bean.ShopIndexBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +23,13 @@ import java.util.WeakHashMap;
 
 public class ShopCategrayRecycleViewAdapter extends RecyclerView.Adapter {
     private final Context mContext;
-    private final List data;
+    private final List<ShopIndexBean.DataBean.CateBean> mData;
     private WeakHashMap<Integer,Integer> hashMap;
     private WeakHashMap<Integer,String> nameHashMap;
 
-    public ShopCategrayRecycleViewAdapter(Context context, List data) {
+    public ShopCategrayRecycleViewAdapter(Context context, List<ShopIndexBean.DataBean.CateBean> data) {
         this.mContext = context;
-        this.data = data;
+        this.mData = data;
     }
 
     @Override
@@ -63,13 +64,13 @@ public class ShopCategrayRecycleViewAdapter extends RecyclerView.Adapter {
         }
 
         public void setData(int position) {
-            tempData();
+//            tempData();
             //使用Glide加载图片
             Glide.with(mContext)
-                    .load(hashMap.get(position))
+                    .load(mData.get(position).getApp_icon())
                     .into(mShopCategray);
 
-            mCategrayName.setText(nameHashMap.get(position));
+            mCategrayName.setText(mData.get(position).getName());
         }
     }
 
