@@ -20,6 +20,7 @@ public class GoodsViewHolder extends BaseViewHolder {
 
     private final Context mContext;
     private RecyclerView dapeiqs_rv;
+    private DividerGridItemDecoration mDecoration;
 
     public GoodsViewHolder(Context mContext, View itemView) {
         super(itemView);
@@ -33,7 +34,11 @@ public class GoodsViewHolder extends BaseViewHolder {
         GoodsRecycleViewAdapter adapter=new GoodsRecycleViewAdapter(mContext,data);
         //设置adapter
         dapeiqs_rv.setAdapter(adapter);
-        dapeiqs_rv.addItemDecoration(new DividerGridItemDecoration(mContext));
+
+        if (mDecoration == null){
+            mDecoration = new DividerGridItemDecoration(mContext);
+            dapeiqs_rv.addItemDecoration(new DividerGridItemDecoration(mContext));
+        }
 
         //recycleView不仅要设置适配器还要设置布局管理者,否则图片不显示
         GridLayoutManager manager= new GridLayoutManager(mContext,4);

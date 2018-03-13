@@ -1,6 +1,7 @@
 package com.xnliang.yishibao.module.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.bean.ShopIndexBean;
+import com.xnliang.yishibao.view.GoodsDetailActivity;
+import com.xnliang.yishibao.view.MainActivity;
 
 import java.util.List;
 
@@ -20,9 +23,12 @@ import java.util.List;
 
 public class ShopTenIntegralAdapter extends RecyclerView.Adapter {
     private final Context mContext;
+    private final MainActivity mActivity;
     private final List<ShopIndexBean.DataBean.SjfListsBean> mData;
+
     public ShopTenIntegralAdapter(Context context , List<ShopIndexBean.DataBean.SjfListsBean> data) {
         this.mContext = context;
+        this.mActivity = (MainActivity) context;
         this.mData = data;
     }
 
@@ -44,7 +50,7 @@ public class ShopTenIntegralAdapter extends RecyclerView.Adapter {
         return mData.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private ImageView mShopGoods;
         private TextView mShopName;
         private TextView mShopIntegral;
@@ -55,6 +61,7 @@ public class ShopTenIntegralAdapter extends RecyclerView.Adapter {
             mShopName = itemView.findViewById(R.id.tv_shop_name);
             mShopIntegral = itemView.findViewById(R.id.tv_shop_jifen);
 
+            itemView.setOnClickListener(this);
         }
 
         public void setData(int position) {
@@ -65,6 +72,12 @@ public class ShopTenIntegralAdapter extends RecyclerView.Adapter {
 
             mShopName.setText(mData.get(position).getGoods_name());
             mShopIntegral.setText(mData.get(position).getShop_price());
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(mActivity , GoodsDetailActivity.class);
+            mActivity.startActivity(intent);
         }
     }
 }
