@@ -2,6 +2,7 @@ package com.xnliang.yishibao.module.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.xnliang.yishibao.module.bean.ShopIndexBean;
 import com.xnliang.yishibao.view.GoodsDetailActivity;
 import com.xnliang.yishibao.view.MainActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +27,7 @@ public class ShopTenIntegralAdapter extends RecyclerView.Adapter {
     private final Context mContext;
     private final MainActivity mActivity;
     private final List<ShopIndexBean.DataBean.SjfListsBean> mData;
+    private List idList = new ArrayList();
 
     public ShopTenIntegralAdapter(Context context , List<ShopIndexBean.DataBean.SjfListsBean> data) {
         this.mContext = context;
@@ -72,11 +75,16 @@ public class ShopTenIntegralAdapter extends RecyclerView.Adapter {
 
             mShopName.setText(mData.get(position).getGoods_name());
             mShopIntegral.setText(mData.get(position).getShop_price());
+            idList.add(mData.get(position).getId());
         }
 
         @Override
         public void onClick(View v) {
+            int id = Integer.valueOf(idList.get(getAdapterPosition()).toString());
+            Bundle bundle = new Bundle();
+            bundle.putInt("detail" , id);
             Intent intent = new Intent(mActivity , GoodsDetailActivity.class);
+            intent.putExtras(bundle);
             mActivity.startActivity(intent);
         }
     }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.module.bean.CartBean;
 import com.xnliang.yishibao.module.bean.ShoppingCartBean;
 
 import java.util.List;
@@ -20,8 +21,8 @@ import java.util.List;
 
 public class CartRecommendAdapter extends RecyclerView.Adapter {
     private final Context mContext;
-    private final List<ShoppingCartBean> data;
-    public CartRecommendAdapter(Context context , List<ShoppingCartBean> data) {
+    private final List<CartBean.DataBean.ListsBean> data;
+    public CartRecommendAdapter(Context context , List<CartBean.DataBean.ListsBean> data) {
         this.mContext = context;
         this.data = data;
     }
@@ -61,7 +62,7 @@ public class CartRecommendAdapter extends RecyclerView.Adapter {
 //            WomenBean.WomenData.ModuleBean.DataBean dapeiBean = dapeiqs6data.get(position);
             //使用Glide加载图片
             Glide.with(mContext)
-                    .load(data.get(position).getId())
+                    .load(data.get(position).getImage())
                     .into(mShopGoods);
 
             mShopName.setText("洗面奶");

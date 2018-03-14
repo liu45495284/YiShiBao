@@ -79,7 +79,7 @@
     <string name="cart_all_check">全选</string>
     <string name="cart_no_freight">不含运费</string>
     <string name="cart_total">合计: %1$d积分</string>
-    <string name="cart_settlement">结算(%1$d)</string>
+    <string name="cart_settlement">结算</string>
     <string name="cart_item_integral">%1$d积分</string>
     <string name="cart_item_number">X%1$d</string>
     <string name="cart_item_finish">完成</string>
@@ -168,6 +168,10 @@
     <string name="found_saving">正在保存</string>
     <string name="found_no_file">文件不存在</string>
     <string name="found_max_upload">最多上传9张图片</string>
+    <string name="cart_add_complete">添加成功</string>
+    <string name="goods_num_failure">请输入购买数量</string>
+    <string name="detail_dialog_integral">%1$d积分</string>
+    <string name="detail_dialog_num">库存%1$d件</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

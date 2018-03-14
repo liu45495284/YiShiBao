@@ -8,6 +8,7 @@ import android.view.View;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.adapter.CartRecommendAdapter;
 import com.xnliang.yishibao.module.adapter.ShopOneIntegralAdapter;
+import com.xnliang.yishibao.module.bean.CartBean;
 import com.xnliang.yishibao.module.utils.DividerGridItemDecoration;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class CartReItemViewHolder extends BaseViewHolder {
         mView = itemView.findViewById(R.id.rv_cart_re_item);
     }
 
-    public void setData(List data){
+    public void setData(List<CartBean.DataBean.ListsBean> data){
         CartRecommendAdapter shopCategray = new CartRecommendAdapter(mContext , data);
         mView.setAdapter(shopCategray);
         if (mDecoration == null) {

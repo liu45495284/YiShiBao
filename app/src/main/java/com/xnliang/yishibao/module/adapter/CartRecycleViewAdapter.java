@@ -5,7 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.module.bean.CartBean;
 import com.xnliang.yishibao.module.bean.ShoppingCartBean;
 import com.xnliang.yishibao.presenter.CartItemViewHolder;
 import com.xnliang.yishibao.presenter.CartReItemViewHolder;
@@ -22,7 +26,7 @@ public class CartRecycleViewAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
     private ShoppingCartActivity cartActivity;
-    private List<ShoppingCartBean> mData;
+    private List<CartBean.DataBean.ListsBean> mData;
     private static final int CART_ITEM_LIST = 0;
     private static final int CART_RECOMMEND = 1;
     private static final int CART_RECOMMEND_ITEM = 2;
@@ -30,7 +34,7 @@ public class CartRecycleViewAdapter extends RecyclerView.Adapter {
     private RecyclerView.ViewHolder mViewHolder;
     private final LayoutInflater mInflater;
 
-    public CartRecycleViewAdapter(Context context , List<ShoppingCartBean> data) {
+    public CartRecycleViewAdapter(Context context , List<CartBean.DataBean.ListsBean> data) {
         this.mContext = context;
         this.cartActivity = (ShoppingCartActivity) context;
         this.mData = data;
@@ -63,7 +67,7 @@ public class CartRecycleViewAdapter extends RecyclerView.Adapter {
                 break;
             case CART_RECOMMEND_ITEM:
                 CartReItemViewHolder reItemViewHolder = (CartReItemViewHolder) holder;
-                reItemViewHolder.setData(mData);
+//                reItemViewHolder.setData(mData);
                 break;
         }
 
@@ -71,7 +75,7 @@ public class CartRecycleViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 1;
     }
 
     @Override

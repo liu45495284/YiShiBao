@@ -48,11 +48,13 @@
     <FrameLayout
         android:id="@+id/fl_goods_detail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_six_line">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/iv_six_line"
+        android:layout_above="@+id/ll_bottom_button">
     </FrameLayout>
 
     <LinearLayout
+        android:id="@+id/ll_bottom_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

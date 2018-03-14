@@ -2,6 +2,7 @@ package com.xnliang.yishibao.module.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.view.GoodsDetailActivity;
 import com.xnliang.yishibao.view.MainActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +27,7 @@ public class GoodsRecycleViewAdapter extends RecyclerView.Adapter  {
     private final Context mContext;
     private final MainActivity mActivity;
     private final JSONArray data;
+    private List idList = new ArrayList();
 
     public GoodsRecycleViewAdapter(Context context, JSONArray data) {
         this.mContext = context;
@@ -71,6 +74,8 @@ public class GoodsRecycleViewAdapter extends RecyclerView.Adapter  {
 
             String url = data.getJSONObject(position).getString("image");
             String name = data.getJSONObject(position).getString("goods_name");
+            String id = data.getJSONObject(position).getString("id");
+            idList.add(id);
 //            String price = data.getJSONObject(position).getString("shop_price");
 
             //使用Glide加载图片
@@ -84,7 +89,11 @@ public class GoodsRecycleViewAdapter extends RecyclerView.Adapter  {
 
         @Override
         public void onClick(View v) {
+            int id = Integer.valueOf(idList.get(getAdapterPosition()).toString());
+            Bundle bundle = new Bundle();
+            bundle.putInt("detail" , id);
             Intent intent = new Intent(mActivity , GoodsDetailActivity.class);
+            intent.putExtras(bundle);
             mActivity.startActivity(intent);
         }
     }

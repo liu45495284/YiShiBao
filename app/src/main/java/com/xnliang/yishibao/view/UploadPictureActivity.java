@@ -147,7 +147,6 @@ public class UploadPictureActivity extends BaseActivity implements View.OnClickL
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         Log.e("TAG", "联网失败" + e.getMessage());
-                        Toast.makeText(mActivity ,R.string.register_failure ,Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

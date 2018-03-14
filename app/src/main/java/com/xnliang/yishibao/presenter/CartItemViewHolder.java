@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.adapter.CartItemViewAdapter;
+import com.xnliang.yishibao.module.bean.CartBean;
 import com.xnliang.yishibao.module.utils.ListDecoration;
 import com.xnliang.yishibao.view.ShoppingCartActivity;
 
@@ -30,7 +31,7 @@ public class CartItemViewHolder extends BaseViewHolder implements ShoppingCartAc
         mView = itemView.findViewById(R.id.rv_cart_item);
     }
 
-    public void setData(List data){
+    public void setData(List<CartBean.DataBean.ListsBean> data){
         mItemViewAdapter = new CartItemViewAdapter(mContext , data);
         mItemViewAdapter.setCheckInterface(cartActivity);
         mView.setAdapter(mItemViewAdapter);
