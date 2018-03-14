@@ -107,14 +107,13 @@ public class CategrayItemFragment extends BaseFragment implements View.OnClickLi
     }
 
     public void initData() {
-        moduleBeanList.clear();
-        int iconBanner[] = { R.mipmap.i4, R.mipmap.i2, R.mipmap.i3,R.mipmap.i4, R.mipmap.i2,
-                R.mipmap.i3,R.mipmap.i4, R.mipmap.i2};
-        ShoppingCartBean shoppingCartBean = new ShoppingCartBean();
-        for (int i = 0 ; i < iconBanner.length ; i++) {
-//            shoppingCartBean.setId(iconBanner[i]);
-            moduleBeanList.add(iconBanner[i]);
-        }
+//        moduleBeanList.clear();
+//        int iconBanner[] = { R.mipmap.i4, R.mipmap.i2, R.mipmap.i3,R.mipmap.i4, R.mipmap.i2,
+//                R.mipmap.i3,R.mipmap.i4, R.mipmap.i2};
+//        ShoppingCartBean shoppingCartBean = new ShoppingCartBean();
+//        for (int i = 0 ; i < iconBanner.length ; i++) {
+//            moduleBeanList.add(iconBanner[i]);
+//        }
 
         mCateId = getArguments().getInt("id");
 

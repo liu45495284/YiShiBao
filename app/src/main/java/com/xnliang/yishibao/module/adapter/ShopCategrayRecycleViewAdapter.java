@@ -34,6 +34,7 @@ public class ShopCategrayRecycleViewAdapter extends RecyclerView.Adapter {
     public static final String CATEGORY_TAG = "category";
     private ShopFragment mShopFragment;
     private int mCateId;
+    private List idList = new ArrayList();
 
     public ShopCategrayRecycleViewAdapter(Context context, List<ShopIndexBean.DataBean.CateBean> data , ShopFragment shopFragment) {
         this.mContext = context;
@@ -83,20 +84,22 @@ public class ShopCategrayRecycleViewAdapter extends RecyclerView.Adapter {
 
             mCategrayName.setText(mData.get(position).getName());
             mCateId = mData.get(position).getId();
+            idList.add(mCateId);
         }
 
         @Override
         public void onClick(View v) {
+            int id = (int)idList.get(getAdapterPosition());
             CategrayItemFragment itemFragment = new CategrayItemFragment();
             FragmentManager manager = mShopFragment.getFragmentManager();
             Bundle bundle = new Bundle();
             bundle.putSerializable(CATEGORY_TAG, getAdapterPosition());
             bundle.putInt("flag" , 1);
-            bundle.putInt("id" , mCateId);
+            bundle.putInt("id" , id);
             itemFragment.setArguments(bundle);
             FragmentTransaction transaction = manager.beginTransaction();
             ShopFragment shopFragment = (ShopFragment)manager.findFragmentByTag("shop");
-            transaction.add(R.id.fragment_home_container ,itemFragment ,"categray");
+            transaction.add(R.id.fragment_home_container ,itemFragment ,"category");
             transaction.hide(shopFragment);
             transaction.addToBackStack("categray");
             transaction.commit();

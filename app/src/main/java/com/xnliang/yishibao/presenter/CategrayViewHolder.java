@@ -31,7 +31,6 @@ public class CategrayViewHolder extends BaseViewHolder {
     private final MainActivity mActivity;
     private HomeFragment mFragment;
     public static final String CATEGORY_TAG = "category";
-    private String mCateId;
 
     public CategrayViewHolder(Context context, View itemView , HomeFragment fragment) {
         super(itemView);
@@ -41,32 +40,11 @@ public class CategrayViewHolder extends BaseViewHolder {
         gridView = itemView.findViewById(R.id.gv_channel_categray);
     }
 
-    public void setData (JSONArray data , int position){
+    public void setData (JSONArray data ){
         //已得到数据了
-        mCateId = data.getJSONObject(position).getString("id");
         //设置适配器
-        CategrayAdapter adapter = new CategrayAdapter(mContext, data);
+        CategrayAdapter adapter = new CategrayAdapter(mContext, data , mFragment);
         gridView.setAdapter(adapter);
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    CategrayItemFragment itemFragment = new CategrayItemFragment();
-                    FragmentManager manager = mFragment.getFragmentManager();
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable(CATEGORY_TAG, position);
-                    bundle.putInt("flag" , 0);
-                    bundle.putInt("id" , Integer.valueOf(mCateId));
-                    itemFragment.setArguments(bundle);
-                    FragmentTransaction transaction = manager.beginTransaction();
-                    HomeFragment homeFragment = (HomeFragment)manager.findFragmentByTag("home");
-                    transaction.add(R.id.fragment_home_container ,itemFragment ,"categray");
-                    transaction.hide(homeFragment);
-                    transaction.addToBackStack("categray");
-                    transaction.commit();
-
-                    Toast.makeText(mContext , "121314" , Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 }
