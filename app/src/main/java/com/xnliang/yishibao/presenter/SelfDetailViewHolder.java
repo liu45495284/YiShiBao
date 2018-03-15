@@ -15,10 +15,12 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.db.UserDbHelp;
+import com.xnliang.yishibao.module.utils.SharedPreferencesHelper;
 import com.xnliang.yishibao.view.IntegralTopUpActivity;
 import com.xnliang.yishibao.view.MainActivity;
 import com.xnliang.yishibao.view.SelfListActivity;
 import com.xnliang.yishibao.view.SettingActivity;
+import com.xnliang.yishibao.view.fragment.SelfFragment;
 
 import java.util.List;
 
@@ -40,12 +42,16 @@ public class SelfDetailViewHolder extends BaseViewHolder implements View.OnClick
     private RelativeLayout mIntegralC;
     private Bundle mBundle;
     private UserDbHelp dbHelper;
+    private SelfFragment mFragment;
+    private SharedPreferencesHelper sharedPreferencesHelper;
 
 
-    public SelfDetailViewHolder(Context context ,View itemView) {
+    public SelfDetailViewHolder(Context context , View itemView , SelfFragment fragment) {
         super(itemView);
         this.mContext = context;
         this.mActivity = (MainActivity) context;
+        this.mFragment = fragment;
+        sharedPreferencesHelper = new SharedPreferencesHelper(mActivity, "login");
         dbHelper = new UserDbHelp(mActivity,"UserInfo.db",null,1);
 
         mHeadPicture = itemView.findViewById(R.id.iv_self_picture);
@@ -69,24 +75,34 @@ public class SelfDetailViewHolder extends BaseViewHolder implements View.OnClick
     }
 
     public void dataFromDb(){
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        String sql = "select * from userDetail";
-        Cursor cursor = db.rawQuery(sql, null);
-        if (cursor.moveToFirst()) {
-            String nickName = cursor.getString(cursor.getColumnIndex("name"));
-            String mobile = cursor.getString(cursor.getColumnIndex("mobile"));
-            String coin = cursor.getString(cursor.getColumnIndex("coin"));
-            String score = cursor.getString(cursor.getColumnIndex("score"));
-            String avatar = cursor.getString(cursor.getColumnIndex("avatar"));
+        boolean flag = mFragment.getActivity().getIntent().getBooleanExtra("exit" , false);
+        if(flag){
+            Glide.with(mContext).load(R.mipmap.app_icon).into(mHeadPicture);
+            mSelfName.setText(R.string.no_login);
+            mSelfPhone.setText("");
+            mCashIntegral.setText("0");
+            mShopIntegral.setText("0");
+        }else{
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            String sql = "select * from userDetail";
+            Cursor cursor = db.rawQuery(sql, null);
+            if (cursor.moveToFirst()) {
+                String nickName = cursor.getString(cursor.getColumnIndex("name"));
+                String mobile = cursor.getString(cursor.getColumnIndex("mobile"));
+                String coin = cursor.getString(cursor.getColumnIndex("coin"));
+                String score = cursor.getString(cursor.getColumnIndex("score"));
+                String avatar = cursor.getString(cursor.getColumnIndex("avatar"));
 
-            Glide.with(mContext).load(avatar).into(mHeadPicture);
-            mSelfName.setText(nickName);
-            mSelfPhone.setText(mobile);
-            mCashIntegral.setText(String.valueOf(coin));
-            mShopIntegral.setText(String.valueOf(score));
+                Glide.with(mContext).load(avatar).into(mHeadPicture);
+                mSelfName.setText(nickName);
+                mSelfPhone.setText(mobile);
+                mCashIntegral.setText(String.valueOf(coin));
+                mShopIntegral.setText(String.valueOf(score));
+            }
+            cursor.close();
+            db.close();
         }
-        cursor.close();
-        db.close();
+
 
     }
 

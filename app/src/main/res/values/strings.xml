@@ -136,11 +136,14 @@
     <string name="please_input_login_phone">请输入手机号</string>
     <string name="please_input_login_password">请输入密码</string>
     <string name="please_input_login_password_again">再次输入密码</string>
+    <string name="please_reset_password">请输入新密码</string>
     <string name="please_input_security_code">请输入验证码</string>
     <string name="send_security_code">发送验证码</string>
     <string name="login_button">登录</string>
     <string name="register_button">注册</string>
+    <string name="reset_button">重置</string>
     <string name="forget_password">忘记密码</string>
+    <string name="reset_password">重置密码</string>
     <string name="register_now">立即注册</string>
     <string name="security_agree">登录或注册代表您已同意亿世宝</string>
     <string name="security_person">用户服务协议</string>
@@ -172,6 +175,7 @@
     <string name="goods_num_failure">请输入购买数量</string>
     <string name="detail_dialog_integral">%1$d积分</string>
     <string name="detail_dialog_num">库存%1$d件</string>
+    <string name="no_login">未登录</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

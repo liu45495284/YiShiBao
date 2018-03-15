@@ -159,11 +159,11 @@ public class MainActivity extends BaseActivity implements ItmeCallBackListener {
                     mViewPager.setCurrentItem(3,false);
                     break;
                 case R.id.home_radio_five:
-                    Boolean isLogion = (Boolean) sharedPreferencesHelper.getSharedPreference("isLogin" ,false);
-//                        if (!isLogion) {
+                    boolean isLogion = (boolean) sharedPreferencesHelper.getSharedPreference("isLogin" ,false);
+                        if (!isLogion) {
                             Intent intent = new Intent(mContext, LoginAndRegisterActivity.class);
                             startActivity(intent);
-//                        }
+                        }
                     mViewPager.setCurrentItem(4,false);
                     break;
             }

@@ -38,6 +38,7 @@ import okhttp3.Call;
 public class LoginFragment extends BaseFragment implements View.OnClickListener {
 
     private static final String mLoginInterface ="http://ysb.appxinliang.cn/api/user/login";
+    private static final String resetPassword ="http://ysb.appxinliang.cn/api/user/forget";
     private int mFlag;
     private static final int RESPONSE_CALLBACK = 1;
     private static final int SUCESSFUL_CODE = 200;
@@ -85,6 +86,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
         switch (v.getId()){
             case R.id.bt_login:
                 //TODO
@@ -92,11 +95,13 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
                 break;
             case R.id.tv_forget:
                 //TODO
+                ResetPasswordFragment resetPassword = new ResetPasswordFragment();
+                transaction.replace(R.id.login_container ,resetPassword ,"reset");
+                transaction.addToBackStack("reset");
+                transaction.commit();
                 break;
             case R.id.tv_register:
                 RegisterFragment registerFragment = new RegisterFragment();
-                FragmentManager manager = getActivity().getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.login_container ,registerFragment ,"register");
                 transaction.addToBackStack("register");
                 transaction.commit();
@@ -200,6 +205,8 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
 
     @Override
     public boolean onBackPressed() {
+        Intent intent = new Intent(getActivity() ,MainActivity.class);
+        startActivity(intent);
         getActivity().finish();
         return true;
     }

@@ -1,5 +1,6 @@
 package com.xnliang.yishibao.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -35,6 +36,7 @@ public class LoginAndRegisterActivity extends BaseActivity implements SelfItemBa
     @Override
     public void onBackPressed() {
         if (!HandlerBackUtil.handleBackPress(this)) {
+
             super.onBackPressed();
         }
     }

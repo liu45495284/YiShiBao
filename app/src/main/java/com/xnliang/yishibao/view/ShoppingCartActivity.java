@@ -108,19 +108,20 @@ public class ShoppingCartActivity extends BaseActivity implements View.OnClickLi
 
         String code = jsonObject.getString("code");
         String msg = jsonObject.getString("msg");
-        mJsonData = jsonObject.getJSONObject("data");
-        mAmount = mJsonData.getString("amount");
 
-        goodsList = JSON.parseObject(mJsonData.getString("carts") ,
-                new TypeReference<ArrayList<CartBean.DataBean.ListsBean>>(){}.getType());
-
-            handler.obtainMessage(INIT_DATA).sendToTarget();
         if (Integer.parseInt(code) == FAILURE_CODE) {
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (Integer.parseInt(code) == SUCCESSFUL_CODE) {
+            mJsonData = jsonObject.getJSONObject("data");
+            mAmount = mJsonData.getString("amount");
+
+            goodsList = JSON.parseObject(mJsonData.getString("carts") ,
+                    new TypeReference<ArrayList<CartBean.DataBean.ListsBean>>(){}.getType());
+
+            handler.obtainMessage(INIT_DATA).sendToTarget();
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         }
     }

@@ -56,7 +56,7 @@ public class SelfRecycleViewAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case SELF_DETAIL:
-                mHolder = new SelfDetailViewHolder(mContext, mLayoutInflater.inflate(R.layout.self_detail, null));
+                mHolder = new SelfDetailViewHolder(mContext, mLayoutInflater.inflate(R.layout.self_detail, null) , mFragment);
                 break;
             case SELF_LIST:
                 mHolder = new SelfListViewHolder(mContext, mLayoutInflater.inflate(R.layout.self_list, null));
