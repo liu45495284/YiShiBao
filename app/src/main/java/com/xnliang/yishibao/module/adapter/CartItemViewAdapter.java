@@ -11,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.PointerIcon;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.bean.CartBean;
@@ -55,6 +57,7 @@ public class CartItemViewAdapter extends RecyclerView.Adapter  {
     private static final String removeIndex = "http://ysb.appxinliang.cn/api/shop/cart/del";
     private static final String changeNumUrl = "http://ysb.appxinliang.cn/api/shop/cart/change";
     private static final String totalPriceUrl = "http://ysb.appxinliang.cn/api/shop/cart/price";
+    private static final String cartIndex = "http://ysb.appxinliang.cn/api/shop/cart";
     private SharedPreferencesHelper sharedPreferencesHelper;
     private static final int SUCCESSFUL_CODE = 200;
     private static final int FAILURE_CODE = 10001;
@@ -63,10 +66,16 @@ public class CartItemViewAdapter extends RecyclerView.Adapter  {
     private static final int TOTAL_PRICE = 1;
     private static final int REMOVE_ALL = 2;
     private static final int REMOVE_SINGLE = 3;
-    private Boolean single = false;
+    private static final int CHANGE_NUM = 4;
+    private static final int GET_OLD_NUM = 5;
+    private static final int DATA_REFESH = 6;
+    private boolean single = false;
+    private boolean isEdit = false;
+    private boolean isFinish = false;
     private String mTotalAmount;
     private List totalPrice = new ArrayList();
     private MyViewHolder viewHolder;
+    private List<CartBean.DataBean.ListsBean> mNewData;
 
     public CartItemViewAdapter(Context context, List<CartBean.DataBean.ListsBean> data) {
         this.mContext = context;
@@ -88,16 +97,6 @@ public class CartItemViewAdapter extends RecyclerView.Adapter  {
         totalPrice.clear();
         if (holder != null) {
             final MyViewHolder myViewHolder = (MyViewHolder) holder;
-            myViewHolder.setData(mData, position);
-
-            myViewHolder.mItemEdit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    myViewHolder.mRl.setVisibility(View.GONE);
-                    myViewHolder.mLl.setVisibility(View.VISIBLE);
-                    myViewHolder.mFinish.setVisibility(View.VISIBLE);
-                }
-            });
 
             myViewHolder.mDrop.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -165,12 +164,12 @@ public class CartItemViewAdapter extends RecyclerView.Adapter  {
                         int id = mData.get(position).getGoods_id();
                         getPriceFromNet(totalPriceUrl ,id , 0 ,amount , position);
                         single = true;
-
-
                     }
                     checkInterface.checkGroup(position, ((CheckBox) v).isChecked());
                 }
             });
+
+            myViewHolder.setData(mData, position);
         }
     }
 
@@ -216,6 +215,7 @@ public class CartItemViewAdapter extends RecyclerView.Adapter  {
                     }
                 });
 
+                mItemEdit.setOnClickListener(this);
                 mFinish.setOnClickListener(this);
             }
 
@@ -242,7 +242,7 @@ public class CartItemViewAdapter extends RecyclerView.Adapter  {
             if (mData.size() != 0) {
                 int id = mData.get(position).getGoods_id();
                 mData.remove(position);
-                removeDataForNet(removeIndex , id);
+                removeDataForNet(removeIndex , id , position);
                 notifyItemRemoved(position);
             }
             }
@@ -261,19 +261,29 @@ public class CartItemViewAdapter extends RecyclerView.Adapter  {
 
         @Override
         public void onClick(View v) {
-            mRl.setVisibility(View.VISIBLE);
-            mLl.setVisibility(View.GONE);
-            mFinish.setVisibility(View.GONE);
-
             int id = mData.get(getAdapterPosition()).getGoods_id();
-            changeDataForNet(changeNumUrl , id ,amount);
+            switch (v.getId()){
+                case R.id.ib_cart_edit:
+                    mRl.setVisibility(View.GONE);
+                    mLl.setVisibility(View.VISIBLE);
+                    mFinish.setVisibility(View.VISIBLE);
+                    isEdit =true;
+                    getPriceFromNet(totalPriceUrl ,id , 0 ,amount , getAdapterPosition());
+                    break;
+                case R.id.bt_cart_edit_finish:
+                    mRl.setVisibility(View.VISIBLE);
+                    mLl.setVisibility(View.GONE);
+                    mFinish.setVisibility(View.GONE);
 
-            String num = String.format(mContext.getResources().getString(R.string.cart_item_number),  amount);
-            mCartItemNum.setText(num);
+                    changeDataForNet(changeNumUrl , id ,amount , getAdapterPosition());
 
-            amount = 1;
+                    String num = String.format(mContext.getResources().getString(R.string.cart_item_number),  amount);
+                    mCartItemNum.setText(num);
+                    break;
+            }
+            }
         }
-    }
+
 
     //类型：0购物车订单；1立即购买 默认0
     private void getPriceFromNet(String url , int id , int type , int num , final int position){
@@ -299,21 +309,24 @@ public class CartItemViewAdapter extends RecyclerView.Adapter  {
                         if (response.isEmpty()){
                             return;
                         }
-                        setTotalPrice(response);
+                        setTotalPrice(response , position);
                     }
                 });
     }
 
-    private void setTotalPrice(String response){
+    private void setTotalPrice(String response , int position){
         JSONObject jsonObject = JSON.parseObject(response);
         String code = jsonObject.getString("code");
         String msg = jsonObject.getString("msg");
+
         mTotalAmount = jsonObject.getJSONObject("data").getString("amount");
 
-//        totalPrice.add(mTotalAmount);
+
         if(single){
             handler.obtainMessage(REMOVE_SINGLE ,mTotalAmount).sendToTarget();
             single = false;
+        }else if(isEdit) {
+            handler.obtainMessage(GET_OLD_NUM ,mTotalAmount).sendToTarget();
         }else {
             handler.obtainMessage(TOTAL_PRICE, mTotalAmount).sendToTarget();
         }
@@ -327,7 +340,7 @@ public class CartItemViewAdapter extends RecyclerView.Adapter  {
         }
     }
 
-    private void changeDataForNet(String url ,int id  , int num) {
+    private void changeDataForNet(String url , int id  , int num , final int position) {
         String token = sharedPreferencesHelper.getSharedPreference("token" ,"").toString();
         OkHttpUtils
                 .post()
@@ -349,12 +362,12 @@ public class CartItemViewAdapter extends RecyclerView.Adapter  {
                         if (response.isEmpty()){
                             return;
                         }
-                        processData(response);
+                        processData(response , position);
                     }
                 });
     }
 
-    private void removeDataForNet(String url ,int id) {
+    private void removeDataForNet(String url ,int id , final int position) {
         String token = sharedPreferencesHelper.getSharedPreference("token" ,"").toString();
         OkHttpUtils
                 .post()
@@ -375,7 +388,7 @@ public class CartItemViewAdapter extends RecyclerView.Adapter  {
                         if (response.isEmpty()){
                             return;
                         }
-                        processData(response);
+                        processData(response , position);
                     }
                 });
     }
@@ -391,6 +404,16 @@ public class CartItemViewAdapter extends RecyclerView.Adapter  {
                     break;
                 case TOTAL_PRICE:
                     totalPrice.add(mTotalAmount);
+                    if(isEdit){
+                        isEdit =false;
+                        return;
+                    }
+
+                    if(isFinish){
+                        isFinish =false;
+
+                        return;
+                    }
                     checkInterface.totalPrice(totalPrice);
                     break;
                 case REMOVE_ALL:
@@ -408,18 +431,80 @@ public class CartItemViewAdapter extends RecyclerView.Adapter  {
                     if (totalPrice.size() == 0){
                         return;
                     }
-//                    if (totalPrice.size() != 0) {
-//                        for (int i=0;i<totalPrice.size();i++){
                             totalPrice.remove(mTotalAmount);
-//                        }
-//                    }
                     checkInterface.totalPrice(totalPrice);
+                    break;
+                case GET_OLD_NUM:
+                    isEdit =false;
+                    if (totalPrice.size() == 0){
+                    }else {
+                        totalPrice.remove(msg.obj);
+                    }
+                    mTotalAmount = msg.obj.toString();
+                    break;
+                case CHANGE_NUM:
+                    if((boolean) sharedPreferencesHelper.getSharedPreference("checkAll",false)){
+                        checkInterface.dataRefresh();
+                    }
+                    isFinish = true;
+                    int idPrice = mData.get((int)msg.obj).getGoods_id();
+                    getNewDataFromNet(cartIndex , (int)msg.obj);
+                    break;
+                case DATA_REFESH:
+                    checkInterface.dataRefresh();
                     break;
             }
         }
     };
 
-    private void processData(String response) {
+    private void getNewDataFromNet(String cartIndex , final int position) {
+        String token = sharedPreferencesHelper.getSharedPreference("token" ,"").toString();
+        OkHttpUtils
+                .get()
+                .url(cartIndex)
+                .addHeader("XX-Token" , token)
+                .addHeader("XX-Device-Type" , "android")
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        Log.e("TAG", "联网失败" + e.getMessage());
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Log.e("TAG", "联网成功==" + response);
+                        if (response.isEmpty()){
+                            return;
+                        }
+                        getNewData(response , position);
+                    }
+                });
+    }
+
+    private void getNewData(String response , int position) {
+        JSONObject jsonObject = JSON.parseObject(response);
+
+        String code = jsonObject.getString("code");
+        String msg = jsonObject.getString("msg");
+        JSONObject jsonData = jsonObject.getJSONObject("data");
+
+        mNewData = JSON.parseObject(jsonData.getString("carts") ,
+                new TypeReference<ArrayList<CartBean.DataBean.ListsBean>>(){}.getType());
+
+        if (Integer.parseInt(code) == FAILURE_CODE) {
+            Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (Integer.parseInt(code) == SUCCESSFUL_CODE) {
+
+            handler.obtainMessage(DATA_REFESH , position).sendToTarget();
+            Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void processData(String response , int position) {
         JSONObject jsonObject = JSON.parseObject(response);
 
         String code = jsonObject.getString("code");
@@ -431,6 +516,8 @@ public class CartItemViewAdapter extends RecyclerView.Adapter  {
         }
 
         if (Integer.parseInt(code) == SUCCESSFUL_CODE) {
+
+            handler.obtainMessage(CHANGE_NUM , position).sendToTarget();
             Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
         }
     }
@@ -444,6 +531,7 @@ public class CartItemViewAdapter extends RecyclerView.Adapter  {
          */
         void checkGroup(int position, boolean isChecked);
         void totalPrice(List<String> list);
+        void dataRefresh();
     }
 
     public void setCheckInterface(CheckInterface checkInterface) {

@@ -49,6 +49,8 @@ public class ShoppingCartActivity extends BaseActivity implements View.OnClickLi
     private static final int SUCCESSFUL_CODE = 200;
     private static final int FAILURE_CODE = 10001;
     private static final int INIT_DATA = 0;
+    private static final int REFRESH_DATA = 1;
+    private boolean isall = false;
     private List<CartBean.DataBean.ListsBean> goodsList;
     private JSONObject mJsonData;
     private String mAmount;
@@ -112,7 +114,7 @@ public class ShoppingCartActivity extends BaseActivity implements View.OnClickLi
         goodsList = JSON.parseObject(mJsonData.getString("carts") ,
                 new TypeReference<ArrayList<CartBean.DataBean.ListsBean>>(){}.getType());
 
-        handler.obtainMessage(INIT_DATA).sendToTarget();
+            handler.obtainMessage(INIT_DATA).sendToTarget();
         if (Integer.parseInt(code) == FAILURE_CODE) {
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
             return;
@@ -192,14 +194,14 @@ public class ShoppingCartActivity extends BaseActivity implements View.OnClickLi
                         for (int i = 0; i < goodsList.size(); i++) {
                             goodsList.get(i).setChoosed(true);
                         }
-                        sharedPreferencesHelper.put("checkAll" , 0);
+                        sharedPreferencesHelper.put("checkAll" , true);
                     } else {
                         for (int i = 0; i < goodsList.size(); i++) {
                             goodsList.get(i).setChoosed(false);
                         }
+                        sharedPreferencesHelper.put("checkAll" , false);
                         String amount = String.format(getResources().getString(R.string.cart_item_integral),  0);
                         mCartTotal.setText(amount);
-                        sharedPreferencesHelper.put("checkAll" , 1);
                     }
                     cartItemListener.cartItem();
 
@@ -230,6 +232,14 @@ public class ShoppingCartActivity extends BaseActivity implements View.OnClickLi
         }
         String total = String.format(getResources().getString(R.string.cart_item_integral),  amount);
         mCartTotal.setText(total);
+    }
+
+    @Override
+    public void dataRefresh() {
+        getDataFormNet(cartIndex);
+        mCheckAll.setChecked(false);
+        String amount = String.format(getResources().getString(R.string.cart_item_integral),  0);
+        mCartTotal.setText(amount);
     }
 
     private boolean isAllCheck() {
