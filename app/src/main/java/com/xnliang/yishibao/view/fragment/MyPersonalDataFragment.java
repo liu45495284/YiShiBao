@@ -118,7 +118,6 @@ public class MyPersonalDataFragment extends BaseFragment implements View.OnClick
     }
 
     private void saveDataToServer(String url , File image ,String name) {
-        final ProgressDialog pb= new ProgressDialog(getActivity());
         String token = sharedPreferencesHelper.getSharedPreference("token" ,"").toString();
         OkHttpUtils
                 .post()

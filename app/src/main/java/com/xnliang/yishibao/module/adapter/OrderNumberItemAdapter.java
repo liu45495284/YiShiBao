@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.module.bean.OrderBean;
 import com.xnliang.yishibao.presenter.OrderItemViewHolder;
 
 import java.util.List;
@@ -17,11 +18,11 @@ import java.util.List;
 public class OrderNumberItemAdapter extends RecyclerView.Adapter {
 
     public Context mContext;
-    public List mData;
+    public List<OrderBean.DataBeanX.DataBean.ValueBean> mData;
     private final LayoutInflater mLayoutInflater;
     RecyclerView.ViewHolder holder = null;
 
-    public OrderNumberItemAdapter(Context context, List data) {
+    public OrderNumberItemAdapter(Context context, List<OrderBean.DataBeanX.DataBean.ValueBean> data) {
         this.mContext = context;
         this.mData = data;
         mLayoutInflater = LayoutInflater.from(mContext);
@@ -35,11 +36,13 @@ public class OrderNumberItemAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         OrderItemViewHolder itemViewHolder = (OrderItemViewHolder)holder;
-        itemViewHolder.setData(mData);
+
+        itemViewHolder.setData(mData ,position);
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return mData.size();
     }
+
 }

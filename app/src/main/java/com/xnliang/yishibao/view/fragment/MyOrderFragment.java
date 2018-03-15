@@ -3,6 +3,7 @@ package com.xnliang.yishibao.view.fragment;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,9 @@ public class MyOrderFragment extends BaseFragment {
     private View mView;
     private List<String> mTitleList;
     private List<MyOrderDetailFragment> mFragmentList;
+    private int curTab=0;
+    private MyOrderDetailAdapter mAdapter;
+
 
     @Bind(R.id.rl_order_back)
     RelativeLayout mBack;
@@ -47,9 +51,7 @@ public class MyOrderFragment extends BaseFragment {
         initFragment();
         initView();
 
-        mViewPager.setAdapter(new MyOrderDetailAdapter(getActivity().getSupportFragmentManager(), mFragmentList, mTitleList));
-        //将tablayout与fragment关联
-        mTabLayout.setupWithViewPager(mViewPager);
+
 
         return mView;
     }
@@ -57,6 +59,35 @@ public class MyOrderFragment extends BaseFragment {
     private void initView() {
 //        TabLayout mTabLayout = mView.findViewById(R.id.tb_my_order);
 //        OrderDetailViewPager mViewPager = mView.findViewById(R.id.vp_my_order);
+
+        mAdapter = new MyOrderDetailAdapter(getActivity().getSupportFragmentManager(), mFragmentList, mTitleList);
+        mViewPager.setAdapter(mAdapter);
+        //将tablayout与fragment关联
+        mTabLayout.setupWithViewPager(mViewPager);
+        mTabLayout.setSmoothScrollingEnabled(true);
+        //mTabLayout.setTabMode(TabLayout.MODE_FIXED);//全部放下，不滑动
+//        mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);//超过长度可滑动
+        //设置当前显示哪个标签页
+        mViewPager.setCurrentItem(curTab);
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                //滑动监听加载数据，一次只加载一个标签页
+                ((MyOrderDetailFragment)mAdapter.getItem(position)).sendMessage();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +98,7 @@ public class MyOrderFragment extends BaseFragment {
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+
             }
 
             @Override
@@ -99,10 +131,21 @@ public class MyOrderFragment extends BaseFragment {
 
     private void initFragment() {
         mFragmentList = new ArrayList<>();
-        mFragmentList.add(MyOrderDetailFragment.newInstance(0));
-        mFragmentList.add(MyOrderDetailFragment.newInstance(1));
-        mFragmentList.add(MyOrderDetailFragment.newInstance(2));
-        mFragmentList.add(MyOrderDetailFragment.newInstance(3));
+        for (int i=0; i<mTitleList.size(); i++){
+            MyOrderDetailFragment fragment = MyOrderDetailFragment.newInstance(i);
+            fragment.setTabPos(i);
+            mFragmentList.add(fragment);
+        }
+//        mFragmentList.add(MyOrderDetailFragment.newInstance(0));
+//        mFragmentList.add(MyOrderDetailFragment.newInstance(1));
+//        mFragmentList.add(MyOrderDetailFragment.newInstance(2));
+//        mFragmentList.add(MyOrderDetailFragment.newInstance(3));
+
+//        for(int i=0; i<mTitleList.size(); i++){
+//            MyOrderDetailFragment fragment = new MyOrderDetailFragment(curTab);
+//            fragment.setTabPos(i);
+//            mFragments.add(fragment);
+//        }
 
     }
 

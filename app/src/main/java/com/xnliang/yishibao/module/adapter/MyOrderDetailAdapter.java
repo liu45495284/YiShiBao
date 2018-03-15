@@ -3,6 +3,7 @@ package com.xnliang.yishibao.module.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.ViewGroup;
 
 import com.xnliang.yishibao.view.fragment.MyOrderDetailFragment;
 
@@ -39,5 +40,11 @@ public class MyOrderDetailAdapter extends FragmentPagerAdapter {
         return mTilteLis.get(position);
     }
 
+
+    //防止fragment自动销毁
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        //super.destroyItem(container, position, object);
+    }
 
 }
