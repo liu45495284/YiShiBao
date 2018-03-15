@@ -84,6 +84,10 @@ public class MyPersonalDataFragment extends BaseFragment implements View.OnClick
     }
 
     private void initView() {
+        String image = getArguments().getString("image");
+        Glide.with(this)
+                .load(image)
+                .into(mHeadView);
         mBackLayout.setOnClickListener(this);
         mHead.setOnClickListener(this);
         mPersonSave.setOnClickListener(this);

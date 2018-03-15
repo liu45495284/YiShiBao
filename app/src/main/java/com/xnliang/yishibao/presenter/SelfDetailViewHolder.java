@@ -45,6 +45,7 @@ public class SelfDetailViewHolder extends BaseViewHolder implements View.OnClick
     private SelfFragment mFragment;
     private SharedPreferencesHelper sharedPreferencesHelper;
     private SelfDetailInitListener mListener;
+    private String mAvatar;
 
 
     public SelfDetailViewHolder(Context context , View itemView , SelfFragment fragment) {
@@ -96,9 +97,9 @@ public class SelfDetailViewHolder extends BaseViewHolder implements View.OnClick
                 String mobile = cursor.getString(cursor.getColumnIndex("mobile"));
                 String coin = cursor.getString(cursor.getColumnIndex("coin"));
                 String score = cursor.getString(cursor.getColumnIndex("score"));
-                String avatar = cursor.getString(cursor.getColumnIndex("avatar"));
+                mAvatar = cursor.getString(cursor.getColumnIndex("avatar"));
 
-                Glide.with(mContext).load(avatar).into(mHeadPicture);
+                Glide.with(mContext).load(mAvatar).into(mHeadPicture);
                 mSelfName.setText(nickName);
                 mSelfPhone.setText(mobile);
                 mCashIntegral.setText(String.valueOf(coin));
@@ -123,6 +124,7 @@ public class SelfDetailViewHolder extends BaseViewHolder implements View.OnClick
                 break;
             case R.id.iv_self_picture:
                 mBundle.putInt("pos" , 7);
+                mBundle.putString("image" ,mAvatar);
                 Intent personIntent = new Intent(mActivity , SelfListActivity.class);
                 personIntent.putExtras(mBundle);
                 mActivity.startActivity(personIntent);

@@ -64,7 +64,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="15dp"
-            android:src="@mipmap/guide2"
+            android:src="@mipmap/loading_default"
             android:scaleType="fitXY"
             app:type="circle"
             android:layout_toLeftOf="@+id/iv_person_into"

@@ -81,6 +81,7 @@ public class SelfListActivity extends BaseActivity implements SelfItemBackListen
                 mTransaction.commit();
                 break;
             case 7:
+                personalFragment.setArguments(bundle);
                 mTransaction.replace(R.id.self_container , personalFragment ,"person");
                 mTransaction.commit();
                 break;
