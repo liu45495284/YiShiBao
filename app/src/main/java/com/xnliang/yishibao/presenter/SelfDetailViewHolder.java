@@ -28,7 +28,7 @@ import java.util.List;
  * Created by JackLiu on 2018-02-07.
  */
 
-public class SelfDetailViewHolder extends BaseViewHolder implements View.OnClickListener {
+public class SelfDetailViewHolder extends BaseViewHolder implements View.OnClickListener ,DataRefreshListener {
 
     private final Context mContext;
     private ImageView mHeadPicture;
@@ -44,6 +44,7 @@ public class SelfDetailViewHolder extends BaseViewHolder implements View.OnClick
     private UserDbHelp dbHelper;
     private SelfFragment mFragment;
     private SharedPreferencesHelper sharedPreferencesHelper;
+    private SelfDetailInitListener mListener;
 
 
     public SelfDetailViewHolder(Context context , View itemView , SelfFragment fragment) {
@@ -53,6 +54,8 @@ public class SelfDetailViewHolder extends BaseViewHolder implements View.OnClick
         this.mFragment = fragment;
         sharedPreferencesHelper = new SharedPreferencesHelper(mActivity, "login");
         dbHelper = new UserDbHelp(mActivity,"UserInfo.db",null,1);
+        mFragment.setRefreshListener(this);
+        setInitListener(mFragment);
 
         mHeadPicture = itemView.findViewById(R.id.iv_self_picture);
         mSelfName = itemView.findViewById(R.id.tv_self_name);
@@ -72,6 +75,8 @@ public class SelfDetailViewHolder extends BaseViewHolder implements View.OnClick
         mSetting.setOnClickListener(this);
         mIntegralC.setOnClickListener(this);
         mIntegralT.setOnClickListener(this);
+
+        mListener.initFinish();
     }
 
     public void dataFromDb(){
@@ -101,6 +106,8 @@ public class SelfDetailViewHolder extends BaseViewHolder implements View.OnClick
             }
             cursor.close();
             db.close();
+
+
         }
 
 
@@ -132,5 +139,14 @@ public class SelfDetailViewHolder extends BaseViewHolder implements View.OnClick
                 mActivity.startActivity(tixianIntent);
                 break;
         }
+    }
+
+    @Override
+    public void refreshData() {
+        dataFromDb();
+    }
+
+    public void setInitListener(SelfDetailInitListener listener){
+        this.mListener = listener;
     }
 }

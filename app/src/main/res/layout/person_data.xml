@@ -60,9 +60,9 @@
             android:layout_marginLeft="10dp"/>
 
         <com.xnliang.yishibao.view.customview.RoundImageView
-            android:id="@+id/iv_team_head"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:id="@+id/iv_round_head"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="15dp"
             android:src="@mipmap/guide2"
             android:scaleType="fitXY"

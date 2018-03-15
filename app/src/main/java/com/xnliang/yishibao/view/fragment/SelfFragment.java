@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.xnliang.yishibao.R;
 import com.xnliang.yishibao.module.adapter.SelfRecycleViewAdapter;
+import com.xnliang.yishibao.presenter.DataRefreshListener;
+import com.xnliang.yishibao.presenter.SelfDetailInitListener;
 import com.xnliang.yishibao.view.MainActivity;
 
 import java.util.ArrayList;
@@ -21,13 +23,15 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SelfFragment extends BaseFragment {
+public class SelfFragment extends BaseFragment implements SelfDetailInitListener {
 
 
     private View mView;
     private MainActivity mActivity;
     public List moduleBeanList = new ArrayList();
     private SelfRecycleViewAdapter mSelfAdapter;
+    private DataRefreshListener mListener;
+    private boolean flag = false;
 
     public SelfFragment() {
         // Required empty public constructor
@@ -61,7 +65,20 @@ public class SelfFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        if (flag){
+            initFinish();
+            flag = false;
+        }
         mSelfAdapter.notifyItemRangeChanged(0,1);
     }
 
+    public void setRefreshListener(DataRefreshListener listener){
+        this.mListener = listener;
+    }
+
+    @Override
+    public void initFinish() {
+        mListener.refreshData();
+        flag = true;
+    }
 }
