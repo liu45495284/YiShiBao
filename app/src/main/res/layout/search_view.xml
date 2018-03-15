@@ -39,6 +39,7 @@
                 android:inputType="text"
                 android:singleLine="true"
                 android:drawableLeft="@mipmap/search"
+                android:textColor="@color/black"
                 />
 
     </android.support.v7.widget.Toolbar>

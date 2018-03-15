@@ -1,6 +1,8 @@
 package com.xnliang.yishibao.module.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.xnliang.yishibao.R;
+import com.xnliang.yishibao.module.bean.CategroyListBean;
+import com.xnliang.yishibao.view.GoodsDetailActivity;
+import com.xnliang.yishibao.view.SearchViewActivity;
 
 import java.util.List;
 
@@ -19,9 +24,11 @@ import java.util.List;
 
 public class SearchGoodsRecycleViewAdapter extends RecyclerView.Adapter {
     private final Context mContext;
-    private final List data;
-    public SearchGoodsRecycleViewAdapter(Context context , List data) {
+    private final List<CategroyListBean.DataBeanX.DataBean> data;
+    private SearchViewActivity mActivity;
+    public SearchGoodsRecycleViewAdapter(Context context , List<CategroyListBean.DataBeanX.DataBean> data) {
         this.mContext = context;
+        this.mActivity = (SearchViewActivity) context;
         this.data = data;
     }
 
@@ -43,7 +50,7 @@ public class SearchGoodsRecycleViewAdapter extends RecyclerView.Adapter {
         return data.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private ImageView mShopGoods;
         private TextView mShopName;
         private TextView mShopIntegral;
@@ -54,17 +61,32 @@ public class SearchGoodsRecycleViewAdapter extends RecyclerView.Adapter {
             mShopName = itemView.findViewById(R.id.tv_shop_name);
             mShopIntegral = itemView.findViewById(R.id.tv_shop_jifen);
 
+            itemView.setOnClickListener(this);
+
         }
 
         public void setData(int position) {
-//            WomenBean.WomenData.ModuleBean.DataBean dapeiBean = dapeiqs6data.get(position);
+            String image = data.get(position).getImage();
+            String name = data.get(position).getGoods_name();
+            String integral = data.get(position).getShop_price();
+            int id = data.get(position).getId();
             //使用Glide加载图片
             Glide.with(mContext)
-                    .load(data.get(position))
+                    .load(image)
                     .into(mShopGoods);
 
-            mShopName.setText("洗面奶");
-            mShopIntegral.setText("10积分");
+            mShopName.setText(name);
+            mShopIntegral.setText(integral);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int id = data.get(getAdapterPosition()).getId();
+            Bundle bundle = new Bundle();
+            bundle.putInt("detail" , id);
+            Intent intent = new Intent(mActivity , GoodsDetailActivity.class);
+            intent.putExtras(bundle);
+            mActivity.startActivity(intent);
         }
     }
 }
