@@ -10,7 +10,7 @@
         android:id="@+id/rl_address_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true">
+        >
     <CheckBox
         android:id="@+id/cb_address"
         android:layout_width="wrap_content"
@@ -22,16 +22,40 @@
         android:checked="false"
         />
 
+        <TextView
+            android:id="@+id/tv_address_consignee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/cb_address"
+            android:layout_marginLeft="10dp"
+            android:text="@string/address_consignee"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:id="@+id/tv_address_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_address_consignee"
+            android:layout_marginLeft="50dp"
+            android:text="@string/consignee_phone"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            />
     <TextView
         android:id="@+id/tv_address_desc"
         android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/cb_address"
         android:layout_marginLeft="10dp"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tv_address_consignee"
         android:text="@string/my_address"
         android:textColor="@color/black"
         android:textSize="16sp"/>
+
+
 
     <ImageView
         android:id="@+id/iv_address_edit"
@@ -41,18 +65,20 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_default_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/default_address"
+            android:textColor="@color/gray"
+            android:layout_below="@+id/tv_address_desc"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:visibility="visible"/>
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_default_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/default_address"
-        android:textColor="@color/red"
-        android:layout_below="@+id/rl_address_back"
-        android:layout_marginLeft="45dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="5dp"
-        android:visibility="visible"/>
+
 
 </RelativeLayout>

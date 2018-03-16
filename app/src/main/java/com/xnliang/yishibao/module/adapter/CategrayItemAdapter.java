@@ -2,6 +2,7 @@ package com.xnliang.yishibao.module.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,14 +48,6 @@ public class CategrayItemAdapter extends RecyclerView.Adapter {
         if (holder != null) {
             MyViewHolder myViewHolder = (MyViewHolder) holder;
             myViewHolder.setData(mData, position);
-
-            myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mActivity , GoodsDetailActivity.class);
-                    mActivity.startActivity(intent);
-                }
-            });
         }
     }
 
@@ -76,6 +69,17 @@ public class CategrayItemAdapter extends RecyclerView.Adapter {
             mItemType = (TextView) itemView.findViewById(R.id.tv_categray_type);
             mItemIngegral = (TextView) itemView.findViewById(R.id.tv_categray_integray);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int id = Integer.valueOf(mData.get(getAdapterPosition()).getId());
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("detail" , id);
+                    Intent intent = new Intent(mActivity , GoodsDetailActivity.class);
+                    intent.putExtras(bundle);
+                    mActivity.startActivity(intent);
+                }
+            });
         }
 
         public void setData(List<CategroyListBean.DataBeanX.DataBean> moduledata, int position) {

@@ -91,8 +91,6 @@ public class IntegralAndCashListFragment extends BaseFragment implements View.On
                 getDataFromNet(withdrawIndex , 1);
                 break;
         }
-
-
     }
 
     private void getDataFromNet(String url ,int page) {
