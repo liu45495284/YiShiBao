@@ -1,5 +1,7 @@
 package com.xnliang.yishibao.module.bean;
 
+import com.bigkoo.pickerview.model.IPickerViewData;
+
 import java.util.List;
 
 /**
@@ -42,7 +44,7 @@ public class CityListsBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements IPickerViewData {
         /**
          * id : 110000
          * name : 北京市
@@ -95,6 +97,11 @@ public class CityListsBean {
 
         public void setSon(List<SonBeanX> son) {
             this.son = son;
+        }
+
+        @Override
+        public String getPickerViewText() {
+            return name;
         }
 
         public static class SonBeanX {
@@ -152,7 +159,7 @@ public class CityListsBean {
                 this.son = son;
             }
 
-            public static class SonBean {
+            public static class SonBean implements IPickerViewData{
                 /**
                  * id : 110101
                  * name : 东城区
@@ -195,6 +202,11 @@ public class CityListsBean {
 
                 public void setParent_id(int parent_id) {
                     this.parent_id = parent_id;
+                }
+
+                @Override
+                public String getPickerViewText() {
+                    return name;
                 }
             }
         }
