@@ -30,7 +30,7 @@
             android:id="@+id/tv_self_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/integral_list"
+            android:text="@string/integral_cash_list"
             android:layout_toRightOf="@+id/iv_self_item"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"/>
@@ -53,12 +53,54 @@
         android:background="@color/whitesmoke"/>
 
     <RelativeLayout
-        android:id="@+id/rl_self_cash"
+        android:id="@+id/rl_self_shop_integral"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:layout_below="@+id/iv_fifth_line"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_self_shop_item"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/per_icon_integral" />
+        <TextView
+            android:id="@+id/tv_self_shop_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/integral_shop_list"
+            android:layout_toRightOf="@+id/iv_self_shop_item"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"/>
+
+        <ImageView
+            android:id="@+id/iv_self_shop_into"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/back_arrow_right"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"/>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_six_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rl_self_shop_integral"
+        android:background="@color/whitesmoke"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_self_cash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_below="@+id/iv_six_line"
         android:background="@color/white">
 
         <ImageView

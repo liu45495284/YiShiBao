@@ -61,7 +61,8 @@
     <string name="feedback_online">在线反馈</string>
     <string name="about_us">关于我们</string>
     <string name="modify_password">修改密码</string>
-    <string name="integral_list">积分列表</string>
+    <string name="integral_shop_list">购物积分列表</string>
+    <string name="integral_cash_list">现金积分列表</string>
     <string name="cash_list">提现列表</string>
     <string name="cate_normal">综合</string>
     <string name="cate_sales">销量</string>

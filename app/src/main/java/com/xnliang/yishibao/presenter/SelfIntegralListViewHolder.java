@@ -22,6 +22,8 @@ public class SelfIntegralListViewHolder extends BaseViewHolder implements View.O
     private final MainActivity mActivity;
     @Bind(R.id.rl_self_integral)
     RelativeLayout mSelfIntegral;
+    @Bind(R.id.rl_self_shop_integral)
+    RelativeLayout mShopIntegral;
     @Bind(R.id.rl_self_cash)
     RelativeLayout mSelfCash;
 
@@ -31,6 +33,7 @@ public class SelfIntegralListViewHolder extends BaseViewHolder implements View.O
         mActivity = (MainActivity)mContext;
         ButterKnife.bind(this ,itemView);
 
+        mShopIntegral.setOnClickListener(this);
         mSelfIntegral.setOnClickListener(this);
         mSelfCash.setOnClickListener(this);
     }
@@ -45,8 +48,11 @@ public class SelfIntegralListViewHolder extends BaseViewHolder implements View.O
             case R.id.rl_self_integral:
                 intent.putExtra("list" , 1);
                 break;
-            case R.id.rl_self_cash:
+            case R.id.rl_self_shop_integral:
                 intent.putExtra("list" , 2);
+                break;
+            case R.id.rl_self_cash:
+                intent.putExtra("list" , 3);
                 break;
         }
         mActivity.startActivity(intent);

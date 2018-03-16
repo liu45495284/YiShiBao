@@ -77,8 +77,7 @@ public class TravelDetailFragment extends BaseFragment implements View.OnClickLi
     private void getWebPageFromNet(String url ,int id ) {
         OkHttpUtils
                 .get()
-//                .addParams("id" , "id")
-                .addParams("id" , "1")
+                .addParams("id" , id+"")
                 .url(url)
                 .build()
                 .execute(new StringCallback() {
