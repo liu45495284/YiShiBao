@@ -58,8 +58,6 @@ public class AddressEditFragment extends BaseFragment implements View.OnClickLis
     TextView mLocalAddress;
     @Bind(R.id.et_address_detail)
     EditText mEtDetail;
-    @Bind(R.id.et_address_district)
-    EditText mEtDistrict;
 
     private SelfItemBackListener mListener;
     private static final String addAddress = "http://ysb.appxinliang.cn/api/user/address/add";
@@ -81,6 +79,7 @@ public class AddressEditFragment extends BaseFragment implements View.OnClickLis
     private List<CityListsBean.DataBean> mDataBeans;
     private OptionsPickerView mPickerView;
     private ProgressDialog pb;
+    private int mAredId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -248,7 +247,8 @@ public class AddressEditFragment extends BaseFragment implements View.OnClickLis
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case SAVE_COMPLETE:
-
+                    pb.dismiss();
+                    mListener.viewBackListener();
                     break;
                 case CITY_LISTS:
                     initPickerView();
@@ -257,6 +257,7 @@ public class AddressEditFragment extends BaseFragment implements View.OnClickLis
             }
         }
     };
+
 
     private void initView() {
         showDialog();
@@ -283,14 +284,16 @@ public class AddressEditFragment extends BaseFragment implements View.OnClickLis
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
-                String tx = options1Items.get(options1).getName()+
+                String localArea = options1Items.get(options1).getName()+
                         options2Items.get(options1).get(options2).getName()+
                         options3Items.get(options1).get(options2).get(options3).getName();
-                mLocalAddress.setText(tx);
+
+                mAredId = options3Items.get(options1).get(options2).get(options3).getId();
+                mLocalAddress.setText(localArea);
             }
         })
 
-                .setTitleText("城市选择")
+                .setTitleText(getActivity().getResources().getString(R.string.city_choose))
                 .setDividerColor(Color.BLACK)
                 .setTextColorCenter(Color.BLACK) //设置选中项文字颜色
                 .setContentTextSize(20)
@@ -311,9 +314,8 @@ public class AddressEditFragment extends BaseFragment implements View.OnClickLis
                 String consignee = mEtName.getText().toString();
                 String phone = mEtPhone.getText().toString();
                 String detailAddress = mEtDetail.getText().toString();
-                int district = Integer.valueOf(mEtDistrict.getText().toString());
-
-                addDataFromNet(addAddress , consignee ,phone ,detailAddress ,district);
+                pb.show();
+                addDataFromNet(addAddress , consignee ,phone ,detailAddress ,mAredId);
                 break;
             case R.id.et_address_local:
                 mPickerView.show();
